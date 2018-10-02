@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-oct-2018 22:36:10 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Vendedor" table="vendedor" catalog="bd_tienda" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nifVend" type="string">
+            <column name="nif_vend" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="passVend" type="string">
+            <column name="pass_vend" length="50" />
+        </property>
+        <property name="nombreVend" type="string">
+            <column name="nombre_vend" length="50" />
+        </property>
+        <property name="apellido1Vend" type="string">
+            <column name="apellido_1_vend" length="50" />
+        </property>
+        <property name="emailVend" type="string">
+            <column name="email_vend" length="50" />
+        </property>
+        <property name="apellido2Vend" type="string">
+            <column name="apellido_2__vend" length="50" />
+        </property>
+        <property name="fechaAltaVend" type="timestamp">
+            <column name="fecha_alta_vend" length="19" />
+        </property>
+        <property name="fechaNacVend" type="date">
+            <column name="fecha_nac_vend" length="10" />
+        </property>
+        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_vendedor_art" not-null="true" />
+            </key>
+            <one-to-many class="POJO.Articulo" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-oct-2018 22:36:10 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Articulo" table="articulo" catalog="bd_tienda" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categoria" class="POJO.Categoria" fetch="select">
+            <column name="id_categoria_art" />
+        </many-to-one>
+        <many-to-one name="subcategoria" class="POJO.Subcategoria" fetch="select">
+            <column name="id_subcategoria_art" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vendedor" class="POJO.Vendedor" fetch="select">
+            <column name="id_vendedor_art" not-null="true" />
+        </many-to-one>
+        <property name="nombreArt" type="string">
+            <column name="nombre_art" length="50" />
+        </property>
+        <property name="descripcionArt" type="string">
+            <column name="descripcion_art" length="50" />
+        </property>
+        <property name="importeArt" type="float">
+            <column name="importe_art" precision="12" scale="0" not-null="true" />
+        </property>
+        <property name="fechaAltaArt" type="timestamp">
+            <column name="fecha_alta_art" length="19" not-null="true" />
+        </property>
+        <property name="cantidadMaxArt" type="int">
+            <column name="cantidad_max_art" not-null="true" />
+        </property>
+        <set name="pedidoLins" table="pedido_lin" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_articulo_lin" not-null="true" />
+            </key>
+            <one-to-many class="POJO.PedidoLin" />
+        </set>
+        <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_articulo_com" />
+            </key>
+            <one-to-many class="POJO.Comentario" />
+        </set>
+    </class>
+</hibernate-mapping>

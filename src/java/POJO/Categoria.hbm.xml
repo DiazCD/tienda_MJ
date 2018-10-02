@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-oct-2018 22:36:10 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="POJO.Categoria" table="categoria" catalog="bd_tienda" optimistic-lock="version">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nombreCat" type="string">
+            <column name="nombre_cat" length="50" />
+        </property>
+        <property name="descripcionCat" type="string">
+            <column name="descripcion_cat" length="50" />
+        </property>
+        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_categoria_art" />
+            </key>
+            <one-to-many class="POJO.Articulo" />
+        </set>
+    </class>
+</hibernate-mapping>
