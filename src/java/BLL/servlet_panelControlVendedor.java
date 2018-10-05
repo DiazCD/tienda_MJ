@@ -6,7 +6,8 @@
 package BLL;
 
 import DAO.Operaciones;
-import POJO.*;
+import POJO.Articulo;
+import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -34,11 +35,11 @@ public class servlet_panelControlVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-           
+
             Usuario usr1 = new Usuario();
             ArrayList<Articulo> arrayArticulos = new Operaciones().getArticulosUsr(usr1);
-            
-           response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
+
+            response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
         }
     }
 
