@@ -5,10 +5,21 @@
  */
 package DAO;
 
+import POJO.*;
+import java.util.ArrayList;
+
 /**
  *
  * @author migue
  */
 public class Operaciones {
+
+    public Operaciones() {
+    }
     
+    public ArrayList<Articulo> getArticulosUsr (Usuario usr) {
+        ArrayList arrayArticulos = new ArrayList();
+        
+        return arrayArticulos;
+    }
 }
