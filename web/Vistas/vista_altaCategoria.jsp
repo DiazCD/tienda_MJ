@@ -1,6 +1,6 @@
 <%-- 
-    Document   : vista_panelControlVendedor
-    Created on : 02-oct-2018, 23:23:34
+    Document   : vista_altaCategoria
+    Created on : 09-oct-2018, 21:28:57
     Author     : migue
 --%>
 
@@ -14,7 +14,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Panel de control - Vendedor</title>
+        <title>Panel de control - Alta categoría</title>
     </head>
     <body>
         <div class="row">
@@ -68,8 +68,8 @@
                         <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
                         <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
                         <a href="./vista_panelControlVendedor.jsp" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
-                        
-                        <li href="#" class="list-group-item list-group-item-action active">
+
+                       <li href="#" class="list-group-item list-group-item-action active">
                             Gestión categorías
                         </li>
                         <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
@@ -78,17 +78,21 @@
                     </div>
                 </div>
             </div>
-            <div class="offset-md-1 col-md-7">
-                <div class="card" style="width: 50rem;">
-                    <div class="list-group">
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Listado artículos
-                        </li>
-                        <a href="#" class="list-group-item list-group-item-action"> #01# Artículo 1 - Descripcion del mismo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Artículo 2 - Descripcion del mismo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Artículo 3 - Descripcion del mismo </a>
+            <div class="offset-md-1 col-md-5">
+                <form>
+                    <h3> Alta categoría </h3>
+                    <br/>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> Nombre </label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1">
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlTextarea1"> Descripción </label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                    </div>
+                    
+                    <button class="btn btn-primary offset-md-4 col-md-4" type="submit"> Confirmar alta </button>
+                </form>
             </div>
         </div>
     </body>

@@ -12,6 +12,7 @@
        <title>JSP Page</title>
     </head>
     <body>
-        <%response.sendRedirect("servlet_panelControlVendedor");%>
+        <%//response.sendRedirect("servlet_panelControlVendedor");%>
+        <%response.sendRedirect("ControladorHome");%>
     </body>
 </html>

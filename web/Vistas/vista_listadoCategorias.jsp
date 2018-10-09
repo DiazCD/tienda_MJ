@@ -1,6 +1,6 @@
 <%-- 
-    Document   : vista_panelControlVendedor
-    Created on : 02-oct-2018, 23:23:34
+    Document   : vista_listadoCategorias
+    Created on : 09-oct-2018, 21:59:36
     Author     : migue
 --%>
 
@@ -68,7 +68,7 @@
                         <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
                         <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
                         <a href="./vista_panelControlVendedor.jsp" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
-                        
+
                         <li href="#" class="list-group-item list-group-item-action active">
                             Gestión categorías
                         </li>
@@ -82,14 +82,26 @@
                 <div class="card" style="width: 50rem;">
                     <div class="list-group">
                         <li href="#" class="list-group-item list-group-item-action active">
-                            Listado artículos
+                            Listado categorías
                         </li>
-                        <a href="#" class="list-group-item list-group-item-action"> #01# Artículo 1 - Descripcion del mismo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Artículo 2 - Descripcion del mismo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Artículo 3 - Descripcion del mismo </a>
+                        <a href="#" class="list-group-item list-group-item-action"> #01# Categoría 1 - Descripcion </a>
+                        <a href="#" class="list-group-item list-group-item-action"> #02# Categoría 2 - Descripcion </a>
+                        <a href="#" class="list-group-item list-group-item-action"> #02# Categoría 3 - Descripcion  </a>
+                    </div>
+                </div>
+                <br/>
+                <div class="card" style="width: 50rem;">      
+                    <div class="list-group">
+                        <li href="#" class="list-group-item list-group-item-action active">
+                            Listado subcategorías
+                        </li>
+                        <a href="#" class="list-group-item list-group-item-action"> #01# Subcategoría 1 - Descripcion </a>
+                        <a href="#" class="list-group-item list-group-item-action"> #02# Subcategoría 2 - Descripcion </a>
+                        <a href="#" class="list-group-item list-group-item-action"> #02# Subcategoría 3 - Descripcion  </a>
                     </div>
                 </div>
             </div>
         </div>
-    </body>
+    </div>
+</body>
 </html>
