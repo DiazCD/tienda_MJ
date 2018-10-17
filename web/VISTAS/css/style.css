@@ -1,0 +1,69 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+.header {
+    color: #36A0FF;
+    font-size: 27px;
+    padding: 10px;
+}
+
+.bigicon {
+    font-size: 35px;
+    color: #36A0FF;
+}
+
+nav{
+    background-color: blue !important;
+}
+
+.fila{
+    background-color: white !important;
+}
+
+.fondoTranslucido{
+    opacity: 0.9;
+}
+
+.nav-pills > li > a.active {
+    background-color: #E8B531!important;
+}
+
+.nav-pills > li > a {
+    color: black !important;
+}
+
+body{
+    /*background-color: #FFF9B9 !important;*/
+}
+
+body > .container {
+    padding: 100px 0px 0;
+    margin-bottom: 60px;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+code {
+    font-size: 80%;
+}
+
+/*CSS para tarjeta*/
+.credit-card-div  span { padding-top:10px; }
+.credit-card-div img { padding-top:30px; }
+.credit-card-div .small-font { font-size:9px; }
+.credit-card-div .pad-adjust { padding-top:10px; }
