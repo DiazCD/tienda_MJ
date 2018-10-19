@@ -39,7 +39,7 @@ public class servlet_panelControlVendedor extends HttpServlet {
             Usuario usr1 = new Usuario();
             ArrayList<Articulo> arrayArticulos = new Operaciones().getArticulosUsr(usr1);
 
-            response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
+            response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
         }
     }
 
