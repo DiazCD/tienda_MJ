@@ -31,7 +31,6 @@
         <title>Artisan Beer</title>
     </head>
     <body>
-
         <header>
             <nav class="navbar navbar-expand-md fixed-top navbar-dark">
                 <a class="navbar-brand ml-5" onclick="" href="#"><img id='logo'></img></a>
@@ -56,6 +55,7 @@
                 </div>
             </nav>
         </header>
+        
         <main role="main" class="container mt-5 pt-5" id="cuerpo">
             <section id="subCuerpo">
                 <div class="carousel slide" id="carouselExampleControls" data-ride="carousel">

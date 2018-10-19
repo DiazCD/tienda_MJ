@@ -100,6 +100,5 @@
                 <span class="text-muted">Artisan Beer. Tu artesana en casa. ©Copyright 2018</span>
             </div>
         </footer>
-
-
-    </body></html>
+    </body>
+</html>
