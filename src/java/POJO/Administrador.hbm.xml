@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-oct-2018 11:32:39 by Hibernate Tools 4.3.1 -->
+<!-- Generated 20-oct-2018 19:50:40 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Administrador" table="administrador" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="int">
