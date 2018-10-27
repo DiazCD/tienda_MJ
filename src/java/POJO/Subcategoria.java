@@ -1,5 +1,5 @@
 package POJO;
-// Generated 02-oct-2018 22:36:10 by Hibernate Tools 4.3.1
+// Generated 27-oct-2018 14:07:02 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -12,8 +12,8 @@ public class Subcategoria  implements java.io.Serializable {
 
 
      private int id;
-     private String descripcionSubcat;
      private String nombreSubcat;
+     private String descripcionSubcat;
      private Set articulos = new HashSet(0);
 
     public Subcategoria() {
@@ -23,10 +23,10 @@ public class Subcategoria  implements java.io.Serializable {
     public Subcategoria(int id) {
         this.id = id;
     }
-    public Subcategoria(int id, String descripcionSubcat, String nombreSubcat, Set articulos) {
+    public Subcategoria(int id, String nombreSubcat, String descripcionSubcat, Set articulos) {
        this.id = id;
-       this.descripcionSubcat = descripcionSubcat;
        this.nombreSubcat = nombreSubcat;
+       this.descripcionSubcat = descripcionSubcat;
        this.articulos = articulos;
     }
    
@@ -37,19 +37,19 @@ public class Subcategoria  implements java.io.Serializable {
     public void setId(int id) {
         this.id = id;
     }
-    public String getDescripcionSubcat() {
-        return this.descripcionSubcat;
-    }
-    
-    public void setDescripcionSubcat(String descripcionSubcat) {
-        this.descripcionSubcat = descripcionSubcat;
-    }
     public String getNombreSubcat() {
         return this.nombreSubcat;
     }
     
     public void setNombreSubcat(String nombreSubcat) {
         this.nombreSubcat = nombreSubcat;
+    }
+    public String getDescripcionSubcat() {
+        return this.descripcionSubcat;
+    }
+    
+    public void setDescripcionSubcat(String descripcionSubcat) {
+        this.descripcionSubcat = descripcionSubcat;
     }
     public Set getArticulos() {
         return this.articulos;

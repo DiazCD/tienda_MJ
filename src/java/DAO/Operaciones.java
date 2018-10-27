@@ -6,7 +6,10 @@
 package DAO;
 
 import POJO.*;
-import java.util.ArrayList;
+import java.util.List;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -14,12 +17,21 @@ import java.util.ArrayList;
  */
 public class Operaciones {
 
-    public Operaciones() {
+    Session session = null;
+    
+    public Operaciones(SessionFactory SessionBuilder) {
+       session = SessionBuilder.openSession();
     }
     
-    public ArrayList<Articulo> getArticulosUsr (Usuario usr) {
-        ArrayList arrayArticulos = new ArrayList();
+    public List<Articulo> getArticulosVend (Vendedor vend) {
         
-        return arrayArticulos;
+        String hql = "FROM Articulo";// where id_vendedor_art =:vVendedor";
+        Query q = session.createQuery(hql);
+        //q.setParameter("vVendedor", 1);
+
+        List listArticulos = q.list();    
+        session.close();
+        
+        return listArticulos;
     }
 }

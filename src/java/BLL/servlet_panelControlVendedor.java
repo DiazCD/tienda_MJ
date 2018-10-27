@@ -5,9 +5,10 @@
  */
 package BLL;
 
+import DAO.NewHibernateUtil;
 import DAO.Operaciones;
 import POJO.Articulo;
-import POJO.Usuario;
+import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -15,13 +16,21 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author migue
  */
 public class servlet_panelControlVendedor extends HttpServlet {
-
+    
+    private SessionFactory SessionBuilder;
+    
+    @Override
+    public void init() {
+        SessionBuilder = NewHibernateUtil.getSessionFactory();
+    }
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -35,11 +44,16 @@ public class servlet_panelControlVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            try {
+                Vendedor vend1 = new Vendedor();
+                ArrayList arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
 
-            Usuario usr1 = new Usuario();
-            ArrayList<Articulo> arrayArticulos = new Operaciones().getArticulosUsr(usr1);
-
-            response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
+                response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
+            } catch (IOException ex) {
+                out.write("<html>");
+                out.write("<p>" + ex + "</p>");
+                out.write("</html>");
+            }
         }
     }
 
