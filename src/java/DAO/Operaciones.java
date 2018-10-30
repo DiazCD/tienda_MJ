@@ -25,13 +25,35 @@ public class Operaciones {
     
     public List<Articulo> getArticulosVend (Vendedor vend) {
         
-        String hql = "FROM Articulo";// where id_vendedor_art =:vVendedor";
+        String hql = "FROM Articulo WHERE id_vendedor_art=:idVendedor";
         Query q = session.createQuery(hql);
-        //q.setParameter("vVendedor", 1);
+        q.setParameter("idVendedor", vend.getId());
 
         List listArticulos = q.list();    
         session.close();
         
         return listArticulos;
+    }
+    
+    public List<Categoria> getCategorias () {
+        
+        String hql = "FROM Categoria";
+        Query q = session.createQuery(hql);
+
+        List listCategorias = q.list();    
+        session.close();
+        
+        return listCategorias;
+    }
+    
+    public List<Categoria> getSubCategorias() {
+        
+        String hql = "FROM Subcategoria";
+        Query q = session.createQuery(hql);
+
+        List listSubCategorias = q.list();    
+        session.close();
+        
+        return listSubCategorias;
     }
 }

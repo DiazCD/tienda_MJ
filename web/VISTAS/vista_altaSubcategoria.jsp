@@ -58,7 +58,7 @@
         </div>
         <br/>
         <div class="row">
-            <div class="offset-md-1 col-md-3">
+            <div class="offset-md-1 col-md-2">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="./images/img_vendedor.png" alt="Card image cap">
                     <div class="list-group">
