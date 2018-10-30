@@ -4,6 +4,9 @@
     Author     : migue
 --%>
 
+<%@page import="java.util.ArrayList"%>
+<%@page import="POJO.Categoria"%>
+<%@page import="POJO.Subcategoria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +20,8 @@
         <title>Panel de control - Vendedor</title>
     </head>
     <body>
+        <% ArrayList<Categoria> arrayCategorias = (ArrayList) session.getAttribute("arrayCategorias");%>
+        <% ArrayList<Subcategoria> arraySubCategorias = (ArrayList) session.getAttribute("arraySubCategorias");%>
         <div class="row">
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -58,7 +63,7 @@
         </div>
         <br/>
         <div class="row">
-            <div class="offset-md-1 col-md-3">
+            <div class="offset-md-1 col-md-2">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="./images/img_vendedor.png" alt="Card image cap">
                     <div class="list-group">
@@ -67,41 +72,65 @@
                         </li>
                         <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
                         <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
-                        <a href="./vista_panelControlVendedor.jsp" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
+                        <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
 
                         <li href="#" class="list-group-item list-group-item-action active">
                             Gestión categorías
                         </li>
                         <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
                         <a href="./vista_altaSubcategoria.jsp" class="list-group-item list-group-item-action"> Alta subcategoría </a>
-                        <a href="./vista_listadoCategorias.jsp" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
+                        <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
                     </div>
                 </div>
             </div>
-            <div class="offset-md-1 col-md-7">
-                <div class="card" style="width: 50rem;">
-                    <div class="list-group">
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Listado categorías
-                        </li>
-                        <a href="#" class="list-group-item list-group-item-action"> #01# Categoría 1 - Descripcion </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Categoría 2 - Descripcion </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Categoría 3 - Descripcion  </a>
-                    </div>
-                </div>
-                <br/>
-                <div class="card" style="width: 50rem;">      
-                    <div class="list-group">
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Listado subcategorías
-                        </li>
-                        <a href="#" class="list-group-item list-group-item-action"> #01# Subcategoría 1 - Descripcion </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Subcategoría 2 - Descripcion </a>
-                        <a href="#" class="list-group-item list-group-item-action"> #02# Subcategoría 3 - Descripcion  </a>
-                    </div>
-                </div>
+            <div class="offset-md-1 col-md-3">
+                <li class="list-group-item list-group-item-action active">
+                    Listado Categorías
+                </li>
+                <br>
+                <table class="table table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"> Nombre </th>
+                            <th scope="col"> Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (int i = 0; i < arrayCategorias.size(); i++) {%>
+                        <tr>
+                            <th scope="row"> <%= arrayCategorias.get(i).getId()%> </th>
+                            <td> <%= arrayCategorias.get(i).getNombreCat()%> </td>
+                            <td> <%= arrayCategorias.get(i).getDescripcionCat()%> </td>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
+            </div>
+            <div class="offset-md-1 col-md-3">
+                <li class="list-group-item list-group-item-action active">
+                    Listado Subcategorías
+                </li>
+                <br>
+                <table class="table table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col"> Nombre </th>
+                            <th scope="col"> Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% for (int i = 0; i < arraySubCategorias.size(); i++) {%>
+                        <tr>
+                            <th scope="row"> <%= arraySubCategorias.get(i).getId()%> </th>
+                            <td> <%= arraySubCategorias.get(i).getNombreSubcat()%> </td>
+                            <td> <%= arraySubCategorias.get(i).getDescripcionSubcat()%> </td>
+                        </tr>
+                        <% }%>
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
