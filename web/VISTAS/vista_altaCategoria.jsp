@@ -79,16 +79,16 @@
                 </div>
             </div>
             <div class="offset-md-1 col-md-5">
-                <form>
+                <form method="post" accept-charset="utf-8" action="../servlet_altaCategoria">
                     <h3> Alta categoría </h3>
                     <br/>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> Nombre </label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1" name="nombreCat">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> Descripción </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="descripcionCat"></textarea>
                     </div>
                     
                     <button class="btn btn-primary offset-md-4 col-md-4" type="submit"> Confirmar alta </button>

@@ -8,6 +8,10 @@
         <servlet-name>servlet_listadoCategorias</servlet-name>
         <servlet-class>BLL.servlet_listadoCategorias</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_altaCategoria</servlet-name>
+        <servlet-class>BLL.servlet_altaCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>servlet_listadoCategorias</servlet-name>
         <url-pattern>/servlet_listadoCategorias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_altaCategoria</servlet-name>
+        <url-pattern>/servlet_altaCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

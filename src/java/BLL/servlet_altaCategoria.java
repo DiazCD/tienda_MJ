@@ -10,19 +10,19 @@ import DAO.Operaciones;
 import POJO.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author magm
  */
-public class servlet_listadoCategorias extends HttpServlet {
+public class servlet_altaCategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -30,7 +30,7 @@ public class servlet_listadoCategorias extends HttpServlet {
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,15 +44,23 @@ public class servlet_listadoCategorias extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
+            boolean correcto = false;
+            Categoria categoria = new Categoria();
             HttpSession session = request.getSession(true);
             
-            ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
-            ArrayList<Categoria> arraySubCategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
-            
-            session.setAttribute("arrayCategorias", arrayCategorias);
-            session.setAttribute("arraySubCategorias", arraySubCategorias);          
-            response.sendRedirect("./VISTAS/vista_listadoCategorias.jsp");
+            categoria.setNombreCat(request.getParameter("nombreCat"));
+            categoria.setDescripcionCat(request.getParameter("descripcionCat"));
+
+            try {
+                correcto = new Operaciones(SessionBuilder).altaCategoria(categoria);
+
+            } catch (HibernateException ex) {
+                System.out.println(ex);
+            }
+
+            session.setAttribute("correcto", correcto);
+            response.sendRedirect("./VISTAS/vista_altaCategoria.jsp");
         }
     }
 

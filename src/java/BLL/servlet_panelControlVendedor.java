@@ -52,7 +52,7 @@ public class servlet_panelControlVendedor extends HttpServlet {
                 ArrayList arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
                 
                 session.setAttribute("arrayArticulos", arrayArticulos);
-                response.sendRedirect("./Vistas/vista_panelControlVendedor.jsp");
+                response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
             } catch (IOException ex) {
                 out.write("<html>");
                 out.write("<p>" + ex + "</p>");
