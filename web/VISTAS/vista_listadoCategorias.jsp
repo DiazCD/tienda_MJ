@@ -78,7 +78,7 @@
                             Gestión categorías
                         </li>
                         <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
-                        <a href="./vista_altaSubcategoria.jsp" class="list-group-item list-group-item-action"> Alta subcategoría </a>
+                        <a href="../servlet_cargaCategorias" class="list-group-item list-group-item-action"> Alta subcategoría </a>
                         <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
                     </div>
                 </div>

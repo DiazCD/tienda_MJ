@@ -8,30 +8,29 @@ package BLL;
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
 import POJO.Categoria;
-import POJO.Subcategoria;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author migue
  */
-public class servlet_altaSubCategoria extends HttpServlet {
-    
+public class servlet_cargaCategorias extends HttpServlet {
+
     private SessionFactory SessionBuilder;
 
     @Override
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,24 +45,11 @@ public class servlet_altaSubCategoria extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            boolean correcto = false;
-            Subcategoria subcategoria = new Subcategoria();
             HttpSession session = request.getSession(true);
-            String idSubcategoria;
             
-            subcategoria.setNombreSubcat(request.getParameter("nombreSubcat"));
-            subcategoria.setDescripcionSubcat(request.getParameter("descripcionSubcat"));
-            idSubcategoria = request.getParameter("categoriaPadre");
-
-            try {
-                subcategoria.setCategoria(new Operaciones(SessionBuilder).getCategoria(idSubcategoria));
-                correcto = new Operaciones(SessionBuilder).altaSubcategoria(subcategoria);
-
-            } catch (HibernateException ex) {
-                System.out.println(ex);
-            }
-
-            session.setAttribute("correcto", correcto);
+            ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
+            
+            session.setAttribute("arrayCategorias", arrayCategorias);         
             response.sendRedirect("./VISTAS/vista_altaSubcategoria.jsp");
         }
     }

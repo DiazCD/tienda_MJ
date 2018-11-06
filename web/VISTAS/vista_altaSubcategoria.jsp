@@ -70,24 +70,24 @@
                         </li>
                         <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
                         <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
-                        <a href="./vista_panelControlVendedor.jsp" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
+                        <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
 
                         <li href="#" class="list-group-item list-group-item-action active">
                             Gestión categorías
                         </li>
                         <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
-                        <a href="./vista_altaSubcategoria.jsp" class="list-group-item list-group-item-action"> Alta subcategoría </a>
-                        <a href="./vista_listadoCategorias.jsp" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
+                        <a href="../servlet_cargaCategorias" class="list-group-item list-group-item-action"> Alta subcategoría </a>
+                        <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
                     </div>
                 </div>
             </div>
             <div class="offset-md-1 col-md-5">
-                <form method="post" accept-charset="utf-8" action="../servlet_altaSubcategoria">
+                <form method="post" accept-charset="utf-8" action="../servlet_altaSubCategoria">
                     <h3> Alta subcategoría </h3>
                     <br/>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> Nombre </label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1" name="nombreSubcat">
+                        <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1" name="nombreSubcat">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> Descripción </label>
@@ -96,9 +96,9 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría padre </label>
-                            <select class="form-control">
+                            <select class="form-control" name="categoriaPadre">
                                 <% for (int i=0 ; i<arrayCategorias.size() ; i++) {%>
-                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %> </option>
+                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %></option>
                                 <% } %>
                             </select>
                         </div>
