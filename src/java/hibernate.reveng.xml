@@ -41,4 +41,15 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="bd_tienda"/>
+  <table-filter match-name="subcategoria"/>
+  <table-filter match-name="articulo"/>
+  <table-filter match-name="vendedor"/>
+  <table-filter match-name="categoria"/>
+  <table-filter match-name="comentario"/>
+  <table-filter match-name="administrador"/>
+  <table-filter match-name="pedido"/>
+  <table-filter match-name="tarjeta"/>
+  <table-filter match-name="pedido_lin"/>
+  <table-filter match-name="usuario"/>
+  <table-filter match-name="configuracion"/>
 </hibernate-reverse-engineering>

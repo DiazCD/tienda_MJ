@@ -1,5 +1,5 @@
 package POJO;
-// Generated 27-oct-2018 14:07:02 by Hibernate Tools 4.3.1
+// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
 
 
 
@@ -9,20 +9,17 @@ package POJO;
 public class Configuracion  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
 
     public Configuracion() {
     }
 
-    public Configuracion(int id) {
-       this.id = id;
-    }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

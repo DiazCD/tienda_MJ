@@ -59,7 +59,7 @@ public class Operaciones {
         return listSubCategorias;
     }
 
-    public boolean altaCategoria(Categoria categoria) throws HibernateException{
+    public boolean altaCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
 
         try {
@@ -80,4 +80,27 @@ public class Operaciones {
             session.close();
         }
     }
+
+    public boolean altaSubcategoria(Subcategoria subcategoria) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+            session.save(subcategoria); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
+
 }

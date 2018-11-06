@@ -1,5 +1,5 @@
 package POJO;
-// Generated 27-oct-2018 14:07:02 by Hibernate Tools 4.3.1
+// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Vendedor  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String nifVend;
      private String passVend;
      private String nombreVend;
@@ -27,12 +27,14 @@ public class Vendedor  implements java.io.Serializable {
     }
 
 	
-    public Vendedor(int id, String nifVend) {
-        this.id = id;
+    public Vendedor(String nifVend, String passVend, String nombreVend, String emailVend, Date fechaAltaVend) {
         this.nifVend = nifVend;
+        this.passVend = passVend;
+        this.nombreVend = nombreVend;
+        this.emailVend = emailVend;
+        this.fechaAltaVend = fechaAltaVend;
     }
-    public Vendedor(int id, String nifVend, String passVend, String nombreVend, String apellido1Vend, String emailVend, String apellido2Vend, Date fechaAltaVend, Date fechaNacVend, Set articulos) {
-       this.id = id;
+    public Vendedor(String nifVend, String passVend, String nombreVend, String apellido1Vend, String emailVend, String apellido2Vend, Date fechaAltaVend, Date fechaNacVend, Set articulos) {
        this.nifVend = nifVend;
        this.passVend = passVend;
        this.nombreVend = nombreVend;
@@ -44,11 +46,11 @@ public class Vendedor  implements java.io.Serializable {
        this.articulos = articulos;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNifVend() {

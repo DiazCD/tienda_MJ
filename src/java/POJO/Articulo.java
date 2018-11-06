@@ -1,5 +1,5 @@
 package POJO;
-// Generated 27-oct-2018 14:07:02 by Hibernate Tools 4.3.1
+// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Articulo  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Categoria categoria;
      private Subcategoria subcategoria;
      private Vendedor vendedor;
@@ -28,16 +28,16 @@ public class Articulo  implements java.io.Serializable {
     }
 
 	
-    public Articulo(int id, Subcategoria subcategoria, Vendedor vendedor, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
-        this.id = id;
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
+        this.categoria = categoria;
         this.subcategoria = subcategoria;
         this.vendedor = vendedor;
+        this.nombreArt = nombreArt;
         this.importeArt = importeArt;
         this.fechaAltaArt = fechaAltaArt;
         this.cantidadMaxArt = cantidadMaxArt;
     }
-    public Articulo(int id, Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt, Set pedidoLins, Set comentarios) {
-       this.id = id;
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt, Set pedidoLins, Set comentarios) {
        this.categoria = categoria;
        this.subcategoria = subcategoria;
        this.vendedor = vendedor;
@@ -50,11 +50,11 @@ public class Articulo  implements java.io.Serializable {
        this.comentarios = comentarios;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Categoria getCategoria() {

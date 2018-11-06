@@ -1,5 +1,5 @@
 package POJO;
-// Generated 27-oct-2018 14:07:02 by Hibernate Tools 4.3.1
+// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,7 +12,7 @@ import java.util.Set;
 public class Usuario  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String nifUsr;
      private String passUsr;
      private String nombreUsr;
@@ -21,20 +21,19 @@ public class Usuario  implements java.io.Serializable {
      private String emailUsr;
      private Date fechaAltaUsr;
      private Date fechaNacUsr;
-     private Set pedidos = new HashSet(0);
+     private Set comentarios = new HashSet(0);
      private Set tarjetas = new HashSet(0);
+     private Set pedidos = new HashSet(0);
 
     public Usuario() {
     }
 
 	
-    public Usuario(int id, String nifUsr, String passUsr) {
-        this.id = id;
+    public Usuario(String nifUsr, String passUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
     }
-    public Usuario(int id, String nifUsr, String passUsr, String nombreUsr, String apellido1Usr, String apellido2Usr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr, Set pedidos, Set tarjetas) {
-       this.id = id;
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellido1Usr, String apellido2Usr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr, Set comentarios, Set tarjetas, Set pedidos) {
        this.nifUsr = nifUsr;
        this.passUsr = passUsr;
        this.nombreUsr = nombreUsr;
@@ -43,15 +42,16 @@ public class Usuario  implements java.io.Serializable {
        this.emailUsr = emailUsr;
        this.fechaAltaUsr = fechaAltaUsr;
        this.fechaNacUsr = fechaNacUsr;
-       this.pedidos = pedidos;
+       this.comentarios = comentarios;
        this.tarjetas = tarjetas;
+       this.pedidos = pedidos;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNifUsr() {
@@ -110,12 +110,12 @@ public class Usuario  implements java.io.Serializable {
     public void setFechaNacUsr(Date fechaNacUsr) {
         this.fechaNacUsr = fechaNacUsr;
     }
-    public Set getPedidos() {
-        return this.pedidos;
+    public Set getComentarios() {
+        return this.comentarios;
     }
     
-    public void setPedidos(Set pedidos) {
-        this.pedidos = pedidos;
+    public void setComentarios(Set comentarios) {
+        this.comentarios = comentarios;
     }
     public Set getTarjetas() {
         return this.tarjetas;
@@ -123,6 +123,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setTarjetas(Set tarjetas) {
         this.tarjetas = tarjetas;
+    }
+    public Set getPedidos() {
+        return this.pedidos;
+    }
+    
+    public void setPedidos(Set pedidos) {
+        this.pedidos = pedidos;
     }
 
 
