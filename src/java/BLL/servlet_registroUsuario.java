@@ -17,7 +17,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -38,6 +37,7 @@ public class servlet_registroUsuario extends HttpServlet {
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -59,17 +59,17 @@ public class servlet_registroUsuario extends HttpServlet {
             String paisUsuario = request.getParameter("paisRegistro");
             String direccionUsuario = request.getParameter("direccionRegistro");
             String correoUsuario = request.getParameter("correoRegistro");
-            String claveUsuario = request.getParameter("claveUsuario");
+            String claveUsuario = request.getParameter("claveRegistro");
             Date fechaAltaUsuario = new Date();
-            
+
             Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario);
             Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
-            
+
             Session sesion = SessionBuilder.openSession();
             Operaciones op = new Operaciones();
-            op.registrarUsuario(SessionBuilder, nuevaDireccion);            
-            
-             response.sendRedirect("VISTAS/vista_home.jsp");
+            op.registrarUsuario(SessionBuilder, nuevaDireccion);
+
+            response.sendRedirect("VISTAS/vista_home.jsp");
         }
     }
 

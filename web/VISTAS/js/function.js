@@ -67,131 +67,134 @@ function mostrarRegistro() {
     var divCuerpoRegistro = document.createElement('div');
     divRegistro.appendChild(divCuerpoRegistro);
     divCuerpoRegistro.setAttribute('class', 'text-center');
+    
+    var formRegistro = document.createElement('form');
+    divCuerpoRegistro.appendChild(formRegistro);
+    formRegistro.setAttribute('action','../servlet_registroUsuario');
 
     var h5Nombre = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Nombre);
+    formRegistro.appendChild(h5Nombre);
     var node = document.createTextNode('Nombre');
     h5Nombre.appendChild(node);
 
     var inputNombre = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputNombre);
+    formRegistro.appendChild(inputNombre);
     inputNombre.setAttribute('type', 'text');
     inputNombre.setAttribute('class', 'form-control col-8 offset-2');
-    inputNombre.setAttribute('id', 'nombreRegistro');
+    inputNombre.setAttribute('name', 'nombreRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Apellidos = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Apellidos);
+    formRegistro.appendChild(h5Apellidos);
     var node = document.createTextNode('Apellidos');
     h5Apellidos.appendChild(node);
 
     var inputApellidos = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputApellidos);
+    formRegistro.appendChild(inputApellidos);
     inputApellidos.setAttribute('type', 'text');
     inputApellidos.setAttribute('class', 'form-control col-8 offset-2');
-    inputApellidos.setAttribute('id', 'apellidosRegistro');
+    inputApellidos.setAttribute('name', 'apellidosRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5DNI = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5DNI);
+    formRegistro.appendChild(h5DNI);
     var node = document.createTextNode('DNI');
     h5DNI.appendChild(node);
 
     var inputDNI = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputDNI);
+    formRegistro.appendChild(inputDNI);
     inputDNI.setAttribute('type', 'text');
     inputDNI.setAttribute('class', 'form-control col-8 offset-2');
-    inputDNI.setAttribute('id', 'dniRegistro');
+    inputDNI.setAttribute('name', 'dniRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Poblacion = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Poblacion);
+    formRegistro.appendChild(h5Poblacion);
     var node = document.createTextNode('Poblacion');
     h5Poblacion.appendChild(node);
 
     var inputPoblacion = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputPoblacion);
+    formRegistro.appendChild(inputPoblacion);
     inputPoblacion.setAttribute('type', 'text');
     inputPoblacion.setAttribute('class', 'form-control col-8 offset-2');
-    inputPoblacion.setAttribute('id', 'poblacionRegistro');
+    inputPoblacion.setAttribute('name', 'poblacionRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Pais = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Pais);
+    formRegistro.appendChild(h5Pais);
     var node = document.createTextNode('País');
     h5Pais.appendChild(node);
 
     var inputPais = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputPais);
+    formRegistro.appendChild(inputPais);
     inputPais.setAttribute('type', 'text');
     inputPais.setAttribute('class', 'form-control col-8 offset-2');
-    inputPais.setAttribute('id', 'paisRegistro');
+    inputPais.setAttribute('name', 'paisRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Direccion = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Direccion);
+    formRegistro.appendChild(h5Direccion);
     var node = document.createTextNode('Dirección');
     h5Direccion.appendChild(node);
 
     var inputDireccion = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputDireccion);
+    formRegistro.appendChild(inputDireccion);
     inputDireccion.setAttribute('type', 'text');
     inputDireccion.setAttribute('class', 'form-control col-8 offset-2');
-    inputDireccion.setAttribute('id', 'direccionRegistro');
+    inputDireccion.setAttribute('name', 'direccionRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Correo = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Correo);
+    formRegistro.appendChild(h5Correo);
     var node = document.createTextNode('Email');
     h5Correo.appendChild(node);
 
     var inputCorreo = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputCorreo);
+    formRegistro.appendChild(inputCorreo);
     inputCorreo.setAttribute('type', 'email');
     inputCorreo.setAttribute('class', 'form-control col-8 offset-2');
-    inputCorreo.setAttribute('id', 'correoRegistro');
+    inputCorreo.setAttribute('name', 'correoRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var h5Clave = document.createElement('h5');
-    divCuerpoRegistro.appendChild(h5Clave);
+    formRegistro.appendChild(h5Clave);
     var node = document.createTextNode('Clave');
     h5Clave.appendChild(node);
 
     var inputClave = document.createElement('input');
-    divCuerpoRegistro.appendChild(inputClave);
+    formRegistro.appendChild(inputClave);
     inputClave.setAttribute('type', 'password');
     inputClave.setAttribute('class', 'form-control col-8 offset-2');
-    inputClave.setAttribute('id', 'claveRegistro');
+    inputClave.setAttribute('name', 'claveRegistro');
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 
     var botonRegistro = document.createElement('button');
-    divCuerpoRegistro.appendChild(botonRegistro);
-    botonRegistro.setAttribute('type', 'button');
+    formRegistro.appendChild(botonRegistro);
+    botonRegistro.setAttribute('type', 'submit');
     botonRegistro.setAttribute('class', 'btn btn-warning');
-    botonRegistro.setAttribute('href', '../servlet_registroUsuario');
     var node = document.createTextNode('Registro');
     botonRegistro.appendChild(node);
 
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoRegistro.appendChild(br);
+    formRegistro.appendChild(br);
 }
 
 function mostrarLogin() {

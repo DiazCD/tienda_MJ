@@ -29,8 +29,9 @@ public class Operaciones {
         Transaction Tx = null;
         try {
             Tx = sesion.beginTransaction();
-            //Se guarda en la tabla
+
             sesion.saveOrUpdate(direccion);
+            
             Tx.commit();
         } catch (HibernateException HE) {
             HE.printStackTrace();

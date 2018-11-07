@@ -32,7 +32,7 @@
             </key>
             <one-to-many class="POJO.Comentario" />
         </set>
-        <set name="direccions" table="direccion" inverse="true" lazy="true" fetch="select">
+        <set name="direccions" table="direccion" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="idUsuario" not-null="true" />
             </key>
