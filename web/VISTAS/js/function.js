@@ -1,14 +1,14 @@
 //Funcion que borra la estructura del cuerpo principal del cuerpo si la hay y crea una nueva vacia**
-function añadirSubCuerpo(){
-	if (document.getElementById('subCuerpo')) {
-		var child = document.getElementById('subCuerpo');
-		child.parentNode.removeChild(child);
-	}
-	var parent = document.getElementById('cuerpo');
-	var child = document.createElement('section');
-	parent.appendChild(child);
-	child.setAttribute('id','subCuerpo');
-	return child;
+function añadirSubCuerpo() {
+    if (document.getElementById('subCuerpo')) {
+        var child = document.getElementById('subCuerpo');
+        child.parentNode.removeChild(child);
+    }
+    var parent = document.getElementById('cuerpo');
+    var child = document.createElement('section');
+    parent.appendChild(child);
+    child.setAttribute('id', 'subCuerpo');
+    return child;
 }
 
 function mostrarRegistro() {
@@ -184,7 +184,7 @@ function mostrarRegistro() {
     divCuerpoRegistro.appendChild(botonRegistro);
     botonRegistro.setAttribute('type', 'button');
     botonRegistro.setAttribute('class', 'btn btn-warning');
-    botonRegistro.setAttribute('onClick', 'registroUsuario()');
+    botonRegistro.setAttribute('href', '../servlet_registroUsuario');
     var node = document.createTextNode('Registro');
     botonRegistro.appendChild(node);
 
@@ -298,7 +298,7 @@ function mostrarLogin() {
     divCuerpoIdentificacion.appendChild(botonIdentificacion);
     botonIdentificacion.setAttribute('type', 'button');
     botonIdentificacion.setAttribute('class', 'btn btn-warning');
-    botonIdentificacion.setAttribute('onClick', '');
+    botonIdentificacion.setAttribute('href', '');
     var node = document.createTextNode('Identifícate');
     botonIdentificacion.appendChild(node);
 }

@@ -1,5 +1,5 @@
 package POJO;
-// Generated 20-oct-2018 19:50:39 by Hibernate Tools 4.3.1
+// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.Date;
 public class Administrador  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private String nifAdmin;
      private String passAdmin;
      private String nombreAdmin;
@@ -18,18 +18,11 @@ public class Administrador  implements java.io.Serializable {
      private String apellido2Admin;
      private String emailAdmin;
      private Date fechaAltaAdmin;
-     private Date fechaNacAdmin;
 
     public Administrador() {
     }
 
-	
-    public Administrador(int id, String nifAdmin) {
-        this.id = id;
-        this.nifAdmin = nifAdmin;
-    }
-    public Administrador(int id, String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin, Date fechaNacAdmin) {
-       this.id = id;
+    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin) {
        this.nifAdmin = nifAdmin;
        this.passAdmin = passAdmin;
        this.nombreAdmin = nombreAdmin;
@@ -37,14 +30,13 @@ public class Administrador  implements java.io.Serializable {
        this.apellido2Admin = apellido2Admin;
        this.emailAdmin = emailAdmin;
        this.fechaAltaAdmin = fechaAltaAdmin;
-       this.fechaNacAdmin = fechaNacAdmin;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getNifAdmin() {
@@ -95,13 +87,6 @@ public class Administrador  implements java.io.Serializable {
     
     public void setFechaAltaAdmin(Date fechaAltaAdmin) {
         this.fechaAltaAdmin = fechaAltaAdmin;
-    }
-    public Date getFechaNacAdmin() {
-        return this.fechaNacAdmin;
-    }
-    
-    public void setFechaNacAdmin(Date fechaNacAdmin) {
-        this.fechaNacAdmin = fechaNacAdmin;
     }
 
 

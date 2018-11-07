@@ -43,22 +43,23 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://limbhad.rodenastyle.com:32794/bd_tienda</property>
+    <property name="hibernate.connection.url">jdbc:mysql://limbhad.rodenastyle.com:32799/bd_tienda</property>
     <property name="hibernate.connection.username">TFG</property>
     <property name="hibernate.connection.password">5SuQiGytL2</property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="POJO/Configuracion.hbm.xml"/>
-    <mapping resource="POJO/Tarjeta.hbm.xml"/>
-    <mapping resource="POJO/Articulo.hbm.xml"/>
-    <mapping resource="POJO/Vendedor.hbm.xml"/>
-    <mapping resource="POJO/Subcategoria.hbm.xml"/>
-    <mapping resource="POJO/Categoria.hbm.xml"/>
-    <mapping resource="POJO/Usuario.hbm.xml"/>
-    <mapping resource="POJO/Comentario.hbm.xml"/>
-    <mapping resource="POJO/Pedido.hbm.xml"/>
+    <mapping resource="POJO/Direccion.hbm.xml"/>
     <mapping resource="POJO/PedidoLin.hbm.xml"/>
+    <mapping resource="POJO/Configuracion.hbm.xml"/>
+    <mapping resource="POJO/Comentario.hbm.xml"/>
+    <mapping resource="POJO/Subcategoria.hbm.xml"/>
+    <mapping resource="POJO/Pedido.hbm.xml"/>
+    <mapping resource="POJO/Usuario.hbm.xml"/>
+    <mapping resource="POJO/Articulo.hbm.xml"/>
+    <mapping resource="POJO/Tarjeta.hbm.xml"/>
+    <mapping resource="POJO/Vendedor.hbm.xml"/>
     <mapping resource="POJO/Administrador.hbm.xml"/>
+    <mapping resource="POJO/Categoria.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

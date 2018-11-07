@@ -1,27 +1,27 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20-oct-2018 19:50:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07-nov-2018 18:37:42 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Comentario" table="comentario" catalog="bd_tienda" optimistic-lock="version">
-        <id name="id" type="int">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="articulo" class="POJO.Articulo" fetch="select">
-            <column name="id_articulo_com" />
+            <column name="id_articulo_com" not-null="true" />
         </many-to-one>
-        <property name="idUsuarioCom" type="java.lang.Integer">
-            <column name="id_usuario_com" />
-        </property>
+        <many-to-one name="usuario" class="POJO.Usuario" fetch="select">
+            <column name="id_usuario_com" not-null="true" />
+        </many-to-one>
         <property name="descripcionCom" type="string">
-            <column name="descripcion_com" length="50" />
+            <column name="descripcion_com" length="50" not-null="true" />
         </property>
-        <property name="valoracionCom" type="java.lang.Integer">
-            <column name="valoracion_com" />
+        <property name="valoracionCom" type="int">
+            <column name="valoracion_com" not-null="true" />
         </property>
         <property name="fechaAltaCom" type="timestamp">
-            <column name="fecha_alta_com" length="19" />
+            <column name="fecha_alta_com" length="19" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
