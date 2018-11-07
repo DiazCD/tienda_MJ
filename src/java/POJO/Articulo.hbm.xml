@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 20-oct-2018 19:50:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07-nov-2018 18:37:42 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Articulo" table="articulo" catalog="bd_tienda" optimistic-lock="version">
-        <id name="id" type="int">
+        <id name="id" type="java.lang.Integer">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="categoria" class="POJO.Categoria" fetch="select">
-            <column name="id_categoria_art" />
+            <column name="id_categoria_art" not-null="true" />
         </many-to-one>
         <many-to-one name="subcategoria" class="POJO.Subcategoria" fetch="select">
             <column name="id_subcategoria_art" not-null="true" />
@@ -18,10 +18,10 @@
             <column name="id_vendedor_art" not-null="true" />
         </many-to-one>
         <property name="nombreArt" type="string">
-            <column name="nombre_art" length="50" />
+            <column name="nombre_art" length="50" not-null="true" />
         </property>
         <property name="descripcionArt" type="string">
-            <column name="descripcion_art" length="50" />
+            <column name="descripcion_art" length="50" not-null="true" />
         </property>
         <property name="importeArt" type="float">
             <column name="importe_art" precision="12" scale="0" not-null="true" />
@@ -40,7 +40,7 @@
         </set>
         <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="id_articulo_com" />
+                <column name="id_articulo_com" not-null="true" />
             </key>
             <one-to-many class="POJO.Comentario" />
         </set>

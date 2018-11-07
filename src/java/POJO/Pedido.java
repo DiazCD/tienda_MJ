@@ -1,5 +1,5 @@
 package POJO;
-// Generated 20-oct-2018 19:50:39 by Hibernate Tools 4.3.1
+// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
 
 
 
@@ -9,34 +9,27 @@ package POJO;
 public class Pedido  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Usuario usuario;
      private String descripcionPed;
-     private Float importePed;
-     private Float importeTotal;
-     private PedidoLin pedidoLin;
+     private float importePed;
+     private float importeTotal;
 
     public Pedido() {
     }
 
-	
-    public Pedido(int id) {
-        this.id = id;
-    }
-    public Pedido(int id, Usuario usuario, String descripcionPed, Float importePed, Float importeTotal, PedidoLin pedidoLin) {
-       this.id = id;
+    public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal) {
        this.usuario = usuario;
        this.descripcionPed = descripcionPed;
        this.importePed = importePed;
        this.importeTotal = importeTotal;
-       this.pedidoLin = pedidoLin;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Usuario getUsuario() {
@@ -53,26 +46,19 @@ public class Pedido  implements java.io.Serializable {
     public void setDescripcionPed(String descripcionPed) {
         this.descripcionPed = descripcionPed;
     }
-    public Float getImportePed() {
+    public float getImportePed() {
         return this.importePed;
     }
     
-    public void setImportePed(Float importePed) {
+    public void setImportePed(float importePed) {
         this.importePed = importePed;
     }
-    public Float getImporteTotal() {
+    public float getImporteTotal() {
         return this.importeTotal;
     }
     
-    public void setImporteTotal(Float importeTotal) {
+    public void setImporteTotal(float importeTotal) {
         this.importeTotal = importeTotal;
-    }
-    public PedidoLin getPedidoLin() {
-        return this.pedidoLin;
-    }
-    
-    public void setPedidoLin(PedidoLin pedidoLin) {
-        this.pedidoLin = pedidoLin;
     }
 
 

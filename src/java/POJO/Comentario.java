@@ -1,5 +1,5 @@
 package POJO;
-// Generated 20-oct-2018 19:50:39 by Hibernate Tools 4.3.1
+// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,34 +10,29 @@ import java.util.Date;
 public class Comentario  implements java.io.Serializable {
 
 
-     private int id;
+     private Integer id;
      private Articulo articulo;
-     private Integer idUsuarioCom;
+     private Usuario usuario;
      private String descripcionCom;
-     private Integer valoracionCom;
+     private int valoracionCom;
      private Date fechaAltaCom;
 
     public Comentario() {
     }
 
-	
-    public Comentario(int id) {
-        this.id = id;
-    }
-    public Comentario(int id, Articulo articulo, Integer idUsuarioCom, String descripcionCom, Integer valoracionCom, Date fechaAltaCom) {
-       this.id = id;
+    public Comentario(Articulo articulo, Usuario usuario, String descripcionCom, int valoracionCom, Date fechaAltaCom) {
        this.articulo = articulo;
-       this.idUsuarioCom = idUsuarioCom;
+       this.usuario = usuario;
        this.descripcionCom = descripcionCom;
        this.valoracionCom = valoracionCom;
        this.fechaAltaCom = fechaAltaCom;
     }
    
-    public int getId() {
+    public Integer getId() {
         return this.id;
     }
     
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public Articulo getArticulo() {
@@ -47,12 +42,12 @@ public class Comentario  implements java.io.Serializable {
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
     }
-    public Integer getIdUsuarioCom() {
-        return this.idUsuarioCom;
+    public Usuario getUsuario() {
+        return this.usuario;
     }
     
-    public void setIdUsuarioCom(Integer idUsuarioCom) {
-        this.idUsuarioCom = idUsuarioCom;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
     public String getDescripcionCom() {
         return this.descripcionCom;
@@ -61,11 +56,11 @@ public class Comentario  implements java.io.Serializable {
     public void setDescripcionCom(String descripcionCom) {
         this.descripcionCom = descripcionCom;
     }
-    public Integer getValoracionCom() {
+    public int getValoracionCom() {
         return this.valoracionCom;
     }
     
-    public void setValoracionCom(Integer valoracionCom) {
+    public void setValoracionCom(int valoracionCom) {
         this.valoracionCom = valoracionCom;
     }
     public Date getFechaAltaCom() {
