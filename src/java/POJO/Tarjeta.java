@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 
@@ -11,16 +11,12 @@ public class Tarjeta  implements java.io.Serializable {
 
      private Integer id;
      private Usuario usuario;
-     private Integer numeroTarj;
+     private int numeroTarj;
 
     public Tarjeta() {
     }
 
-	
-    public Tarjeta(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    public Tarjeta(Usuario usuario, Integer numeroTarj) {
+    public Tarjeta(Usuario usuario, int numeroTarj) {
        this.usuario = usuario;
        this.numeroTarj = numeroTarj;
     }
@@ -39,11 +35,11 @@ public class Tarjeta  implements java.io.Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public Integer getNumeroTarj() {
+    public int getNumeroTarj() {
         return this.numeroTarj;
     }
     
-    public void setNumeroTarj(Integer numeroTarj) {
+    public void setNumeroTarj(int numeroTarj) {
         this.numeroTarj = numeroTarj;
     }
 

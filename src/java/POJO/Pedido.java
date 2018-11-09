@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 
@@ -12,13 +12,13 @@ public class Pedido  implements java.io.Serializable {
      private Integer id;
      private Usuario usuario;
      private String descripcionPed;
-     private Float importePed;
-     private Float importeTotal;
+     private float importePed;
+     private float importeTotal;
 
     public Pedido() {
     }
 
-    public Pedido(Usuario usuario, String descripcionPed, Float importePed, Float importeTotal) {
+    public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal) {
        this.usuario = usuario;
        this.descripcionPed = descripcionPed;
        this.importePed = importePed;
@@ -46,18 +46,18 @@ public class Pedido  implements java.io.Serializable {
     public void setDescripcionPed(String descripcionPed) {
         this.descripcionPed = descripcionPed;
     }
-    public Float getImportePed() {
+    public float getImportePed() {
         return this.importePed;
     }
     
-    public void setImportePed(Float importePed) {
+    public void setImportePed(float importePed) {
         this.importePed = importePed;
     }
-    public Float getImporteTotal() {
+    public float getImporteTotal() {
         return this.importeTotal;
     }
     
-    public void setImporteTotal(Float importeTotal) {
+    public void setImporteTotal(float importeTotal) {
         this.importeTotal = importeTotal;
     }
 

@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,11 +28,12 @@ public class Articulo  implements java.io.Serializable {
     }
 
 	
-    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
         this.categoria = categoria;
         this.subcategoria = subcategoria;
         this.vendedor = vendedor;
         this.nombreArt = nombreArt;
+        this.descripcionArt = descripcionArt;
         this.importeArt = importeArt;
         this.fechaAltaArt = fechaAltaArt;
         this.cantidadMaxArt = cantidadMaxArt;

@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,12 +16,11 @@ public class Usuario  implements java.io.Serializable {
      private String nifUsr;
      private String passUsr;
      private String nombreUsr;
-     private String apellido1Usr;
-     private String apellido2Usr;
+     private String apellidos;
      private String emailUsr;
      private Date fechaAltaUsr;
-     private Date fechaNacUsr;
      private Set comentarios = new HashSet(0);
+     private Set direccions = new HashSet(0);
      private Set tarjetas = new HashSet(0);
      private Set pedidos = new HashSet(0);
 
@@ -29,20 +28,23 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(String nifUsr, String passUsr) {
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidos, String emailUsr, Date fechaAltaUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
+        this.nombreUsr = nombreUsr;
+        this.apellidos = apellidos;
+        this.emailUsr = emailUsr;
+        this.fechaAltaUsr = fechaAltaUsr;
     }
-    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellido1Usr, String apellido2Usr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr, Set comentarios, Set tarjetas, Set pedidos) {
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidos, String emailUsr, Date fechaAltaUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
        this.nifUsr = nifUsr;
        this.passUsr = passUsr;
        this.nombreUsr = nombreUsr;
-       this.apellido1Usr = apellido1Usr;
-       this.apellido2Usr = apellido2Usr;
+       this.apellidos = apellidos;
        this.emailUsr = emailUsr;
        this.fechaAltaUsr = fechaAltaUsr;
-       this.fechaNacUsr = fechaNacUsr;
        this.comentarios = comentarios;
+       this.direccions = direccions;
        this.tarjetas = tarjetas;
        this.pedidos = pedidos;
     }
@@ -75,19 +77,12 @@ public class Usuario  implements java.io.Serializable {
     public void setNombreUsr(String nombreUsr) {
         this.nombreUsr = nombreUsr;
     }
-    public String getApellido1Usr() {
-        return this.apellido1Usr;
+    public String getApellidos() {
+        return this.apellidos;
     }
     
-    public void setApellido1Usr(String apellido1Usr) {
-        this.apellido1Usr = apellido1Usr;
-    }
-    public String getApellido2Usr() {
-        return this.apellido2Usr;
-    }
-    
-    public void setApellido2Usr(String apellido2Usr) {
-        this.apellido2Usr = apellido2Usr;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
     }
     public String getEmailUsr() {
         return this.emailUsr;
@@ -103,19 +98,19 @@ public class Usuario  implements java.io.Serializable {
     public void setFechaAltaUsr(Date fechaAltaUsr) {
         this.fechaAltaUsr = fechaAltaUsr;
     }
-    public Date getFechaNacUsr() {
-        return this.fechaNacUsr;
-    }
-    
-    public void setFechaNacUsr(Date fechaNacUsr) {
-        this.fechaNacUsr = fechaNacUsr;
-    }
     public Set getComentarios() {
         return this.comentarios;
     }
     
     public void setComentarios(Set comentarios) {
         this.comentarios = comentarios;
+    }
+    public Set getDireccions() {
+        return this.direccions;
+    }
+    
+    public void setDireccions(Set direccions) {
+        this.direccions = direccions;
     }
     public Set getTarjetas() {
         return this.tarjetas;

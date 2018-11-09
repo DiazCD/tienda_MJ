@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 06-nov-2018 23:55:22 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09-nov-2018 9:00:14 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Administrador" table="administrador" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -12,25 +12,22 @@
             <column name="nif_admin" length="9" not-null="true" unique="true" />
         </property>
         <property name="passAdmin" type="string">
-            <column name="pass_admin" length="50" />
+            <column name="pass_admin" length="50" not-null="true" />
         </property>
         <property name="nombreAdmin" type="string">
-            <column name="nombre_admin" length="50" />
+            <column name="nombre_admin" length="50" not-null="true" />
         </property>
         <property name="apellido1Admin" type="string">
-            <column name="apellido_1_admin" length="50" />
+            <column name="apellido_1_admin" length="50" not-null="true" />
         </property>
         <property name="apellido2Admin" type="string">
-            <column name="apellido_2_admin" length="50" />
+            <column name="apellido_2_admin" length="50" not-null="true" />
         </property>
         <property name="emailAdmin" type="string">
-            <column name="email_admin" length="50" />
+            <column name="email_admin" length="50" not-null="true" />
         </property>
         <property name="fechaAltaAdmin" type="timestamp">
-            <column name="fecha_alta_admin" length="19" />
-        </property>
-        <property name="fechaNacAdmin" type="date">
-            <column name="fecha_nac_admin" length="10" />
+            <column name="fecha_alta_admin" length="19" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,16 +18,11 @@ public class Administrador  implements java.io.Serializable {
      private String apellido2Admin;
      private String emailAdmin;
      private Date fechaAltaAdmin;
-     private Date fechaNacAdmin;
 
     public Administrador() {
     }
 
-	
-    public Administrador(String nifAdmin) {
-        this.nifAdmin = nifAdmin;
-    }
-    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin, Date fechaNacAdmin) {
+    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin) {
        this.nifAdmin = nifAdmin;
        this.passAdmin = passAdmin;
        this.nombreAdmin = nombreAdmin;
@@ -35,7 +30,6 @@ public class Administrador  implements java.io.Serializable {
        this.apellido2Admin = apellido2Admin;
        this.emailAdmin = emailAdmin;
        this.fechaAltaAdmin = fechaAltaAdmin;
-       this.fechaNacAdmin = fechaNacAdmin;
     }
    
     public Integer getId() {
@@ -93,13 +87,6 @@ public class Administrador  implements java.io.Serializable {
     
     public void setFechaAltaAdmin(Date fechaAltaAdmin) {
         this.fechaAltaAdmin = fechaAltaAdmin;
-    }
-    public Date getFechaNacAdmin() {
-        return this.fechaNacAdmin;
-    }
-    
-    public void setFechaNacAdmin(Date fechaNacAdmin) {
-        this.fechaNacAdmin = fechaNacAdmin;
     }
 
 

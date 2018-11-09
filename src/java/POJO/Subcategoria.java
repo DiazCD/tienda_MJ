@@ -1,5 +1,5 @@
 package POJO;
-// Generated 06-nov-2018 23:55:21 by Hibernate Tools 4.3.1
+// Generated 09-nov-2018 9:00:13 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -20,6 +20,12 @@ public class Subcategoria  implements java.io.Serializable {
     public Subcategoria() {
     }
 
+	
+    public Subcategoria(Categoria categoria, String descripcionSubcat, String nombreSubcat) {
+        this.categoria = categoria;
+        this.descripcionSubcat = descripcionSubcat;
+        this.nombreSubcat = nombreSubcat;
+    }
     public Subcategoria(Categoria categoria, String descripcionSubcat, String nombreSubcat, Set articulos) {
        this.categoria = categoria;
        this.descripcionSubcat = descripcionSubcat;
