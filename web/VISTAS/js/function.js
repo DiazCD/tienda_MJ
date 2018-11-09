@@ -297,11 +297,11 @@ function mostrarLogin() {
     var br = document.createElement('br');
     divCuerpoIdentificacion.appendChild(br);
 
-    var botonIdentificacion = document.createElement('button');
+    var botonIdentificacion = document.createElement('a');
     divCuerpoIdentificacion.appendChild(botonIdentificacion);
     botonIdentificacion.setAttribute('type', 'button');
     botonIdentificacion.setAttribute('class', 'btn btn-warning');
-    botonIdentificacion.setAttribute('href', '');
+    botonIdentificacion.setAttribute('href', './vista_panelControlVendedor.jsp');
     var node = document.createTextNode('Identifícate');
     botonIdentificacion.appendChild(node);
 }
