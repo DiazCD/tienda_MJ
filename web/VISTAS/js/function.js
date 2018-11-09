@@ -301,7 +301,7 @@ function mostrarLogin() {
     divCuerpoIdentificacion.appendChild(botonIdentificacion);
     botonIdentificacion.setAttribute('type', 'button');
     botonIdentificacion.setAttribute('class', 'btn btn-warning');
-    botonIdentificacion.setAttribute('href', './vista_panelControlVendedor.jsp');
+    botonIdentificacion.setAttribute('href', '../servlet_panelControlVendedor');
     var node = document.createTextNode('Identifícate');
     botonIdentificacion.appendChild(node);
 }

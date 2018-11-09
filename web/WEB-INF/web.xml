@@ -1,12 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <servlet>
+     <servlet>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <servlet-class>BLL.servlet_panelControlVendedor</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_listadoCategorias</servlet-name>
+        <servlet-class>BLL.servlet_listadoCategorias</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_altaCategoria</servlet-name>
+        <servlet-class>BLL.servlet_altaCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_altaSubCategoria</servlet-name>
+        <servlet-class>BLL.servlet_altaSubCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_cargaCategorias</servlet-name>
+        <servlet-class>BLL.servlet_cargaCategorias</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_listadoCategorias</servlet-name>
+        <url-pattern>/servlet_listadoCategorias</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_altaCategoria</servlet-name>
+        <url-pattern>/servlet_altaCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_altaSubCategoria</servlet-name>
+        <url-pattern>/servlet_altaSubCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_cargaCategorias</servlet-name>
+        <url-pattern>/servlet_cargaCategorias</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

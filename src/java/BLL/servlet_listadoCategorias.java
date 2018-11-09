@@ -7,8 +7,7 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
-import POJO.Vendedor;
+import POJO.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import org.hibernate.SessionFactory;
  *
  * @author migue
  */
-public class servlet_panelControlVendedor extends HttpServlet {
+public class servlet_listadoCategorias extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -31,7 +30,7 @@ public class servlet_panelControlVendedor extends HttpServlet {
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,19 +44,15 @@ public class servlet_panelControlVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try {
-                Vendedor vend1 = new Vendedor();
-                HttpSession session = request.getSession(true);
-                vend1.setId(1);
-                ArrayList arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
-                
-                session.setAttribute("arrayArticulos", arrayArticulos);
-                response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
-            } catch (IOException ex) {
-                out.write("<html>");
-                out.write("<p>" + ex + "</p>");
-                out.write("</html>");
-            }
+            
+            HttpSession session = request.getSession(true);
+            
+            ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
+            ArrayList<Categoria> arraySubCategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
+            
+            session.setAttribute("arrayCategorias", arrayCategorias);
+            session.setAttribute("arraySubCategorias", arraySubCategorias);          
+            response.sendRedirect("./VISTAS/vista_listadoCategorias.jsp");
         }
     }
 

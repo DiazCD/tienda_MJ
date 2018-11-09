@@ -7,23 +7,22 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
-import POJO.Vendedor;
+import POJO.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author magm
  */
-public class servlet_panelControlVendedor extends HttpServlet {
+public class servlet_altaCategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -45,19 +44,23 @@ public class servlet_panelControlVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            boolean correcto = false;
+            Categoria categoria = new Categoria();
+            HttpSession session = request.getSession(true);
+            
+            categoria.setNombreCat(request.getParameter("nombreCat"));
+            categoria.setDescripcionCat(request.getParameter("descripcionCat"));
+
             try {
-                Vendedor vend1 = new Vendedor();
-                HttpSession session = request.getSession(true);
-                vend1.setId(1);
-                ArrayList arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
-                
-                session.setAttribute("arrayArticulos", arrayArticulos);
-                response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
-            } catch (IOException ex) {
-                out.write("<html>");
-                out.write("<p>" + ex + "</p>");
-                out.write("</html>");
+                correcto = new Operaciones(SessionBuilder).altaCategoria(categoria);
+
+            } catch (HibernateException ex) {
+                System.out.println(ex);
             }
+
+            session.setAttribute("correcto", correcto);
+            response.sendRedirect("./VISTAS/vista_altaCategoria.jsp");
         }
     }
 
