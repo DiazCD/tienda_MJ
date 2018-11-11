@@ -48,9 +48,19 @@ public class servlet_cargaCategorias extends HttpServlet {
             HttpSession session = request.getSession(true);
             
             ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
+            ArrayList<Categoria> arraySubategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
             
-            session.setAttribute("arrayCategorias", arrayCategorias);         
+            session.setAttribute("arrayCategorias", arrayCategorias); 
+            session.setAttribute("arraySubcategorias", arraySubategorias); 
+            
+            // Alta de categoria
+            if (session.getAttribute("jspDestino").equals("altaSubategoria")) {
             response.sendRedirect("./VISTAS/vista_altaSubcategoria.jsp");
+            
+            // Alta de articulo
+            } else if (session.getAttribute("jspDestino").equals("altaArticulo")){
+                response.sendRedirect("./VISTAS/vista_altaArticulo.jsp");
+            }
         }
     }
 

@@ -4,6 +4,9 @@
     Author     : migue
 --%>
 
+<%@page import="POJO.Subcategoria"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="POJO.Categoria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,29 +20,11 @@
         <title>Panel de control - Alta articulo</title>
     </head>
     <body>
-        <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
+        <% ArrayList<Categoria> arrayCategorias = (ArrayList) session.getAttribute("arrayCategorias"); %>
+        <% ArrayList<Subcategoria> arraySubcategorias = (ArrayList) session.getAttribute("altaSubcategoria"); %>
         <br/>
         <div class="row">
-            <div class="offset-md-1 col-md-2">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./images/img_vendedor.png" alt="Card image cap">
-                    <div class="list-group">
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Gestión artículos
-                        </li>
-                        <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
-                        <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
-
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Gestión categorías
-                        </li>
-                        <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
-                        <a href="../servlet_cargaCategorias" class="list-group-item list-group-item-action"> Alta subcategoría </a>
-                        <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
-                    </div>
-                </div>
-            </div>
+            <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
                 <form>
                     <h3> Alta artículo </h3>
@@ -55,22 +40,18 @@
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría </label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" name="categoriaPadre">
+                                <% for (int i=0 ; i<arrayCategorias.size() ; i++) {%>
+                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %></option>
+                                <% } %>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Subcategoría </label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" name="categoriaPadre">
+                                <% for (int i=0 ; i<arraySubcategorias.size() ; i++) {%>
+                                <option value="<%= arraySubcategorias.get(i).getId() %>"> <%= arraySubcategorias.get(i).getNombreSubcat() %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
