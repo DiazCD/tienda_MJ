@@ -141,4 +141,27 @@ public class Operaciones {
             session.close();
         }
     }
+    
+    public boolean altaArticulo (Articulo articulo) {
+        
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+            session.save(articulo); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
 }
