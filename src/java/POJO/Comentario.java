@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,6 +20,13 @@ public class Comentario  implements java.io.Serializable {
     public Comentario() {
     }
 
+	
+    public Comentario(Articulo articulo, Usuario usuario, int valoracionCom, Date fechaAltaCom) {
+        this.articulo = articulo;
+        this.usuario = usuario;
+        this.valoracionCom = valoracionCom;
+        this.fechaAltaCom = fechaAltaCom;
+    }
     public Comentario(Articulo articulo, Usuario usuario, String descripcionCom, int valoracionCom, Date fechaAltaCom) {
        this.articulo = articulo;
        this.usuario = usuario;

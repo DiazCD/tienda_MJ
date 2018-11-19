@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -18,11 +18,20 @@ public class Administrador  implements java.io.Serializable {
      private String apellido2Admin;
      private String emailAdmin;
      private Date fechaAltaAdmin;
+     private Date fechaNacAdmin;
 
     public Administrador() {
     }
 
-    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin) {
+	
+    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String emailAdmin, Date fechaAltaAdmin) {
+        this.nifAdmin = nifAdmin;
+        this.passAdmin = passAdmin;
+        this.nombreAdmin = nombreAdmin;
+        this.emailAdmin = emailAdmin;
+        this.fechaAltaAdmin = fechaAltaAdmin;
+    }
+    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin, Date fechaNacAdmin) {
        this.nifAdmin = nifAdmin;
        this.passAdmin = passAdmin;
        this.nombreAdmin = nombreAdmin;
@@ -30,6 +39,7 @@ public class Administrador  implements java.io.Serializable {
        this.apellido2Admin = apellido2Admin;
        this.emailAdmin = emailAdmin;
        this.fechaAltaAdmin = fechaAltaAdmin;
+       this.fechaNacAdmin = fechaNacAdmin;
     }
    
     public Integer getId() {
@@ -87,6 +97,13 @@ public class Administrador  implements java.io.Serializable {
     
     public void setFechaAltaAdmin(Date fechaAltaAdmin) {
         this.fechaAltaAdmin = fechaAltaAdmin;
+    }
+    public Date getFechaNacAdmin() {
+        return this.fechaNacAdmin;
+    }
+    
+    public void setFechaNacAdmin(Date fechaNacAdmin) {
+        this.fechaNacAdmin = fechaNacAdmin;
     }
 
 

@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -13,23 +13,22 @@ public class Subcategoria  implements java.io.Serializable {
 
      private Integer id;
      private Categoria categoria;
-     private String descripcionSubcat;
      private String nombreSubcat;
+     private String descripcionSubcat;
      private Set articulos = new HashSet(0);
 
     public Subcategoria() {
     }
 
 	
-    public Subcategoria(Categoria categoria, String descripcionSubcat, String nombreSubcat) {
+    public Subcategoria(Categoria categoria, String nombreSubcat) {
         this.categoria = categoria;
-        this.descripcionSubcat = descripcionSubcat;
         this.nombreSubcat = nombreSubcat;
     }
-    public Subcategoria(Categoria categoria, String descripcionSubcat, String nombreSubcat, Set articulos) {
+    public Subcategoria(Categoria categoria, String nombreSubcat, String descripcionSubcat, Set articulos) {
        this.categoria = categoria;
-       this.descripcionSubcat = descripcionSubcat;
        this.nombreSubcat = nombreSubcat;
+       this.descripcionSubcat = descripcionSubcat;
        this.articulos = articulos;
     }
    
@@ -47,19 +46,19 @@ public class Subcategoria  implements java.io.Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
-    public String getDescripcionSubcat() {
-        return this.descripcionSubcat;
-    }
-    
-    public void setDescripcionSubcat(String descripcionSubcat) {
-        this.descripcionSubcat = descripcionSubcat;
-    }
     public String getNombreSubcat() {
         return this.nombreSubcat;
     }
     
     public void setNombreSubcat(String nombreSubcat) {
         this.nombreSubcat = nombreSubcat;
+    }
+    public String getDescripcionSubcat() {
+        return this.descripcionSubcat;
+    }
+    
+    public void setDescripcionSubcat(String descripcionSubcat) {
+        this.descripcionSubcat = descripcionSubcat;
     }
     public Set getArticulos() {
         return this.articulos;

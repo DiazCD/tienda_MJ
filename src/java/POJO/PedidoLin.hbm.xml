@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-nov-2018 18:37:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.PedidoLin" table="pedido_lin" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -9,7 +9,10 @@
             <generator class="identity" />
         </id>
         <many-to-one name="articulo" class="POJO.Articulo" fetch="select">
-            <column name="id_articulo_lin" not-null="true" />
+            <column name="id_articulo" not-null="true" />
+        </many-to-one>
+        <many-to-one name="pedido" class="POJO.Pedido" fetch="select">
+            <column name="id_pedido" not-null="true" />
         </many-to-one>
         <property name="cantidadLin" type="int">
             <column name="cantidad_lin" not-null="true" />

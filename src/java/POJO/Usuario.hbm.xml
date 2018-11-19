@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-nov-2018 18:37:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Usuario" table="usuario" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -17,8 +17,11 @@
         <property name="nombreUsr" type="string">
             <column name="nombre_usr" length="50" not-null="true" />
         </property>
-        <property name="apellidos" type="string">
-            <column name="apellidos" length="50" not-null="true" />
+        <property name="apellido1Usr" type="string">
+            <column name="apellido_1_usr" length="50" />
+        </property>
+        <property name="apellido2Usr" type="string">
+            <column name="apellido_2_usr" length="50" />
         </property>
         <property name="emailUsr" type="string">
             <column name="email_usr" length="50" not-null="true" />
@@ -26,15 +29,18 @@
         <property name="fechaAltaUsr" type="timestamp">
             <column name="fecha_alta_usr" length="19" not-null="true" />
         </property>
+        <property name="fechaNacUsr" type="timestamp">
+            <column name="fecha_nac_usr" length="19" />
+        </property>
         <set name="comentarios" table="comentario" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_usuario_com" not-null="true" />
             </key>
             <one-to-many class="POJO.Comentario" />
         </set>
-        <set name="direccions" table="direccion" inverse="true" lazy="true" fetch="select" cascade="all">
+        <set name="direccions" table="direccion" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="idUsuario" not-null="true" />
+                <column name="id_usuario_dirr" />
             </key>
             <one-to-many class="POJO.Direccion" />
         </set>

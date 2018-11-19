@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
 
@@ -11,16 +11,16 @@ public class Direccion  implements java.io.Serializable {
 
      private Integer id;
      private Usuario usuario;
-     private String calle;
+     private String direccion;
      private String pais;
      private String poblacion;
 
     public Direccion() {
     }
 
-    public Direccion(Usuario usuario, String calle, String pais, String poblacion) {
+    public Direccion(Usuario usuario, String direccion, String pais, String poblacion) {
        this.usuario = usuario;
-       this.calle = calle;
+       this.direccion = direccion;
        this.pais = pais;
        this.poblacion = poblacion;
     }
@@ -39,12 +39,12 @@ public class Direccion  implements java.io.Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public String getCalle() {
-        return this.calle;
+    public String getDireccion() {
+        return this.direccion;
     }
     
-    public void setCalle(String calle) {
-        this.calle = calle;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
     public String getPais() {
         return this.pais;
