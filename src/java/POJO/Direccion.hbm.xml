@@ -1,24 +1,24 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07-nov-2018 18:37:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Direccion" table="direccion" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="usuario" class="POJO.Usuario" fetch="select" cascade="save-update">
-            <column name="idUsuario" not-null="true" />
+        <many-to-one name="usuario" class="POJO.Usuario" fetch="select">
+            <column name="id_usuario_dirr" />
         </many-to-one>
-        <property name="calle" type="string">
-            <column name="calle" length="50" not-null="true" />
+        <property name="direccion" type="string">
+            <column name="direccion" length="50" />
         </property>
         <property name="pais" type="string">
-            <column name="pais" length="50" not-null="true" />
+            <column name="pais" length="50" />
         </property>
         <property name="poblacion" type="string">
-            <column name="poblacion" length="50" not-null="true" />
+            <column name="poblacion" length="50" />
         </property>
     </class>
 </hibernate-mapping>

@@ -4,6 +4,9 @@
     Author     : migue
 --%>
 
+<%@page import="POJO.Subcategoria"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="POJO.Categoria"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,75 +20,53 @@
         <title>Panel de control - Alta articulo</title>
     </head>
     <body>
-        <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
+        <% ArrayList<Categoria> arrayCategorias = (ArrayList) session.getAttribute("arrayCategorias"); %>
+        <% ArrayList<Subcategoria> arraySubcategorias = (ArrayList) session.getAttribute("arraySubcategorias"); %>
         <br/>
         <div class="row">
-            <div class="offset-md-1 col-md-2">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="./images/img_vendedor.png" alt="Card image cap">
-                    <div class="list-group">
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Gestión artículos
-                        </li>
-                        <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
-                        <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
-                        <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
-
-                        <li href="#" class="list-group-item list-group-item-action active">
-                            Gestión categorías
-                        </li>
-                        <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
-                        <a href="../servlet_cargaCategorias" class="list-group-item list-group-item-action"> Alta subcategoría </a>
-                        <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
-                    </div>
-                </div>
-            </div>
+            <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
-                <form>
+                <form method="post" accept-charset="utf-8" action="../servlet_altaArticulo">
                     <h3> Alta artículo </h3>
                     <br/>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> Nombre </label>
-                        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Articulo 1">
+                        <input type="text" class="form-control" name="nombreArt" placeholder="Articulo 1">
                     </div>
                     <div class="form-group">
                         <label for="exampleFormControlTextarea1"> Descripción </label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                        <textarea type="text" class="form-control" name="descripcionArt" rows="2"></textarea>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría </label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" name="categoriaArt">
+                                <% for (int i=0 ; i<arrayCategorias.size() ; i++) {%>
+                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %></option>
+                                <% } %>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Subcategoría </label>
-                            <select class="form-control">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
+                            <select class="form-control" name="subcategoriaArt">
+                                <% for (int i=0 ; i<arraySubcategorias.size() ; i++) {%>
+                                <option value="<%= arraySubcategorias.get(i).getId() %>"> <%= arraySubcategorias.get(i).getNombreSubcat() %></option>
+                                <% } %>
                             </select>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-3">
                             <label for="inputZip"> Importe </label>
-                            <input type="text" class="form-control" placeholder="0.00€">
+                            <input type="text" class="form-control" placeholder="0.00€" name="importeArt">
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputZip"> Importe a recibir </label>
-                            <input type="text" class="form-control" placeholder="0.00€">
+                            <input type="text" class="form-control" placeholder="0.00€" id="importeRec">
                         </div>
                         <div class="form-group offset-md-3 col-md-3">
                             <label for="inputZip"> Cantidad </label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" name="cantidadArt">
                         </div>
                     </div>
                     <button class="btn btn-primary offset-md-4 col-md-4" type="submit"> Confirmar alta </button>

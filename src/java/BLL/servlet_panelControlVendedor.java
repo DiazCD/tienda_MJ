@@ -49,6 +49,10 @@ public class servlet_panelControlVendedor extends HttpServlet {
                 Vendedor vend1 = new Vendedor();
                 HttpSession session = request.getSession(true);
                 vend1.setId(1);
+                
+                // subir el vendedor que se haya logeado a session para tener acceso a el cuando se le necesite
+                session.setAttribute("vendedor", vend1);
+                
                 ArrayList arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
                 
                 session.setAttribute("arrayArticulos", arrayArticulos);

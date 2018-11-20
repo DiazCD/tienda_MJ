@@ -1,7 +1,8 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class Articulo  implements java.io.Serializable {
      private String nombreArt;
      private String descripcionArt;
      private float importeArt;
-     private Date fechaAltaArt;
+     private Date fechaAltaArt = java.sql.Date.valueOf(LocalDate.now());
      private int cantidadMaxArt;
      private Set pedidoLins = new HashSet(0);
      private Set comentarios = new HashSet(0);
@@ -28,12 +29,11 @@ public class Articulo  implements java.io.Serializable {
     }
 
 	
-    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
         this.categoria = categoria;
         this.subcategoria = subcategoria;
         this.vendedor = vendedor;
         this.nombreArt = nombreArt;
-        this.descripcionArt = descripcionArt;
         this.importeArt = importeArt;
         this.fechaAltaArt = fechaAltaArt;
         this.cantidadMaxArt = cantidadMaxArt;
