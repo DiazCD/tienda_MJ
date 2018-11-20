@@ -2,6 +2,7 @@ package POJO;
 // Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
 
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,7 @@ public class Articulo  implements java.io.Serializable {
      private String nombreArt;
      private String descripcionArt;
      private float importeArt;
-     private Date fechaAltaArt;
+     private Date fechaAltaArt = java.sql.Date.valueOf(LocalDate.now());
      private int cantidadMaxArt;
      private Set pedidoLins = new HashSet(0);
      private Set comentarios = new HashSet(0);

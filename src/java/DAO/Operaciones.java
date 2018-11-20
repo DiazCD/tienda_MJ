@@ -86,6 +86,18 @@ public class Operaciones {
 
         return listCategorias.get(0);
     }
+    
+    public Subcategoria getSubcategoria(String id) {
+
+        String hql = "FROM Subcategoria WHERE id=:idSubcategoria";
+        Query q = session.createQuery(hql);
+        q.setParameter("idSubcategoria", id);
+        
+        List<Subcategoria> listSubcategorias = q.list();
+        session.close();
+
+        return listSubcategorias.get(0);
+    }
 
     public List<Categoria> getSubCategorias() {
 

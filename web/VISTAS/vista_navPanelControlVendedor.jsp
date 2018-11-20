@@ -13,7 +13,7 @@
             <li href="#" class="list-group-item list-group-item-action active">
                 Gestión artículos
             </li>
-            <a href="./vista_altaArticulo.jsp" class="list-group-item list-group-item-action"> Alta artículo </a>
+            <a href="../servlet_cargaCategorias?jspDestino=altaArticulo" class="list-group-item list-group-item-action"> Alta artículo </a>
             <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
             <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
 
@@ -21,7 +21,7 @@
                 Gestión categorías
             </li>
             <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
-            <a <% session.setAttribute("jspDestino", "altaSubcategoria"); %>href="../servlet_cargaCategorias" class="list-group-item list-group-item-action"> Alta subcategoría </a>
+            <a href="../servlet_cargaCategorias?jspDestino=altaSubcategoria" class="list-group-item list-group-item-action"> Alta subcategoría </a>
             <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
         </div>
     </div>

@@ -7,10 +7,12 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import POJO.Articulo;
 import POJO.Categoria;
+import POJO.Subcategoria;
+import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +24,7 @@ import org.hibernate.SessionFactory;
  *
  * @author migue
  */
-public class servlet_cargaCategorias extends HttpServlet {
+public class servlet_altaArticulo extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -44,23 +46,27 @@ public class servlet_cargaCategorias extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-
             HttpSession session = request.getSession(true);
-
-            ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
-            ArrayList<Categoria> arraySubategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
-
-            session.setAttribute("arrayCategorias", arrayCategorias);
-            session.setAttribute("arraySubcategorias", arraySubategorias);
-
-            String destino = request.getParameter("jspDestino");
             
-            // Alta de categoria
-            if (destino.equals("altaSubcategoria")) {
-                response.sendRedirect("./VISTAS/vista_altaSubcategoria.jsp");
+            boolean correcto = false;
+            String idCategoriaArt = request.getParameter("categoriaArt");
+            String idSubcategoriaArt = request.getParameter("subcategoriaArt");
+            Articulo art = new Articulo();
+            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoriaArt);
+            Subcategoria subcategoria = new Operaciones(SessionBuilder).getSubcategoria(idSubcategoriaArt);
 
-                // Alta de articulo
-            } else if (destino.equals("altaArticulo")) {
+            art.setNombreArt(request.getParameter("nombreArt"));
+            art.setDescripcionArt(request.getParameter("descripcionArt"));
+            art.setCategoria(categoria);
+            art.setSubcategoria(subcategoria);
+            art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
+            art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
+            art.setVendedor((Vendedor)session.getAttribute("vendedor"));
+
+            // dar de alta el articulo
+            if (new Operaciones(SessionBuilder).altaArticulo(art)) {
+
+                session.setAttribute("correcto", correcto);
                 response.sendRedirect("./VISTAS/vista_altaArticulo.jsp");
             }
         }
