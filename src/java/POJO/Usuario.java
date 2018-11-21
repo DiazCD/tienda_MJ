@@ -1,5 +1,9 @@
 package POJO;
+<<<<<<< HEAD
 // Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+=======
+// Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1
+>>>>>>> Julian
 
 
 import java.util.Date;
@@ -16,8 +20,12 @@ public class Usuario  implements java.io.Serializable {
      private String nifUsr;
      private String passUsr;
      private String nombreUsr;
+<<<<<<< HEAD
      private String apellido1Usr;
      private String apellido2Usr;
+=======
+     private String apellidoUsr;
+>>>>>>> Julian
      private String emailUsr;
      private Date fechaAltaUsr;
      private Date fechaNacUsr;
@@ -30,6 +38,7 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
+<<<<<<< HEAD
     public Usuario(String nifUsr, String passUsr, String nombreUsr, String emailUsr, Date fechaAltaUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
@@ -43,6 +52,21 @@ public class Usuario  implements java.io.Serializable {
        this.nombreUsr = nombreUsr;
        this.apellido1Usr = apellido1Usr;
        this.apellido2Usr = apellido2Usr;
+=======
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr) {
+        this.nifUsr = nifUsr;
+        this.passUsr = passUsr;
+        this.nombreUsr = nombreUsr;
+        this.apellidoUsr = apellidoUsr;
+        this.emailUsr = emailUsr;
+        this.fechaAltaUsr = fechaAltaUsr;
+    }
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
+       this.nifUsr = nifUsr;
+       this.passUsr = passUsr;
+       this.nombreUsr = nombreUsr;
+       this.apellidoUsr = apellidoUsr;
+>>>>>>> Julian
        this.emailUsr = emailUsr;
        this.fechaAltaUsr = fechaAltaUsr;
        this.fechaNacUsr = fechaNacUsr;
@@ -80,6 +104,7 @@ public class Usuario  implements java.io.Serializable {
     public void setNombreUsr(String nombreUsr) {
         this.nombreUsr = nombreUsr;
     }
+<<<<<<< HEAD
     public String getApellido1Usr() {
         return this.apellido1Usr;
     }
@@ -93,6 +118,14 @@ public class Usuario  implements java.io.Serializable {
     
     public void setApellido2Usr(String apellido2Usr) {
         this.apellido2Usr = apellido2Usr;
+=======
+    public String getApellidoUsr() {
+        return this.apellidoUsr;
+    }
+    
+    public void setApellidoUsr(String apellidoUsr) {
+        this.apellidoUsr = apellidoUsr;
+>>>>>>> Julian
     }
     public String getEmailUsr() {
         return this.emailUsr;

@@ -1,7 +1,11 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<<<<<<< HEAD
 <!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
+=======
+<!-- Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1 -->
+>>>>>>> Julian
 <hibernate-mapping>
     <class name="POJO.Vendedor" table="vendedor" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -26,8 +30,8 @@
         <property name="apellido2Vend" type="string">
             <column name="apellido_2__vend" length="50" />
         </property>
-        <property name="fechaAltaVend" type="timestamp">
-            <column name="fecha_alta_vend" length="19" not-null="true" />
+        <property name="fechaAltaVend" type="date">
+            <column name="fecha_alta_vend" length="10" not-null="true" />
         </property>
         <property name="fechaNacVend" type="timestamp">
             <column name="fecha_nac_vend" length="19" not-null="true" />
