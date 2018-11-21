@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21-nov-2018 19:03:05 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21-nov-2018 19:12:57 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Categoria" table="categoria" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -14,6 +14,12 @@
         <property name="descripcionCat" type="string">
             <column name="descripcion_cat" length="50" not-null="true" />
         </property>
+        <set name="subcategorias" table="subcategoria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_cat" not-null="true" />
+            </key>
+            <one-to-many class="POJO.Subcategoria" />
+        </set>
         <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_categoria_art" not-null="true" />
