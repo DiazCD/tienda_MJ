@@ -1,18 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<<<<<<< HEAD
 <!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
-=======
-<!-- Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1 -->
->>>>>>> Julian
 <hibernate-mapping>
     <class name="POJO.Tarjeta" table="tarjeta" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="usuario" class="POJO.Usuario" fetch="select" cascade="save-update">
+        <many-to-one name="usuario" class="POJO.Usuario" fetch="select">
             <column name="id_usuario_tarj" not-null="true" />
         </many-to-one>
         <property name="numeroTarj" type="int">

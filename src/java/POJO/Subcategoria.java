@@ -1,9 +1,5 @@
 package POJO;
-<<<<<<< HEAD
 // Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
-=======
-// Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1
->>>>>>> Julian
 
 
 import java.util.HashSet;
@@ -16,11 +12,7 @@ public class Subcategoria  implements java.io.Serializable {
 
 
      private Integer id;
-<<<<<<< HEAD
      private Categoria categoria;
-=======
-     private String descripcionSubcat;
->>>>>>> Julian
      private String nombreSubcat;
      private String descripcionSubcat;
      private Set articulos = new HashSet(0);
@@ -29,21 +21,12 @@ public class Subcategoria  implements java.io.Serializable {
     }
 
 	
-<<<<<<< HEAD
     public Subcategoria(Categoria categoria, String nombreSubcat) {
         this.categoria = categoria;
         this.nombreSubcat = nombreSubcat;
     }
     public Subcategoria(Categoria categoria, String nombreSubcat, String descripcionSubcat, Set articulos) {
        this.categoria = categoria;
-=======
-    public Subcategoria(String descripcionSubcat, String nombreSubcat) {
-        this.descripcionSubcat = descripcionSubcat;
-        this.nombreSubcat = nombreSubcat;
-    }
-    public Subcategoria(String descripcionSubcat, String nombreSubcat, Set articulos) {
-       this.descripcionSubcat = descripcionSubcat;
->>>>>>> Julian
        this.nombreSubcat = nombreSubcat;
        this.descripcionSubcat = descripcionSubcat;
        this.articulos = articulos;
@@ -56,21 +39,12 @@ public class Subcategoria  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-<<<<<<< HEAD
     public Categoria getCategoria() {
         return this.categoria;
     }
     
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-=======
-    public String getDescripcionSubcat() {
-        return this.descripcionSubcat;
-    }
-    
-    public void setDescripcionSubcat(String descripcionSubcat) {
-        this.descripcionSubcat = descripcionSubcat;
->>>>>>> Julian
     }
     public String getNombreSubcat() {
         return this.nombreSubcat;
