@@ -51,7 +51,7 @@ public class servlet_registroUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             String nombreUsuario = request.getParameter("nombreRegistro");
             String apellidosUsuario = request.getParameter("apellidosRegistro");
             String dniUsuario = request.getParameter("dniRegistro");
@@ -62,7 +62,7 @@ public class servlet_registroUsuario extends HttpServlet {
             String claveUsuario = request.getParameter("claveRegistro");
             Date fechaAltaUsuario = new Date();
 
-            Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, correoUsuario, fechaAltaUsuario);
+            Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario);
             Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
 
             Session sesion = SessionBuilder.openSession();
