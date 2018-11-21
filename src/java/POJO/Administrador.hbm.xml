@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1 -->
+<!-- Generated 21-nov-2018 19:03:05 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Administrador" table="administrador" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -17,20 +17,14 @@
         <property name="nombreAdmin" type="string">
             <column name="nombre_admin" length="50" not-null="true" />
         </property>
-        <property name="apellido1Admin" type="string">
-            <column name="apellido_1_admin" length="50" />
-        </property>
-        <property name="apellido2Admin" type="string">
-            <column name="apellido_2_admin" length="50" />
+        <property name="apellidosAdmin" type="string">
+            <column name="apellidos_admin" length="50" not-null="true" />
         </property>
         <property name="emailAdmin" type="string">
             <column name="email_admin" length="50" not-null="true" />
         </property>
-        <property name="fechaAltaAdmin" type="timestamp">
-            <column name="fecha_alta_admin" length="19" not-null="true" />
-        </property>
-        <property name="fechaNacAdmin" type="date">
-            <column name="fecha_nac_admin" length="10" />
+        <property name="fechaAltaAdmin" type="date">
+            <column name="fecha_alta_admin" length="10" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

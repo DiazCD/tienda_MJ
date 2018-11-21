@@ -1,5 +1,5 @@
 package POJO;
-// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+// Generated 21-nov-2018 19:03:04 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,34 +16,30 @@ public class Vendedor  implements java.io.Serializable {
      private String nifVend;
      private String passVend;
      private String nombreVend;
-     private String apellido1Vend;
+     private String apellidosVend;
      private String emailVend;
-     private String apellido2Vend;
      private Date fechaAltaVend;
-     private Date fechaNacVend;
      private Set articulos = new HashSet(0);
 
     public Vendedor() {
     }
 
 	
-    public Vendedor(String nifVend, String passVend, String nombreVend, String emailVend, Date fechaAltaVend, Date fechaNacVend) {
+    public Vendedor(String nifVend, String passVend, String nombreVend, String apellidosVend, String emailVend, Date fechaAltaVend) {
         this.nifVend = nifVend;
         this.passVend = passVend;
         this.nombreVend = nombreVend;
+        this.apellidosVend = apellidosVend;
         this.emailVend = emailVend;
         this.fechaAltaVend = fechaAltaVend;
-        this.fechaNacVend = fechaNacVend;
     }
-    public Vendedor(String nifVend, String passVend, String nombreVend, String apellido1Vend, String emailVend, String apellido2Vend, Date fechaAltaVend, Date fechaNacVend, Set articulos) {
+    public Vendedor(String nifVend, String passVend, String nombreVend, String apellidosVend, String emailVend, Date fechaAltaVend, Set articulos) {
        this.nifVend = nifVend;
        this.passVend = passVend;
        this.nombreVend = nombreVend;
-       this.apellido1Vend = apellido1Vend;
+       this.apellidosVend = apellidosVend;
        this.emailVend = emailVend;
-       this.apellido2Vend = apellido2Vend;
        this.fechaAltaVend = fechaAltaVend;
-       this.fechaNacVend = fechaNacVend;
        this.articulos = articulos;
     }
    
@@ -75,12 +71,12 @@ public class Vendedor  implements java.io.Serializable {
     public void setNombreVend(String nombreVend) {
         this.nombreVend = nombreVend;
     }
-    public String getApellido1Vend() {
-        return this.apellido1Vend;
+    public String getApellidosVend() {
+        return this.apellidosVend;
     }
     
-    public void setApellido1Vend(String apellido1Vend) {
-        this.apellido1Vend = apellido1Vend;
+    public void setApellidosVend(String apellidosVend) {
+        this.apellidosVend = apellidosVend;
     }
     public String getEmailVend() {
         return this.emailVend;
@@ -89,26 +85,12 @@ public class Vendedor  implements java.io.Serializable {
     public void setEmailVend(String emailVend) {
         this.emailVend = emailVend;
     }
-    public String getApellido2Vend() {
-        return this.apellido2Vend;
-    }
-    
-    public void setApellido2Vend(String apellido2Vend) {
-        this.apellido2Vend = apellido2Vend;
-    }
     public Date getFechaAltaVend() {
         return this.fechaAltaVend;
     }
     
     public void setFechaAltaVend(Date fechaAltaVend) {
         this.fechaAltaVend = fechaAltaVend;
-    }
-    public Date getFechaNacVend() {
-        return this.fechaNacVend;
-    }
-    
-    public void setFechaNacVend(Date fechaNacVend) {
-        this.fechaNacVend = fechaNacVend;
     }
     public Set getArticulos() {
         return this.articulos;

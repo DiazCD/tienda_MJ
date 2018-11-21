@@ -1,5 +1,5 @@
 package POJO;
-// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+// Generated 21-nov-2018 19:03:04 by Hibernate Tools 4.3.1
 
 
 
@@ -11,16 +11,14 @@ public class PedidoLin  implements java.io.Serializable {
 
      private Integer id;
      private Articulo articulo;
-     private Pedido pedido;
      private int cantidadLin;
      private int importeLin;
 
     public PedidoLin() {
     }
 
-    public PedidoLin(Articulo articulo, Pedido pedido, int cantidadLin, int importeLin) {
+    public PedidoLin(Articulo articulo, int cantidadLin, int importeLin) {
        this.articulo = articulo;
-       this.pedido = pedido;
        this.cantidadLin = cantidadLin;
        this.importeLin = importeLin;
     }
@@ -38,13 +36,6 @@ public class PedidoLin  implements java.io.Serializable {
     
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
-    }
-    public Pedido getPedido() {
-        return this.pedido;
-    }
-    
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
     }
     public int getCantidadLin() {
         return this.cantidadLin;

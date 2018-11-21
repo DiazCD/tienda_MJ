@@ -1,5 +1,5 @@
 package POJO;
-// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+// Generated 21-nov-2018 19:03:04 by Hibernate Tools 4.3.1
 
 
 
@@ -11,18 +11,18 @@ public class Direccion  implements java.io.Serializable {
 
      private Integer id;
      private Usuario usuario;
-     private String direccion;
-     private String pais;
-     private String poblacion;
+     private String direccionTrj;
+     private String poblacionTrj;
+     private String paisTrj;
 
     public Direccion() {
     }
 
-    public Direccion(Usuario usuario, String direccion, String pais, String poblacion) {
+    public Direccion(Usuario usuario, String direccionTrj, String poblacionTrj, String paisTrj) {
        this.usuario = usuario;
-       this.direccion = direccion;
-       this.pais = pais;
-       this.poblacion = poblacion;
+       this.direccionTrj = direccionTrj;
+       this.poblacionTrj = poblacionTrj;
+       this.paisTrj = paisTrj;
     }
    
     public Integer getId() {
@@ -39,26 +39,26 @@ public class Direccion  implements java.io.Serializable {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-    public String getDireccion() {
-        return this.direccion;
+    public String getDireccionTrj() {
+        return this.direccionTrj;
     }
     
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setDireccionTrj(String direccionTrj) {
+        this.direccionTrj = direccionTrj;
     }
-    public String getPais() {
-        return this.pais;
-    }
-    
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-    public String getPoblacion() {
-        return this.poblacion;
+    public String getPoblacionTrj() {
+        return this.poblacionTrj;
     }
     
-    public void setPoblacion(String poblacion) {
-        this.poblacion = poblacion;
+    public void setPoblacionTrj(String poblacionTrj) {
+        this.poblacionTrj = poblacionTrj;
+    }
+    public String getPaisTrj() {
+        return this.paisTrj;
+    }
+    
+    public void setPaisTrj(String paisTrj) {
+        this.paisTrj = paisTrj;
     }
 
 
