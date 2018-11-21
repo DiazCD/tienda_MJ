@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,7 @@ public class Usuario  implements java.io.Serializable {
      private String nifUsr;
      private String passUsr;
      private String nombreUsr;
-     private String apellidos;
+     private String apellidoUsr;
      private String emailUsr;
      private Date fechaAltaUsr;
      private Set comentarios = new HashSet(0);
@@ -28,19 +28,19 @@ public class Usuario  implements java.io.Serializable {
     }
 
 	
-    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidos, String emailUsr, Date fechaAltaUsr) {
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
         this.nombreUsr = nombreUsr;
-        this.apellidos = apellidos;
+        this.apellidoUsr = apellidoUsr;
         this.emailUsr = emailUsr;
         this.fechaAltaUsr = fechaAltaUsr;
     }
-    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidos, String emailUsr, Date fechaAltaUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
        this.nifUsr = nifUsr;
        this.passUsr = passUsr;
        this.nombreUsr = nombreUsr;
-       this.apellidos = apellidos;
+       this.apellidoUsr = apellidoUsr;
        this.emailUsr = emailUsr;
        this.fechaAltaUsr = fechaAltaUsr;
        this.comentarios = comentarios;
@@ -77,12 +77,12 @@ public class Usuario  implements java.io.Serializable {
     public void setNombreUsr(String nombreUsr) {
         this.nombreUsr = nombreUsr;
     }
-    public String getApellidos() {
-        return this.apellidos;
+    public String getApellidoUsr() {
+        return this.apellidoUsr;
     }
     
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellidoUsr(String apellidoUsr) {
+        this.apellidoUsr = apellidoUsr;
     }
     public String getEmailUsr() {
         return this.emailUsr;

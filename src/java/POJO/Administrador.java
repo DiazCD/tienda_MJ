@@ -1,5 +1,5 @@
 package POJO;
-// Generated 07-nov-2018 18:37:41 by Hibernate Tools 4.3.1
+// Generated 21-nov-2018 18:39:09 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,20 +14,18 @@ public class Administrador  implements java.io.Serializable {
      private String nifAdmin;
      private String passAdmin;
      private String nombreAdmin;
-     private String apellido1Admin;
-     private String apellido2Admin;
+     private String apellidosAdmin;
      private String emailAdmin;
      private Date fechaAltaAdmin;
 
     public Administrador() {
     }
 
-    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellido1Admin, String apellido2Admin, String emailAdmin, Date fechaAltaAdmin) {
+    public Administrador(String nifAdmin, String passAdmin, String nombreAdmin, String apellidosAdmin, String emailAdmin, Date fechaAltaAdmin) {
        this.nifAdmin = nifAdmin;
        this.passAdmin = passAdmin;
        this.nombreAdmin = nombreAdmin;
-       this.apellido1Admin = apellido1Admin;
-       this.apellido2Admin = apellido2Admin;
+       this.apellidosAdmin = apellidosAdmin;
        this.emailAdmin = emailAdmin;
        this.fechaAltaAdmin = fechaAltaAdmin;
     }
@@ -60,19 +58,12 @@ public class Administrador  implements java.io.Serializable {
     public void setNombreAdmin(String nombreAdmin) {
         this.nombreAdmin = nombreAdmin;
     }
-    public String getApellido1Admin() {
-        return this.apellido1Admin;
+    public String getApellidosAdmin() {
+        return this.apellidosAdmin;
     }
     
-    public void setApellido1Admin(String apellido1Admin) {
-        this.apellido1Admin = apellido1Admin;
-    }
-    public String getApellido2Admin() {
-        return this.apellido2Admin;
-    }
-    
-    public void setApellido2Admin(String apellido2Admin) {
-        this.apellido2Admin = apellido2Admin;
+    public void setApellidosAdmin(String apellidosAdmin) {
+        this.apellidosAdmin = apellidosAdmin;
     }
     public String getEmailAdmin() {
         return this.emailAdmin;
