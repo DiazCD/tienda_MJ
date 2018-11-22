@@ -1,5 +1,5 @@
 package POJO;
-// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+// Generated 22-nov-2018 20:28:48 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,11 +24,11 @@ public class Pedido  implements java.io.Serializable {
     }
 
 	
-    public Pedido(Usuario usuario, float importePed, float importeTotal, Date fechaPed) {
+    public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal) {
         this.usuario = usuario;
+        this.descripcionPed = descripcionPed;
         this.importePed = importePed;
         this.importeTotal = importeTotal;
-        this.fechaPed = fechaPed;
     }
     public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal, Date fechaPed, Set pedidoLins) {
        this.usuario = usuario;

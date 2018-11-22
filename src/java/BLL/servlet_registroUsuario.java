@@ -61,8 +61,9 @@ public class servlet_registroUsuario extends HttpServlet {
             String correoUsuario = request.getParameter("correoRegistro");
             String claveUsuario = request.getParameter("claveRegistro");
             Date fechaAltaUsuario = new Date();
+            Date fechaNacUsuario = new Date();
 
-            Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, correoUsuario, fechaAltaUsuario);
+            Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario, fechaNacUsuario);
             Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
 
             Session sesion = SessionBuilder.openSession();

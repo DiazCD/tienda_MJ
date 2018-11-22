@@ -1,5 +1,5 @@
 package POJO;
-// Generated 19-nov-2018 23:50:58 by Hibernate Tools 4.3.1
+// Generated 22-nov-2018 20:28:48 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -21,8 +21,9 @@ public class Categoria  implements java.io.Serializable {
     }
 
 	
-    public Categoria(String nombreCat) {
+    public Categoria(String nombreCat, String descripcionCat) {
         this.nombreCat = nombreCat;
+        this.descripcionCat = descripcionCat;
     }
     public Categoria(String nombreCat, String descripcionCat, Set subcategorias, Set articulos) {
        this.nombreCat = nombreCat;

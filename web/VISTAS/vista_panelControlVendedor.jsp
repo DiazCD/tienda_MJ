@@ -21,7 +21,7 @@
         <title>Panel de control - Vendedor</title>
     </head>
     <body>
-        <% ArrayList<Articulo> arrayArticulos = (ArrayList) session.getAttribute("arrayArticulos");%>
+        <% ArrayList<Articulo> arrayArticulos = (ArrayList<Articulo>) session.getAttribute("arrayArticulos");%>
         <br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
@@ -35,9 +35,10 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col"> Nombre </th>
-                            <th scope="col"> Descripción</th>
-                            <th scope="col"> Subcategoría</th>
-                            <th scope="col"> Categoría</th>
+                            <th scope="col"> Descripción </th>
+                            <th scope="col"> Categoría </th>
+                            <th scope="col"> Subategoría </th>
+                            <th scope="col"> Importe </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,8 +47,9 @@
                             <th scope="row"> <%= arrayArticulos.get(i).getId()%> </th>
                             <td> <%= arrayArticulos.get(i).getNombreArt()%> </td>
                             <td> <%= arrayArticulos.get(i).getDescripcionArt()%> </td>
-                            <td> </td>
-                            <td> </td>
+                            <td></td>
+                            <td></td>
+                            <td> <%= arrayArticulos.get(i).getImporteArt() %> </td>
                         </tr>
                         <% }%>
                     </tbody>
