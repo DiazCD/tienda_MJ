@@ -1,18 +1,23 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21-nov-2018 19:03:05 by Hibernate Tools 4.3.1 -->
+
+<!-- Generated 22-nov-2018 20:28:50 by Hibernate Tools 4.3.1 -->
+
 <hibernate-mapping>
     <class name="POJO.Subcategoria" table="subcategoria" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="descripcionSubcat" type="string">
-            <column name="descripcion_subcat" length="50" not-null="true" />
-        </property>
+        <many-to-one name="categoria" class="POJO.Categoria" fetch="select">
+            <column name="id_categoria" />
+        </many-to-one>
         <property name="nombreSubcat" type="string">
             <column name="nombre_subcat" length="50" not-null="true" />
+        </property>
+        <property name="descripcionSubcat" type="string">
+            <column name="descripcion_subcat" length="50" not-null="true" />
         </property>
         <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
             <key>

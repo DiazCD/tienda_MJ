@@ -1,6 +1,5 @@
 package POJO;
-// Generated 21-nov-2018 19:03:04 by Hibernate Tools 4.3.1
-
+// Generated 22-nov-2018 20:28:48 by Hibernate Tools 4.3.1
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,16 +26,17 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
-	
-    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr) {
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
         this.nombreUsr = nombreUsr;
         this.apellidoUsr = apellidoUsr;
         this.emailUsr = emailUsr;
         this.fechaAltaUsr = fechaAltaUsr;
+        this.fechaNacUsr = fechaNacUsr;
     }
-    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
+
+    public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
        this.nifUsr = nifUsr;
        this.passUsr = passUsr;
        this.nombreUsr = nombreUsr;
