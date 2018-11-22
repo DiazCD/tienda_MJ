@@ -1,5 +1,6 @@
 package POJO;
-// Generated 22-nov-2018 20:28:48 by Hibernate Tools 4.3.1
+// Generated 22-nov-2018 21:12:32 by Hibernate Tools 4.3.1
+
 
 import java.util.Date;
 import java.util.HashSet;
@@ -18,6 +19,7 @@ public class Usuario  implements java.io.Serializable {
      private String apellidoUsr;
      private String emailUsr;
      private Date fechaAltaUsr;
+     private Date fechaNacUsr;
      private Set comentarios = new HashSet(0);
      private Set direccions = new HashSet(0);
      private Set tarjetas = new HashSet(0);
@@ -26,6 +28,7 @@ public class Usuario  implements java.io.Serializable {
     public Usuario() {
     }
 
+	
     public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr) {
         this.nifUsr = nifUsr;
         this.passUsr = passUsr;
@@ -35,7 +38,6 @@ public class Usuario  implements java.io.Serializable {
         this.fechaAltaUsr = fechaAltaUsr;
         this.fechaNacUsr = fechaNacUsr;
     }
-
     public Usuario(String nifUsr, String passUsr, String nombreUsr, String apellidoUsr, String emailUsr, Date fechaAltaUsr, Date fechaNacUsr, Set comentarios, Set direccions, Set tarjetas, Set pedidos) {
        this.nifUsr = nifUsr;
        this.passUsr = passUsr;
@@ -43,6 +45,7 @@ public class Usuario  implements java.io.Serializable {
        this.apellidoUsr = apellidoUsr;
        this.emailUsr = emailUsr;
        this.fechaAltaUsr = fechaAltaUsr;
+       this.fechaNacUsr = fechaNacUsr;
        this.comentarios = comentarios;
        this.direccions = direccions;
        this.tarjetas = tarjetas;
@@ -97,6 +100,13 @@ public class Usuario  implements java.io.Serializable {
     
     public void setFechaAltaUsr(Date fechaAltaUsr) {
         this.fechaAltaUsr = fechaAltaUsr;
+    }
+    public Date getFechaNacUsr() {
+        return this.fechaNacUsr;
+    }
+    
+    public void setFechaNacUsr(Date fechaNacUsr) {
+        this.fechaNacUsr = fechaNacUsr;
     }
     public Set getComentarios() {
         return this.comentarios;
