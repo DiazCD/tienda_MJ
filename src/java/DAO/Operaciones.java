@@ -5,6 +5,11 @@
  */
 package DAO;
 
+import POJO.Usuario;
+import POJO.Subcategoria;
+import POJO.Direccion;
+import POJO.Vendedor;
+import POJO.Categoria;
 import POJO.*;
 import java.util.List;
 import org.hibernate.HibernateException;
@@ -18,25 +23,24 @@ import org.hibernate.Transaction;
  * @author migue
  */
 public class Operaciones {
-    
+
     Session session = null;
 
     public Operaciones() {
-        
+
     }
 
     public Operaciones(SessionFactory SessionBuilder) {
         session = SessionBuilder.openSession();
     }
 
-    public void registrarUsuario(SessionFactory _SessionBuilder, Direccion direccion) {
-        Session sesion = _SessionBuilder.openSession();
+    public void registrarUsuario(Direccion direccion) {
         Transaction Tx = null;
         try {
-            Tx = sesion.beginTransaction();
+            Tx = session.beginTransaction();
 
-            sesion.saveOrUpdate(direccion);
-            
+            session.saveOrUpdate(direccion);
+
             Tx.commit();
         } catch (HibernateException HE) {
             HE.printStackTrace();
@@ -48,8 +52,52 @@ public class Operaciones {
             throw HE;
         } finally {
             //La sesion se cierra pase lo que pase
-            sesion.close();
+            session.close();
         }
+    }
+
+    public Usuario loginUsuario(String nif, String pass) {
+        String hql = "FROM Usuario WHERE nif_usr=:dniUsr AND pass_usr=:passUsr";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniUsr", nif);
+        q.setParameter("passUsr", pass);
+
+        Usuario usr = new Usuario();
+
+        List listUsuario = q.list();
+        if (!listUsuario.isEmpty()) {
+            usr = (Usuario) listUsuario.get(0);
+        }
+        session.close();
+
+        return usr;
+    }
+    
+    public Vendedor loginVendedor(String nif, String pass) {        
+        String hql = "FROM Vendedor WHERE nif_vend=:dniVend AND pass_vend=:passVend";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniVend", nif);
+        q.setParameter("passVend", pass);
+
+        Vendedor vend = new Vendedor();
+
+        List listVendedor = q.list();
+        if (!listVendedor.isEmpty()) {
+            vend = (Vendedor) listVendedor.get(0);
+        }
+        session.close();
+
+        return vend;
+    }
+
+    public List<Articulo> getArticulosCatalogo() {
+        String hql = "FROM Articulo";
+        Query q = session.createQuery(hql);
+
+        List listaArticulos = q.list();
+        session.close();
+
+        return listaArticulos;
     }
 
     public List<Articulo> getArticulosVend(Vendedor vend) {
@@ -74,25 +122,25 @@ public class Operaciones {
 
         return listCategorias;
     }
-    
+
     public Categoria getCategoria(String id) {
 
         String hql = "FROM Categoria WHERE id=:idCategoria";
         Query q = session.createQuery(hql);
         q.setParameter("idCategoria", id);
-        
+
         List<Categoria> listCategorias = q.list();
         session.close();
 
         return listCategorias.get(0);
     }
-    
+
     public Subcategoria getSubcategoria(String id) {
 
         String hql = "FROM Subcategoria WHERE id=:idSubcategoria";
         Query q = session.createQuery(hql);
         q.setParameter("idSubcategoria", id);
-        
+
         List<Subcategoria> listSubcategorias = q.list();
         session.close();
 
@@ -153,9 +201,9 @@ public class Operaciones {
             session.close();
         }
     }
-    
-    public boolean altaArticulo (Articulo articulo) {
-        
+
+    public boolean altaArticulo(Articulo articulo) {
+
         Transaction tran = null;
 
         try {

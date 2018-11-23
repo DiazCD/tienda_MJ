@@ -7,30 +7,39 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Subcategoria;
+import POJO.Articulo;
+import POJO.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author Julian
  */
-public class servlet_altaSubCategoria extends HttpServlet {
-    
+@WebServlet(name = "servlet_catalogo", urlPatterns = {"/servlet_catalogo"})
+public class servlet_catalogo extends HttpServlet {
+
+    //Conectar con la sesion
     private SessionFactory SessionBuilder;
 
-    @Override
+    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
+    /**
+     *
+     */
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,26 +53,23 @@ public class servlet_altaSubCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            boolean correcto = false;
-            Subcategoria subcategoria = new Subcategoria();
-            HttpSession session = request.getSession(true);
-            String idSubcategoria;
-            
-            subcategoria.setNombreSubcat(request.getParameter("nombreSubcat"));
-            subcategoria.setDescripcionSubcat(request.getParameter("descripcionSubcat"));
-            idSubcategoria = request.getParameter("categoriaPadre");
+            HttpSession arraySession = request.getSession(true);
 
-            try {
-                subcategoria.setCategoria(new Operaciones(SessionBuilder).getCategoria(idSubcategoria));
-                correcto = new Operaciones(SessionBuilder).altaSubcategoria(subcategoria);
+            Session session = SessionBuilder.openSession();
+            
+            Operaciones op = new Operaciones(SessionBuilder);
+            List<Articulo> listaArticulos = op.getArticulosCatalogo();
+            Iterator iter = listaArticulos.iterator();
+            while (iter.hasNext()) {
+                Articulo articulo = (Articulo) iter.next();
 
-            } catch (HibernateException ex) {
-                System.out.println(ex);
+                Categoria categoria = (Categoria) session.load(Categoria.class, articulo.getCategoria().getId());
+                articulo.setCategoria(categoria);
             }
 
-            session.setAttribute("correcto", correcto);
-            response.sendRedirect("./VISTAS/vista_altaSubcategoria.jsp");
+            arraySession.setAttribute("listaArticulosCatalogo", listaArticulos);
+            response.sendRedirect("VISTAS/vista_catalogo.jsp");
+
         }
     }
 

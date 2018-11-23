@@ -82,6 +82,7 @@ function mostrarRegistro() {
     inputNombre.setAttribute('type', 'text');
     inputNombre.setAttribute('class', 'form-control col-8 offset-2');
     inputNombre.setAttribute('name', 'nombreRegistro');
+    inputNombre.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -96,6 +97,7 @@ function mostrarRegistro() {
     inputApellidos.setAttribute('type', 'text');
     inputApellidos.setAttribute('class', 'form-control col-8 offset-2');
     inputApellidos.setAttribute('name', 'apellidosRegistro');
+    inputApellidos.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -110,6 +112,7 @@ function mostrarRegistro() {
     inputDNI.setAttribute('type', 'text');
     inputDNI.setAttribute('class', 'form-control col-8 offset-2');
     inputDNI.setAttribute('name', 'dniRegistro');
+    inputDNI.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -124,6 +127,7 @@ function mostrarRegistro() {
     inputPoblacion.setAttribute('type', 'text');
     inputPoblacion.setAttribute('class', 'form-control col-8 offset-2');
     inputPoblacion.setAttribute('name', 'poblacionRegistro');
+    inputPoblacion.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -138,6 +142,7 @@ function mostrarRegistro() {
     inputPais.setAttribute('type', 'text');
     inputPais.setAttribute('class', 'form-control col-8 offset-2');
     inputPais.setAttribute('name', 'paisRegistro');
+    inputPais.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -152,6 +157,7 @@ function mostrarRegistro() {
     inputDireccion.setAttribute('type', 'text');
     inputDireccion.setAttribute('class', 'form-control col-8 offset-2');
     inputDireccion.setAttribute('name', 'direccionRegistro');
+    inputDireccion.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -166,6 +172,7 @@ function mostrarRegistro() {
     inputCorreo.setAttribute('type', 'email');
     inputCorreo.setAttribute('class', 'form-control col-8 offset-2');
     inputCorreo.setAttribute('name', 'correoRegistro');
+    inputCorreo.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -180,6 +187,7 @@ function mostrarRegistro() {
     inputClave.setAttribute('type', 'password');
     inputClave.setAttribute('class', 'form-control col-8 offset-2');
     inputClave.setAttribute('name', 'claveRegistro');
+    inputClave.required = true;
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
@@ -253,55 +261,62 @@ function mostrarLogin() {
     var divCuerpoIdentificacion = document.createElement('div');
     divIdentificacion.appendChild(divCuerpoIdentificacion);
     divCuerpoIdentificacion.setAttribute('class', 'text-center');
+    
+    var formIdentificacion = document.createElement('form');
+    divCuerpoIdentificacion.appendChild(formIdentificacion);
+    formIdentificacion.setAttribute('action','../servlet_loginUsuario');
 
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
 
     var h5DNI = document.createElement('h5');
-    divCuerpoIdentificacion.appendChild(h5DNI);
+    formIdentificacion.appendChild(h5DNI);
     var node = document.createTextNode('DNI');
     h5DNI.appendChild(node);
 
     var inputDNI = document.createElement('input');
-    divCuerpoIdentificacion.appendChild(inputDNI);
+    formIdentificacion.appendChild(inputDNI);
     inputDNI.setAttribute('type', 'text');
     inputDNI.setAttribute('class', 'form-control col-8 offset-2');
     inputDNI.setAttribute('id', 'dniIdentificacion');
+    inputDNI.setAttribute('name', 'dniUsuario');
+    inputDNI.required  = true;
 
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
 
     var h5Clave = document.createElement('h5');
-    divCuerpoIdentificacion.appendChild(h5Clave);
+    formIdentificacion.appendChild(h5Clave);
     var node = document.createTextNode('Clave');
     h5Clave.appendChild(node);
 
     var inputClave = document.createElement('input');
-    divCuerpoIdentificacion.appendChild(inputClave);
+    formIdentificacion.appendChild(inputClave);
     inputClave.setAttribute('type', 'password');
     inputClave.setAttribute('class', 'form-control col-8 offset-2');
     inputClave.setAttribute('id', 'claveIdentificacion');
+    inputClave.setAttribute('name', 'passUsuario');
+    inputClave.required = true;
 
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
     var br = document.createElement('br');
-    divCuerpoIdentificacion.appendChild(br);
+    formIdentificacion.appendChild(br);
 
-    var botonIdentificacion = document.createElement('a');
-    divCuerpoIdentificacion.appendChild(botonIdentificacion);
-    botonIdentificacion.setAttribute('type', 'button');
-    botonIdentificacion.setAttribute('class', 'btn btn-warning');
-    botonIdentificacion.setAttribute('href', '../servlet_panelControlVendedor');
-    var node = document.createTextNode('Identifícate');
-    botonIdentificacion.appendChild(node);
+    var botonLogin = document.createElement('button');
+    formIdentificacion.appendChild(botonLogin);
+    botonLogin.setAttribute('type', 'submit');
+    botonLogin.setAttribute('class', 'btn btn-warning');
+    var node = document.createTextNode('Login');
+    botonLogin.appendChild(node);
 }

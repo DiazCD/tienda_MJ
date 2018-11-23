@@ -7,30 +7,37 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Subcategoria;
+import POJO.Usuario;
+import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author Julian
  */
-public class servlet_altaSubCategoria extends HttpServlet {
-    
+@WebServlet(name = "servlet_loginUsuario", urlPatterns = {"/servlet_loginUsuario"})
+public class servlet_loginUsuario extends HttpServlet {
+
+    //Conectar con la sesion
     private SessionFactory SessionBuilder;
 
-    @Override
+    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
+    /**
+     *
+     */
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,26 +51,29 @@ public class servlet_altaSubCategoria extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-            boolean correcto = false;
-            Subcategoria subcategoria = new Subcategoria();
-            HttpSession session = request.getSession(true);
-            String idSubcategoria;
-            
-            subcategoria.setNombreSubcat(request.getParameter("nombreSubcat"));
-            subcategoria.setDescripcionSubcat(request.getParameter("descripcionSubcat"));
-            idSubcategoria = request.getParameter("categoriaPadre");
+            String dniUsuario = request.getParameter("dniUsuario");
+            String passUsuario = request.getParameter("passUsuario");
 
-            try {
-                subcategoria.setCategoria(new Operaciones(SessionBuilder).getCategoria(idSubcategoria));
-                correcto = new Operaciones(SessionBuilder).altaSubcategoria(subcategoria);
+            Session session = SessionBuilder.openSession();
+            Operaciones op = new Operaciones(SessionBuilder);
+            Usuario usr = op.loginUsuario(dniUsuario, passUsuario);
 
-            } catch (HibernateException ex) {
-                System.out.println(ex);
+            HttpSession ArraySession = request.getSession(true);
+            ArraySession.setAttribute("usuarioLogueado", usr);
+
+            if (usr.getNifUsr() == null) {
+                op = new Operaciones(SessionBuilder);
+                Vendedor vend = op.loginVendedor(dniUsuario, passUsuario);
+                ArraySession.setAttribute("vendedorLogueado", vend);
+                if (vend.getNifVend() == null) {
+                    out.println("No hay naide");
+                } else {
+                    response.sendRedirect("VISTAS/vista_home.jsp");
+                }
+            } else {
+                response.sendRedirect("VISTAS/vista_home.jsp");
             }
 
-            session.setAttribute("correcto", correcto);
-            response.sendRedirect("./VISTAS/vista_altaSubcategoria.jsp");
         }
     }
 
