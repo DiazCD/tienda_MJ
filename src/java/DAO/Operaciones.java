@@ -5,12 +5,16 @@
  */
 package DAO;
 
+import POJO.Usuario;
+import POJO.Subcategoria;
+import POJO.Direccion;
+import POJO.Vendedor;
+import POJO.Categoria;
 import POJO.*;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionBuilder;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
@@ -32,13 +36,12 @@ public class Operaciones {
         this.SessionBuilder = SessionBuilder;
     }
 
-    public void registrarUsuario(SessionFactory _SessionBuilder, Direccion direccion) {
-        Session sesion = _SessionBuilder.openSession();
+    public void registrarUsuario(Direccion direccion) {
         Transaction Tx = null;
         try {
-            Tx = sesion.beginTransaction();
+            Tx = session.beginTransaction();
 
-            sesion.saveOrUpdate(direccion);
+            session.saveOrUpdate(direccion);
 
             Tx.commit();
         } catch (HibernateException HE) {
@@ -51,8 +54,52 @@ public class Operaciones {
             throw HE;
         } finally {
             //La sesion se cierra pase lo que pase
-            sesion.close();
+            session.close();
         }
+    }
+
+    public Usuario loginUsuario(String nif, String pass) {
+        String hql = "FROM Usuario WHERE nif_usr=:dniUsr AND pass_usr=:passUsr";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniUsr", nif);
+        q.setParameter("passUsr", pass);
+
+        Usuario usr = new Usuario();
+
+        List listUsuario = q.list();
+        if (!listUsuario.isEmpty()) {
+            usr = (Usuario) listUsuario.get(0);
+        }
+        session.close();
+
+        return usr;
+    }
+    
+    public Vendedor loginVendedor(String nif, String pass) {        
+        String hql = "FROM Vendedor WHERE nif_vend=:dniVend AND pass_vend=:passVend";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniVend", nif);
+        q.setParameter("passVend", pass);
+
+        Vendedor vend = new Vendedor();
+
+        List listVendedor = q.list();
+        if (!listVendedor.isEmpty()) {
+            vend = (Vendedor) listVendedor.get(0);
+        }
+        session.close();
+
+        return vend;
+    }
+
+    public List<Articulo> getArticulosCatalogo() {
+        String hql = "FROM Articulo";
+        Query q = session.createQuery(hql);
+
+        List listaArticulos = q.list();
+        session.close();
+
+        return listaArticulos;
     }
 
     public List<Articulo> getArticulosVend(Vendedor vend) {

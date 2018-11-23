@@ -17,6 +17,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -51,7 +52,7 @@ public class servlet_registroUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             String nombreUsuario = request.getParameter("nombreRegistro");
             String apellidosUsuario = request.getParameter("apellidosRegistro");
             String dniUsuario = request.getParameter("dniRegistro");
@@ -64,11 +65,15 @@ public class servlet_registroUsuario extends HttpServlet {
             Date fechaNacUsuario = new Date();
 
             Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario, fechaNacUsuario);
+
             Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
 
             Session sesion = SessionBuilder.openSession();
-            Operaciones op = new Operaciones();
-            op.registrarUsuario(SessionBuilder, nuevaDireccion);
+            Operaciones op = new Operaciones(SessionBuilder);
+            op.registrarUsuario(nuevaDireccion);
+            
+            HttpSession ArraySesion = request.getSession(true);
+            ArraySesion.setAttribute("usuarioLogueado", nuevoUsuario);
 
             response.sendRedirect("VISTAS/vista_home.jsp");
         }

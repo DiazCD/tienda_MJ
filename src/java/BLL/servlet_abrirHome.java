@@ -5,7 +5,8 @@
  */
 package BLL;
 
-import DAO.NewHibernateUtil;
+import POJO.Usuario;
+import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,7 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.hibernate.SessionFactory;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -35,6 +36,13 @@ public class servlet_abrirHome extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            Usuario usr = new Usuario();
+            Vendedor vend = new Vendedor();
+
+            HttpSession ArraySession = request.getSession(true);
+            ArraySession.setAttribute("usuarioLogueado", usr);
+            ArraySession.setAttribute("vendedorLogueado", vend);
 
             response.sendRedirect("VISTAS/vista_home.jsp");
 
