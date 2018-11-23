@@ -7,26 +7,21 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
 import POJO.Categoria;
-import POJO.Subcategoria;
-import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author migue
  */
-public class servlet_panelControlVendedor extends HttpServlet {
+public class servlet_modCategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -48,34 +43,15 @@ public class servlet_panelControlVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            try {
-                Vendedor vend1 = new Vendedor();
-                HttpSession session = request.getSession(true);
-                vend1.setId(1);
 
-                // subir el vendedor que se haya logeado a session para tener acceso a el cuando se le necesite
-                session.setAttribute("vendedor", vend1);
+            String idCategoria = request.getParameter("idCategoria");
+            HttpSession session = request.getSession(true);
 
-                ArrayList<Articulo> arrayArticulos = (ArrayList) new Operaciones(SessionBuilder).getArticulosVend(vend1);
-
-                // recorrer la lista y hacer load a la categoria y a la subcategoria        
-                Session sesion = SessionBuilder.openSession();
-                
-                for (int i = 0; i < arrayArticulos.size(); i++) {
-                    Categoria categoria = (Categoria) sesion.load(Categoria.class, arrayArticulos.get(i).getCategoria().getId());
-                    arrayArticulos.get(i).setCategoria(categoria);
-                    
-                    Subcategoria subcategoria = (Subcategoria) sesion.load(Subcategoria.class, arrayArticulos.get(i).getSubcategoria().getId());
-                    arrayArticulos.get(i).setSubcategoria(subcategoria);
-                }
-
-                session.setAttribute("arrayArticulos", arrayArticulos);
-                response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
-            } catch (IOException ex) {
-                out.write("<html>");
-                out.write("<p>" + ex + "</p>");
-                out.write("</html>");
-            }
+            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
+            
+            session.setAttribute("categoria", categoria);
+            
+            response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
         }
     }
 

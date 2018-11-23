@@ -14,7 +14,6 @@
                 Gestión artículos
             </li>
             <a href="../servlet_cargaCategorias?jspDestino=altaArticulo" class="list-group-item list-group-item-action"> Alta artículo </a>
-            <a href="#" class="list-group-item list-group-item-action"> Baja artículo </a>
             <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
 
             <li href="#" class="list-group-item list-group-item-action active">
