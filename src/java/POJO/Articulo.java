@@ -1,5 +1,5 @@
 package POJO;
-// Generated 22-nov-2018 20:28:48 by Hibernate Tools 4.3.1
+// Generated 23-nov-2018 0:57:45 by Hibernate Tools 4.3.1
 
 
 import java.time.LocalDate;
@@ -22,6 +22,7 @@ public class Articulo  implements java.io.Serializable {
      private float importeArt;
      private Date fechaAltaArt = java.sql.Date.valueOf(LocalDate.now());
      private int cantidadMaxArt;
+     private String imagenArt;
      private Set pedidoLins = new HashSet(0);
      private Set comentarios = new HashSet(0);
 
@@ -29,7 +30,7 @@ public class Articulo  implements java.io.Serializable {
     }
 
 	
-    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt) {
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt, String imagenArt) {
         this.categoria = categoria;
         this.subcategoria = subcategoria;
         this.vendedor = vendedor;
@@ -38,8 +39,9 @@ public class Articulo  implements java.io.Serializable {
         this.importeArt = importeArt;
         this.fechaAltaArt = fechaAltaArt;
         this.cantidadMaxArt = cantidadMaxArt;
+        this.imagenArt = imagenArt;
     }
-    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt, Set pedidoLins, Set comentarios) {
+    public Articulo(Categoria categoria, Subcategoria subcategoria, Vendedor vendedor, String nombreArt, String descripcionArt, float importeArt, Date fechaAltaArt, int cantidadMaxArt, String imagenArt, Set pedidoLins, Set comentarios) {
        this.categoria = categoria;
        this.subcategoria = subcategoria;
        this.vendedor = vendedor;
@@ -48,6 +50,7 @@ public class Articulo  implements java.io.Serializable {
        this.importeArt = importeArt;
        this.fechaAltaArt = fechaAltaArt;
        this.cantidadMaxArt = cantidadMaxArt;
+       this.imagenArt = imagenArt;
        this.pedidoLins = pedidoLins;
        this.comentarios = comentarios;
     }
@@ -114,6 +117,13 @@ public class Articulo  implements java.io.Serializable {
     
     public void setCantidadMaxArt(int cantidadMaxArt) {
         this.cantidadMaxArt = cantidadMaxArt;
+    }
+    public String getImagenArt() {
+        return this.imagenArt;
+    }
+    
+    public void setImagenArt(String imagenArt) {
+        this.imagenArt = imagenArt;
     }
     public Set getPedidoLins() {
         return this.pedidoLins;
