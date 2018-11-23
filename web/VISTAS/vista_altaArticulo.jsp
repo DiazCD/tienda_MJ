@@ -62,7 +62,7 @@
                         </div>
                         <div class="form-group col-md-3">
                             <label for="inputZip"> Importe a recibir </label>
-                            <input type="text" class="form-control" placeholder="0.00€" id="importeRec">
+                            <input type="text" class="form-control" placeholder="0.00€" id="importeRec" readonly>
                         </div>
                         <div class="form-group offset-md-3 col-md-3">
                             <label for="inputZip"> Cantidad </label>

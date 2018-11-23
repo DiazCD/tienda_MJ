@@ -24,6 +24,14 @@
         <servlet-name>servlet_altaArticulo</servlet-name>
         <servlet-class>BLL.servlet_altaArticulo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_modCategoria</servlet-name>
+        <servlet-class>BLL.servlet_modCategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_borrarCategoria</servlet-name>
+        <servlet-class>BLL.servlet_borrarCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -47,6 +55,14 @@
     <servlet-mapping>
         <servlet-name>servlet_altaArticulo</servlet-name>
         <url-pattern>/servlet_altaArticulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_modCategoria</servlet-name>
+        <url-pattern>/servlet_modCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_borrarCategoria</servlet-name>
+        <url-pattern>/servlet_borrarCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
