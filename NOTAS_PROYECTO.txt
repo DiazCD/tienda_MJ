@@ -1,0 +1,15 @@
+NOTAS PROYECTO
+
+Presentacion:
+	- Pequeña presentación explicando como hemos trabajado, tecnologias que hemos usado, vender el producto, beneficios que tiene, etc.
+	- Añadir una API (Javadoc)
+	- Esquema de tablas 
+
+Documentación
+	- Solo un impreso de la documentacion
+	- Añadir una API (Javadoc)
+	- Esquema de tablas
+	- Fujo de datos
+
+Ejemplo de uso:
+	- Durante la presentación ejemplificar un ejemplo
