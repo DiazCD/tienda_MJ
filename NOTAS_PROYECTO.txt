@@ -16,3 +16,4 @@ Ejemplo de uso:
 
 Mejoras:
 	- formulario para solicitudes
+	- Modificar categorias, alta y baja de categorias solo administradores. Los vendedores se adaptan y solo ponen solicitudes
