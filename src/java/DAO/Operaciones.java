@@ -74,8 +74,8 @@ public class Operaciones {
 
         return usr;
     }
-    
-    public Vendedor loginVendedor(String nif, String pass) {        
+
+    public Vendedor loginVendedor(String nif, String pass) {
         String hql = "FROM Vendedor WHERE nif_vend=:dniVend AND pass_vend=:passVend";
         Query q = session.createQuery(hql);
         q.setParameter("dniVend", nif);
@@ -211,6 +211,28 @@ public class Operaciones {
             }
 
             session.delete(categoria); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
+
+    public boolean actualizarCategoria(Categoria categoria) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+            session.update(categoria); // le pasamos el obj a hibernate
             tran.commit(); // Ejecutamos la transaccion
             return true;
 

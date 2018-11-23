@@ -23,9 +23,13 @@
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
-                <form method="post" accept-charset="utf-8" action="../servlet_altaCategoria">
+                <form method="post" accept-charset="utf-8" action="../servlet_modCategoria">
                     <h3> Modificación categoría </h3>
                     <br/>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1"> Identificador </label>
+                        <input type="text" class="form-control" id="exampleFormControlInput1" name="idCat" value="<%=categoria.getId() %>" readonly="true">
+                    </div>
                     <div class="form-group">
                         <label for="exampleFormControlInput1"> Nombre </label>
                         <input type="text" class="form-control" id="exampleFormControlInput1" name="nombreCat" value="<%=categoria.getNombreCat() %>">

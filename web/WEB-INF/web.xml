@@ -32,6 +32,10 @@
         <servlet-name>servlet_borrarCategoria</servlet-name>
         <servlet-class>BLL.servlet_borrarCategoria</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_preModCategoria</servlet-name>
+        <servlet-class>BLL.servlet_preModCategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>servlet_borrarCategoria</servlet-name>
         <url-pattern>/servlet_borrarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_preModCategoria</servlet-name>
+        <url-pattern>/servlet_preModCategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

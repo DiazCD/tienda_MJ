@@ -19,9 +19,9 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author magm
  */
-public class servlet_modCategoria extends HttpServlet {
+public class servlet_preModCategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -44,24 +44,14 @@ public class servlet_modCategoria extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            //String idCategoria = request.getParameter("idCategoria");
+            String idCategoria = request.getParameter("idCategoria");
             HttpSession session = request.getSession(true);
-            boolean correcto;
+
+            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
             
-            Categoria categoria = new Categoria();
-            categoria.setId(Integer.parseInt(request.getParameter("idCat")));
-            categoria.setNombreCat(request.getParameter("nombreCat"));
-            categoria.setDescripcionCat(request.getParameter("descripcionCat"));
+            session.setAttribute("categoria", categoria);
             
-            correcto = new Operaciones(SessionBuilder).actualizarCategoria(categoria);
-            
-            if (correcto) {
-                response.sendRedirect("./servlet_listadoCategorias");
-                
-            } else {
-                session.setAttribute("error", "No se ha podido actualizar la categoria.");        
-                response.sendRedirect("./VISTAS/vista_error.jsp");
-            }
+            response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
         }
     }
 

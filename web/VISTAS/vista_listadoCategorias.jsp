@@ -46,7 +46,7 @@
                             <th scope="row"> <%= arrayCategorias.get(i).getId()%> </th>
                             <td> <%= arrayCategorias.get(i).getNombreCat()%> </td>
                             <td> <%= arrayCategorias.get(i).getDescripcionCat()%> </td>
-                            <td> <a href=" <%= "../servlet_modCategoria?idCategoria=" + arrayCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
+                            <td> <a href=" <%= "../servlet_preModCategoria?idCategoria=" + arrayCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>
