@@ -13,3 +13,6 @@ Documentación
 
 Ejemplo de uso:
 	- Durante la presentación ejemplificar un ejemplo
+
+Mejoras:
+	- formulario para solicitudes
