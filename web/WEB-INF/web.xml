@@ -48,6 +48,18 @@
         <servlet-name>servlet_borrarSubcategoria</servlet-name>
         <servlet-class>BLL.servlet_borrarSubcategoria</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_preModArticulo</servlet-name>
+        <servlet-class>BLL.servlet_preModArticulo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_modArticulo</servlet-name>
+        <servlet-class>BLL.servlet_modArticulo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_borrarArticulo</servlet-name>
+        <servlet-class>BLL.servlet_borrarArticulo</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -95,6 +107,18 @@
     <servlet-mapping>
         <servlet-name>servlet_borrarSubcategoria</servlet-name>
         <url-pattern>/servlet_borrarSubcategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_preModArticulo</servlet-name>
+        <url-pattern>/servlet_preModArticulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_modArticulo</servlet-name>
+        <url-pattern>/servlet_modArticulo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_borrarArticulo</servlet-name>
+        <url-pattern>/servlet_borrarArticulo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

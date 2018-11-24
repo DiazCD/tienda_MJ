@@ -40,6 +40,7 @@
                             <th scope="col"> Categoría </th>
                             <th scope="col"> Subategoría </th>
                             <th scope="col"> Importe </th>
+                            <th> Editar </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,6 +52,7 @@
                             <td> <%= arrayArticulos.get(i).getCategoria().getNombreCat() %> </td>
                             <td> <%= arrayArticulos.get(i).getSubcategoria().getNombreSubcat() %></td>
                             <td> <%= arrayArticulos.get(i).getImporteArt() %> </td>
+                            <td> <a href=" <%= "../servlet_preModArticulo?idArticulo=" + arrayArticulos.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>

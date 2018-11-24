@@ -373,4 +373,71 @@ public class Operaciones {
 
         return listArticulos;
     }
+    
+    /**
+     * Se obtiene el obj completo a partir de su id.
+     * @param id
+     * @return Articulo
+     */
+    public Articulo getArticulo(String id) {
+
+        String hql = "FROM Articulo WHERE id=:idArticulo";
+        Query q = session.createQuery(hql);
+        q.setParameter("idArticulo", id);
+
+        List<Articulo> listArticulos = q.list();
+        session.close();
+
+        return listArticulos.get(0);
+    }
+    
+    public boolean borrarArticulo(Articulo articulo) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+
+            session.delete(articulo); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+            if (tran != null) {
+                tran.rollback();
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
+    
+    /**
+     * Método que actualiza el articulo
+     * @param articulo
+     * @return boolean
+     * @throws HibernateException 
+     */
+    public boolean actualizarArticulo(Articulo articulo) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+            session.update(articulo); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
 }
