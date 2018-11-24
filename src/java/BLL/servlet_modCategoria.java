@@ -44,14 +44,24 @@ public class servlet_modCategoria extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            String idCategoria = request.getParameter("idCategoria");
+            //String idCategoria = request.getParameter("idCategoria");
             HttpSession session = request.getSession(true);
-
-            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
+            boolean correcto;
             
-            session.setAttribute("categoria", categoria);
+            Categoria categoria = new Categoria();
+            categoria.setId(Integer.parseInt(request.getParameter("idCat")));
+            categoria.setNombreCat(request.getParameter("nombreCat"));
+            categoria.setDescripcionCat(request.getParameter("descripcionCat"));
             
-            response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
+            correcto = new Operaciones(SessionBuilder).actualizarCategoria(categoria);
+            
+            if (correcto) {
+                response.sendRedirect("./servlet_listadoCategorias");
+                
+            } else {
+                session.setAttribute("error", "No se ha podido actualizar la categoria.");        
+                response.sendRedirect("./VISTAS/vista_error.jsp");
+            }
         }
     }
 

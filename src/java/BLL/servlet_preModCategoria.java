@@ -9,10 +9,9 @@ import DAO.NewHibernateUtil;
 import DAO.Operaciones;
 import POJO.Articulo;
 import POJO.Categoria;
-import POJO.Subcategoria;
-import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,9 +21,9 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author magm
  */
-public class servlet_altaArticulo extends HttpServlet {
+public class servlet_preModCategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -46,30 +45,20 @@ public class servlet_altaArticulo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+
+            String idCategoria = request.getParameter("idCategoria");
             HttpSession session = request.getSession(true);
+            ArrayList<Articulo> arrayArticulos;
+
+            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
             
-            boolean correcto = false;
-            String idCategoriaArt = request.getParameter("categoriaArt");
-            String idSubcategoriaArt = request.getParameter("subcategoriaArt");
-            Articulo art = new Articulo();
-            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoriaArt);
-            Subcategoria subcategoria = new Operaciones(SessionBuilder).getSubcategoria(idSubcategoriaArt);
-
-            art.setNombreArt(request.getParameter("nombreArt"));
-            art.setDescripcionArt(request.getParameter("descripcionArt"));
-            art.setCategoria(categoria);
-            art.setSubcategoria(subcategoria);
-            art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
-            art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
-            art.setVendedor((Vendedor)session.getAttribute("vendedor"));
-            art.setImagenArt("");
-
-            // dar de alta el articulo
-            if (new Operaciones(SessionBuilder).altaArticulo(art)) {
-
-                session.setAttribute("correcto", correcto);
-                response.sendRedirect("./VISTAS/vista_altaArticulo.jsp");
-            }
+            // Comprobamos si esta categoria tiene articulos asociados y avisamos si es asi
+            arrayArticulos = (ArrayList)new Operaciones(SessionBuilder).getArticulosCategoria(categoria);
+            
+            session.setAttribute("arrayArticulos", arrayArticulos);
+            session.setAttribute("categoria", categoria);
+            
+            response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
         }
     }
 

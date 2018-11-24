@@ -46,7 +46,7 @@
                             <th scope="row"> <%= arrayCategorias.get(i).getId()%> </th>
                             <td> <%= arrayCategorias.get(i).getNombreCat()%> </td>
                             <td> <%= arrayCategorias.get(i).getDescripcionCat()%> </td>
-                            <td> <a href=" <%= "../servlet_modCategoria?idCategoria=" + arrayCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
+                            <td> <a href=" <%= "../servlet_preModCategoria?idCategoria=" + arrayCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>
@@ -63,6 +63,7 @@
                             <th scope="col">#</th>
                             <th scope="col"> Nombre </th>
                             <th scope="col"> Descripción</th>
+                            <th> Editar </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,7 @@
                             <th scope="row"> <%= arraySubCategorias.get(i).getId()%> </th>
                             <td> <%= arraySubCategorias.get(i).getNombreSubcat()%> </td>
                             <td> <%= arraySubCategorias.get(i).getDescripcionSubcat()%> </td>
+                            <td> <a href=" <%= "../servlet_preModSubcategoria?idSubcategoria=" + arraySubCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>
