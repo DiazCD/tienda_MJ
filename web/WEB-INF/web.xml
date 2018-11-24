@@ -36,6 +36,18 @@
         <servlet-name>servlet_preModCategoria</servlet-name>
         <servlet-class>BLL.servlet_preModCategoria</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_preModSubcategoria</servlet-name>
+        <servlet-class>BLL.servlet_preModSubcategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_modSubcategoria</servlet-name>
+        <servlet-class>BLL.servlet_modSubcategoria</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>servlet_borrarSubcategoria</servlet-name>
+        <servlet-class>BLL.servlet_borrarSubcategoria</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -71,6 +83,18 @@
     <servlet-mapping>
         <servlet-name>servlet_preModCategoria</servlet-name>
         <url-pattern>/servlet_preModCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_preModSubcategoria</servlet-name>
+        <url-pattern>/servlet_preModSubcategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_modSubcategoria</servlet-name>
+        <url-pattern>/servlet_modSubcategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_borrarSubcategoria</servlet-name>
+        <url-pattern>/servlet_borrarSubcategoria</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

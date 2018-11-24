@@ -11,6 +11,7 @@ import POJO.Direccion;
 import POJO.Vendedor;
 import POJO.Categoria;
 import POJO.*;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -248,6 +249,28 @@ public class Operaciones {
             session.close();
         }
     }
+    
+    public boolean actualizarSubcategoria(Subcategoria Subcategoria) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+            session.update(Subcategoria); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
 
     public boolean altaSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
@@ -262,6 +285,28 @@ public class Operaciones {
 
             if (tran != null) {
                 tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
+    
+    public boolean borrarSubcategoria(Subcategoria subcategoria) throws HibernateException {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion
+
+            session.delete(subcategoria); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+            if (tran != null) {
+                tran.rollback();
                 return false;
             }
             throw HE;
@@ -292,5 +337,40 @@ public class Operaciones {
         } finally {
             session.close();
         }
+    }
+    /**
+     * Método que nos devuelve los articulos de una categoria
+     * @param categoria
+     * @return List de articulos
+     */
+    public List<Articulo> getArticulosCategoria(Categoria categoria) {
+        
+        String hql = "FROM Articulo WHERE id_categoria_art=:idCategoria";
+        Query q = session.createQuery(hql);
+        q.setParameter("idCategoria", categoria.getId());
+
+        List<Articulo> listArticulos = q.list();
+
+        session.close();
+
+        return listArticulos;
+    }
+    
+    /**
+     * Método que nos devuelve los articulos de una subcategoria
+     * @param subcategoria
+     * @return List de articulos
+     */
+    public List<Articulo> getArticulosSubcategoria(Subcategoria subcategoria) {
+        
+        String hql = "FROM Articulo WHERE id_subcategoria_art=:idSubcategoria";
+        Query q = session.createQuery(hql);
+        q.setParameter("idSubcategoria", subcategoria.getId());
+
+        List<Articulo> listArticulos = q.list();
+
+        session.close();
+
+        return listArticulos;
     }
 }

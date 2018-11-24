@@ -63,6 +63,7 @@
                             <th scope="col">#</th>
                             <th scope="col"> Nombre </th>
                             <th scope="col"> Descripción</th>
+                            <th> Editar </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,6 +72,7 @@
                             <th scope="row"> <%= arraySubCategorias.get(i).getId()%> </th>
                             <td> <%= arraySubCategorias.get(i).getNombreSubcat()%> </td>
                             <td> <%= arraySubCategorias.get(i).getDescripcionSubcat()%> </td>
+                            <td> <a href=" <%= "../servlet_preModSubcategoria?idSubcategoria=" + arraySubCategorias.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>

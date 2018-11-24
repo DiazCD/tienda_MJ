@@ -7,10 +7,8 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
 import POJO.Categoria;
 import POJO.Subcategoria;
-import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -22,9 +20,9 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author migue
+ * @author magm
  */
-public class servlet_altaArticulo extends HttpServlet {
+public class servlet_modSubcategoria extends HttpServlet {
 
     private SessionFactory SessionBuilder;
 
@@ -46,29 +44,29 @@ public class servlet_altaArticulo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
+
+            int idCategoriaPadre = Integer.parseInt(request.getParameter("categoriaPadre"));
             
-            boolean correcto = false;
-            String idCategoriaArt = request.getParameter("categoriaArt");
-            String idSubcategoriaArt = request.getParameter("subcategoriaArt");
-            Articulo art = new Articulo();
-            Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoriaArt);
-            Subcategoria subcategoria = new Operaciones(SessionBuilder).getSubcategoria(idSubcategoriaArt);
-
-            art.setNombreArt(request.getParameter("nombreArt"));
-            art.setDescripcionArt(request.getParameter("descripcionArt"));
-            art.setCategoria(categoria);
-            art.setSubcategoria(subcategoria);
-            art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
-            art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
-            art.setVendedor((Vendedor)session.getAttribute("vendedor"));
-            art.setImagenArt("");
-
-            // dar de alta el articulo
-            if (new Operaciones(SessionBuilder).altaArticulo(art)) {
-
-                session.setAttribute("correcto", correcto);
-                response.sendRedirect("./VISTAS/vista_altaArticulo.jsp");
+            HttpSession session = request.getSession(true);
+            boolean correcto;
+            
+            Categoria categoriaPadre = new Categoria();
+            categoriaPadre.setId(idCategoriaPadre);
+            
+            Subcategoria subcategoria = new Subcategoria();
+            subcategoria.setId(Integer.parseInt(request.getParameter("idSubcat")));
+            subcategoria.setCategoria(categoriaPadre);
+            subcategoria.setNombreSubcat(request.getParameter("nombreSubcat"));
+            subcategoria.setDescripcionSubcat(request.getParameter("descripcionSubcat"));
+            
+            correcto = new Operaciones(SessionBuilder).actualizarSubcategoria(subcategoria);
+            
+            if (correcto) {
+                response.sendRedirect("./servlet_listadoCategorias");
+                
+            } else {
+                session.setAttribute("error", "No se ha podido actualizar la categoria.");        
+                response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }
     }

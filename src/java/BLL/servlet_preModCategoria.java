@@ -7,9 +7,11 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import POJO.Articulo;
 import POJO.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -46,9 +48,14 @@ public class servlet_preModCategoria extends HttpServlet {
 
             String idCategoria = request.getParameter("idCategoria");
             HttpSession session = request.getSession(true);
+            ArrayList<Articulo> arrayArticulos;
 
             Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
             
+            // Comprobamos si esta categoria tiene articulos asociados y avisamos si es asi
+            arrayArticulos = (ArrayList)new Operaciones(SessionBuilder).getArticulosCategoria(categoria);
+            
+            session.setAttribute("arrayArticulos", arrayArticulos);
             session.setAttribute("categoria", categoria);
             
             response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
