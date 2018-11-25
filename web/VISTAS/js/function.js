@@ -67,10 +67,10 @@ function mostrarRegistro() {
     var divCuerpoRegistro = document.createElement('div');
     divRegistro.appendChild(divCuerpoRegistro);
     divCuerpoRegistro.setAttribute('class', 'text-center');
-    
+
     var formRegistro = document.createElement('form');
     divCuerpoRegistro.appendChild(formRegistro);
-    formRegistro.setAttribute('action','../servlet_registroUsuario');
+    formRegistro.setAttribute('action', '../servlet_registroUsuario');
 
     var h5Nombre = document.createElement('h5');
     formRegistro.appendChild(h5Nombre);
@@ -195,7 +195,7 @@ function mostrarRegistro() {
     var botonRegistro = document.createElement('button');
     formRegistro.appendChild(botonRegistro);
     botonRegistro.setAttribute('type', 'submit');
-    botonRegistro.setAttribute('class', 'btn btn-warning');
+    botonRegistro.setAttribute('class', 'btn btn-primary');
     var node = document.createTextNode('Registro');
     botonRegistro.appendChild(node);
 
@@ -261,10 +261,10 @@ function mostrarLogin() {
     var divCuerpoIdentificacion = document.createElement('div');
     divIdentificacion.appendChild(divCuerpoIdentificacion);
     divCuerpoIdentificacion.setAttribute('class', 'text-center');
-    
+
     var formIdentificacion = document.createElement('form');
     divCuerpoIdentificacion.appendChild(formIdentificacion);
-    formIdentificacion.setAttribute('action','../servlet_loginUsuario');
+    formIdentificacion.setAttribute('action', '../servlet_loginUsuario');
 
     var br = document.createElement('br');
     formIdentificacion.appendChild(br);
@@ -284,7 +284,7 @@ function mostrarLogin() {
     inputDNI.setAttribute('class', 'form-control col-8 offset-2');
     inputDNI.setAttribute('id', 'dniIdentificacion');
     inputDNI.setAttribute('name', 'dniUsuario');
-    inputDNI.required  = true;
+    inputDNI.required = true;
 
     var br = document.createElement('br');
     formIdentificacion.appendChild(br);
@@ -316,7 +316,7 @@ function mostrarLogin() {
     var botonLogin = document.createElement('button');
     formIdentificacion.appendChild(botonLogin);
     botonLogin.setAttribute('type', 'submit');
-    botonLogin.setAttribute('class', 'btn btn-warning');
+    botonLogin.setAttribute('class', 'btn btn-primary');
     var node = document.createTextNode('Login');
     botonLogin.appendChild(node);
 }

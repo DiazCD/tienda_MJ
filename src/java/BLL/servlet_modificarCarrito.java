@@ -5,20 +5,24 @@
  */
 package BLL;
 
+import MODELO.ArticuloCantidad;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_abrirLogin", urlPatterns = {"/servlet_abrirLogin"})
-public class servlet_abrirLogin extends HttpServlet {
+@WebServlet(name = "servlet_modificarCarrito", urlPatterns = {"/servlet_modificarCarrito"})
+public class servlet_modificarCarrito extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +37,27 @@ public class servlet_abrirLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+            int idArticulo = Integer.parseInt(request.getParameter("idArticulo"));
 
-            response.sendRedirect("VISTAS/vista_login.jsp");
+            HttpSession ArraySession = request.getSession(true);
+            List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
 
+            Iterator iter = carrito.iterator();
+            while (iter.hasNext()) {
+                ArticuloCantidad art = (ArticuloCantidad) iter.next();
+                if (art.getArticulo().getId() == idArticulo) {
+                    art.setCantidad(cantidad);
+                }
+            }
+
+            ArraySession.setAttribute("carrito", carrito);
+
+            response.sendRedirect("VISTAS/vista_carrito.jsp");
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

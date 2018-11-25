@@ -5,10 +5,13 @@
  */
 package BLL;
 
+import MODELO.ArticuloCantidad;
 import POJO.Usuario;
 import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,10 +42,12 @@ public class servlet_abrirHome extends HttpServlet {
 
             Usuario usr = new Usuario();
             Vendedor vend = new Vendedor();
+            List<ArticuloCantidad> carrito = new ArrayList();
 
             HttpSession ArraySession = request.getSession(true);
             ArraySession.setAttribute("usuarioLogueado", usr);
             ArraySession.setAttribute("vendedorLogueado", vend);
+            ArraySession.setAttribute("carrito", carrito);
 
             response.sendRedirect("VISTAS/vista_home.jsp");
 

@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import DAO.NewHibernateUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -12,13 +13,26 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_abrirLogin", urlPatterns = {"/servlet_abrirLogin"})
-public class servlet_abrirLogin extends HttpServlet {
+@WebServlet(name = "servlet_realizarPedido", urlPatterns = {"/servlet_realizarPedido"})
+public class servlet_realizarPedido extends HttpServlet {
+
+    //Conectar con la sesion
+    private SessionFactory SessionBuilder;
+
+    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
+    /**
+     *
+     */
+    public void init() {
+        SessionBuilder = NewHibernateUtil.getSessionFactory();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +47,16 @@ public class servlet_abrirLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String direccion = request.getParameter("direccion");
+            String poblacion = request.getParameter("poblacion");
+            String pais = request.getParameter("pais");
 
-            response.sendRedirect("VISTAS/vista_login.jsp");
-
+            String nTarjeta = request.getParameter("nTarjeta");
+            String mes = request.getParameter("mes");
+            String anno = request.getParameter("anno");
+            
+            HttpSession ArraySession = request.getSession();
+            
         }
     }
 

@@ -7,7 +7,6 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Categoria;
 import POJO.Subcategoria;
 import java.io.IOException;
 import java.io.PrintWriter;
