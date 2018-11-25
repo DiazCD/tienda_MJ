@@ -249,7 +249,7 @@ public class Operaciones {
             session.close();
         }
     }
-    
+
     public boolean actualizarSubcategoria(Subcategoria Subcategoria) throws HibernateException {
         Transaction tran = null;
 
@@ -293,7 +293,7 @@ public class Operaciones {
             session.close();
         }
     }
-    
+
     public boolean borrarSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
 
@@ -338,13 +338,15 @@ public class Operaciones {
             session.close();
         }
     }
+
     /**
      * Método que nos devuelve los articulos de una categoria
+     *
      * @param categoria
      * @return List de articulos
      */
     public List<Articulo> getArticulosCategoria(Categoria categoria) {
-        
+
         String hql = "FROM Articulo WHERE id_categoria_art=:idCategoria";
         Query q = session.createQuery(hql);
         q.setParameter("idCategoria", categoria.getId());
@@ -355,14 +357,15 @@ public class Operaciones {
 
         return listArticulos;
     }
-    
+
     /**
      * Método que nos devuelve los articulos de una subcategoria
+     *
      * @param subcategoria
      * @return List de articulos
      */
     public List<Articulo> getArticulosSubcategoria(Subcategoria subcategoria) {
-        
+
         String hql = "FROM Articulo WHERE id_subcategoria_art=:idSubcategoria";
         Query q = session.createQuery(hql);
         q.setParameter("idSubcategoria", subcategoria.getId());
@@ -373,9 +376,10 @@ public class Operaciones {
 
         return listArticulos;
     }
-    
+
     /**
      * Se obtiene el obj completo a partir de su id.
+     *
      * @param id
      * @return Articulo
      */
@@ -390,7 +394,7 @@ public class Operaciones {
 
         return listArticulos.get(0);
     }
-    
+
     public boolean borrarArticulo(Articulo articulo) throws HibernateException {
         Transaction tran = null;
 
@@ -412,12 +416,13 @@ public class Operaciones {
             session.close();
         }
     }
-    
+
     /**
      * Método que actualiza el articulo
+     *
      * @param articulo
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean actualizarArticulo(Articulo articulo) throws HibernateException {
         Transaction tran = null;
@@ -437,6 +442,110 @@ public class Operaciones {
             throw HE;
 
         } finally {
+            session.close();
+        }
+    }
+
+    public Direccion comprobarDireccion(Direccion direccion) {
+        String hql = "FROM Direccion WHERE id_usuario=:idUsuaio AND direccion=:dir AND poblacion=:pob AND pais=:pa";
+        Query q = session.createQuery(hql);
+        q.setParameter("idUsuaio", direccion.getUsuario().getId());
+        q.setParameter("dir", direccion.getDireccion());
+        q.setParameter("pob", direccion.getPoblacion());
+        q.setParameter("pa", direccion.getPais());
+
+        List<Direccion> listaDireccion = q.list();
+
+        if (listaDireccion.isEmpty()) {
+            Transaction Tx = null;
+            try {
+                Tx = session.beginTransaction();
+
+                session.saveOrUpdate(direccion);
+
+                Tx.commit();
+            } catch (HibernateException HE) {
+                HE.printStackTrace();
+                if (Tx != null) {
+                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                    Tx.rollback();
+                }
+                //Se lanza la propia excepcion para que lo recoja el controlador
+                throw HE;
+            }
+            Query q2 = session.createQuery(hql);
+            q2.setParameter("idUsuaio", direccion.getUsuario().getId());
+            q2.setParameter("dir", direccion.getDireccion());
+            q2.setParameter("pob", direccion.getPoblacion());
+            q2.setParameter("pa", direccion.getPais());
+
+            List<Direccion> listaDireccion2 = q2.list();
+            //La sesion se cierra pase lo que pase
+            session.close();
+            return listaDireccion2.get(0);
+
+        } else {
+            return listaDireccion.get(0);
+        }
+    }
+
+    public Tarjeta comprobarTarjeta(Tarjeta tarjeta) {
+        String hql = "FROM Tarjeta WHERE numero_tarj=:numero AND id_usuario_tarj=:idUsuario";
+        Query q = session.createQuery(hql);
+        q.setParameter("numero", tarjeta.getNumeroTarj());
+        q.setParameter("idUsuario", tarjeta.getUsuario().getId());
+
+        List<Tarjeta> listaTarjeta = q.list();
+
+        if (listaTarjeta.isEmpty()) {
+            Transaction Tx = null;
+            try {
+                Tx = session.beginTransaction();
+
+                session.saveOrUpdate(tarjeta);
+
+                Tx.commit();
+            } catch (HibernateException HE) {
+                HE.printStackTrace();
+                if (Tx != null) {
+                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                    Tx.rollback();
+                }
+                //Se lanza la propia excepcion para que lo recoja el controlador
+                throw HE;
+            }
+            Query q2 = session.createQuery(hql);
+            q2.setParameter("numero", tarjeta.getNumeroTarj());
+            q2.setParameter("idUsuario", tarjeta.getUsuario().getId());
+
+            List<Tarjeta> listaTarjeta2 = q2.list();
+            //La sesion se cierra pase lo que pase
+            session.close();
+            return listaTarjeta2.get(0);
+
+        } else {
+            return listaTarjeta.get(0);
+        }
+    }
+
+    public void registrarPedido(Pedido pedido) {
+        Transaction Tx = null;
+        try {
+            Tx = session.beginTransaction();
+
+            session.saveOrUpdate(pedido);
+
+            Tx.commit();
+        } catch (HibernateException HE) {
+            HE.printStackTrace();
+            if (Tx != null) {
+                //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                Tx.rollback();
+            }
+            //Se lanza la propia excepcion para que lo recoja el controlador
+            throw HE;
+        } finally {
+            //La sesion se cierra pase lo que pase
             session.close();
         }
     }

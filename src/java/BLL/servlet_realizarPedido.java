@@ -6,14 +6,27 @@
 package BLL;
 
 import DAO.NewHibernateUtil;
+import DAO.Operaciones;
+import MODELO.ArticuloCantidad;
+import POJO.Direccion;
+import POJO.Pedido;
+import POJO.PedidoLin;
+import POJO.Tarjeta;
+import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -47,16 +60,44 @@ public class servlet_realizarPedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String direccion = request.getParameter("direccion");
+            String calle = request.getParameter("direccion");
             String poblacion = request.getParameter("poblacion");
             String pais = request.getParameter("pais");
 
             String nTarjeta = request.getParameter("nTarjeta");
-            String mes = request.getParameter("mes");
-            String anno = request.getParameter("anno");
-            
+            int mes = Integer.parseInt(request.getParameter("mes"));
+            int anno = Integer.parseInt(request.getParameter("anno"));
+
             HttpSession ArraySession = request.getSession();
+            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
+            List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
+
+            Direccion direccion = new Direccion(usuario, calle, poblacion, pais);
+            Tarjeta tarjeta = new Tarjeta(usuario, nTarjeta, mes, anno);
+
+            Session sesion = SessionBuilder.openSession();
             
+            Operaciones op = new Operaciones(SessionBuilder);
+            direccion = op.comprobarDireccion(direccion);
+            op = new Operaciones(SessionBuilder);
+            tarjeta = op.comprobarTarjeta(tarjeta);
+
+            Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date());
+            Set setPedidoLin = new HashSet(0);
+            PedidoLin pedidoLin = new PedidoLin();
+
+            Iterator iter = carrito.iterator();
+            while (iter.hasNext()) {
+                ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
+                pedidoLin = new PedidoLin(articulo.getArticulo(), pedido, articulo.getCantidad());
+                setPedidoLin.add(pedidoLin);
+            }
+            pedido.setPedidoLins(setPedidoLin);
+            
+            op = new Operaciones(SessionBuilder);
+            op.registrarPedido(pedido);
+            
+            response.sendRedirect("VISTAS/vista_home.jsp");
         }
     }
 

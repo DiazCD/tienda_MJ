@@ -1,5 +1,5 @@
 package POJO;
-// Generated 23-nov-2018 0:57:45 by Hibernate Tools 4.3.1
+// Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -13,10 +13,9 @@ public class Pedido  implements java.io.Serializable {
 
 
      private Integer id;
+     private Direccion direccion;
+     private Tarjeta tarjeta;
      private Usuario usuario;
-     private String descripcionPed;
-     private float importePed;
-     private float importeTotal;
      private Date fechaPed;
      private Set pedidoLins = new HashSet(0);
 
@@ -24,17 +23,16 @@ public class Pedido  implements java.io.Serializable {
     }
 
 	
-    public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal) {
+    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed) {
+        this.direccion = direccion;
+        this.tarjeta = tarjeta;
         this.usuario = usuario;
-        this.descripcionPed = descripcionPed;
-        this.importePed = importePed;
-        this.importeTotal = importeTotal;
+        this.fechaPed = fechaPed;
     }
-    public Pedido(Usuario usuario, String descripcionPed, float importePed, float importeTotal, Date fechaPed, Set pedidoLins) {
+    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed, Set pedidoLins) {
+       this.direccion = direccion;
+       this.tarjeta = tarjeta;
        this.usuario = usuario;
-       this.descripcionPed = descripcionPed;
-       this.importePed = importePed;
-       this.importeTotal = importeTotal;
        this.fechaPed = fechaPed;
        this.pedidoLins = pedidoLins;
     }
@@ -46,33 +44,26 @@ public class Pedido  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
+    public Direccion getDireccion() {
+        return this.direccion;
+    }
+    
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+    public Tarjeta getTarjeta() {
+        return this.tarjeta;
+    }
+    
+    public void setTarjeta(Tarjeta tarjeta) {
+        this.tarjeta = tarjeta;
+    }
     public Usuario getUsuario() {
         return this.usuario;
     }
     
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-    public String getDescripcionPed() {
-        return this.descripcionPed;
-    }
-    
-    public void setDescripcionPed(String descripcionPed) {
-        this.descripcionPed = descripcionPed;
-    }
-    public float getImportePed() {
-        return this.importePed;
-    }
-    
-    public void setImportePed(float importePed) {
-        this.importePed = importePed;
-    }
-    public float getImporteTotal() {
-        return this.importeTotal;
-    }
-    
-    public void setImporteTotal(float importeTotal) {
-        this.importeTotal = importeTotal;
     }
     public Date getFechaPed() {
         return this.fechaPed;

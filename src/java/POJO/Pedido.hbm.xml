@@ -1,29 +1,26 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23-nov-2018 0:57:46 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Pedido" table="pedido" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="direccion" class="POJO.Direccion" fetch="select">
+            <column name="id_direccion" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tarjeta" class="POJO.Tarjeta" fetch="select">
+            <column name="id_tarjeta" not-null="true" />
+        </many-to-one>
         <many-to-one name="usuario" class="POJO.Usuario" fetch="select">
             <column name="id_usuario_ped" not-null="true" />
         </many-to-one>
-        <property name="descripcionPed" type="string">
-            <column name="descripcion_ped" length="50" not-null="true" />
-        </property>
-        <property name="importePed" type="float">
-            <column name="importe_ped" precision="12" scale="0" not-null="true" />
-        </property>
-        <property name="importeTotal" type="float">
-            <column name="importe_total" precision="12" scale="0" not-null="true" />
-        </property>
         <property name="fechaPed" type="timestamp">
-            <column name="fecha_ped" length="19" />
+            <column name="fecha_ped" length="19" not-null="true" />
         </property>
-        <set name="pedidoLins" table="pedido_lin" inverse="true" lazy="true" fetch="select">
+        <set name="pedidoLins" table="pedido_lin" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="id_pedido" not-null="true" />
             </key>
