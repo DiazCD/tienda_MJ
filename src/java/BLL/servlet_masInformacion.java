@@ -5,8 +5,8 @@
  */
 package BLL;
 
+import DAO.NewHibernateUtil;
 import POJO.Articulo;
-import MODELO.ArticuloCantidad;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -17,13 +17,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_agregarArticuloCarrito", urlPatterns = {"/servlet_agregarArticuloCarrito"})
-public class servlet_agregarArticuloCarrito extends HttpServlet {
+@WebServlet(name = "servlet_masInformacion", urlPatterns = {"/servlet_masInformacion"})
+public class servlet_masInformacion extends HttpServlet {
+
+    //Conectar con la sesion
+    private SessionFactory SessionBuilder;
+
+    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
+    /**
+     *
+     */
+    public void init() {
+        SessionBuilder = NewHibernateUtil.getSessionFactory();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,56 +51,29 @@ public class servlet_agregarArticuloCarrito extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int idArticulo = Integer.parseInt(request.getParameter("add"));
-            int cantidad = Integer.parseInt(request.getParameter("cantidad"));
+            int idArticulo = Integer.parseInt(request.getParameter("inf"));
 
-            HttpSession ArraySession = request.getSession(true);
+            HttpSession ArraySession = request.getSession();
             List<Articulo> listaArticulos = (List) ArraySession.getAttribute("listaArticulosCatalogo");
-            List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
 
+            Articulo articulo = new Articulo();
+
+            Session session = SessionBuilder.openSession();
             Iterator iter = listaArticulos.iterator();
             while (iter.hasNext()) {
-                Articulo articulo = (Articulo) iter.next();
-                if (articulo.getId() == idArticulo) {
-                    if (carrito.isEmpty()) {
-                        ArticuloCantidad articuloCarrito = new ArticuloCantidad(articulo, 1);
-                        carrito.add(articuloCarrito);
-                    } else {
-                        boolean existe = false;
-                        Iterator iter2 = carrito.iterator();
-                        while (iter2.hasNext()) {
-                            ArticuloCantidad art = (ArticuloCantidad) iter2.next();
-                            if (art.getArticulo().getId() == articulo.getId()) {
-                                if (cantidad > (art.getArticulo().getCantidadMaxArt() - art.getCantidad())) { 
-                                art.setCantidad(art.getArticulo().getCantidadMaxArt());
-                                } else{
-                                    art.setCantidad(art.getCantidad() + cantidad);
-                                }
-                                existe = true;
-                            }
-                        }
-                        if (!existe) {
-                            if (cantidad > articulo.getCantidadMaxArt()) {
-                                ArticuloCantidad articuloCarrito = new ArticuloCantidad(articulo, articulo.getCantidadMaxArt());
-                                carrito.add(articuloCarrito);
-                            } else {
-                                ArticuloCantidad articuloCarrito = new ArticuloCantidad(articulo, cantidad);
-                                carrito.add(articuloCarrito);
-                            }
-                        }
-                    }
+                Articulo art = (Articulo) iter.next();
+                if (art.getId() == idArticulo) {
+                    articulo = (Articulo) session.load(Articulo.class, art.getId());;
                 }
             }
 
-            ArraySession.setAttribute("carrito", carrito);
+            ArraySession.setAttribute("articuloInfo", articulo);
 
-            //out.print(carrito);
-            response.sendRedirect("VISTAS/vista_catalogo.jsp");
-
+            response.sendRedirect("VISTAS/vista_masInformacion.jsp");
         }
     }
 
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

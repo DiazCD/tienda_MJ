@@ -50,11 +50,14 @@
                             </div>
                         </div>
                         <div class="my-auto col-3">
-                            <button type="button" class="btn btn-warning col-12" id="0" onclick="#">Más Información</button>
+                            <form action="../servlet_masInformacion">
+                                <button type="submit" class="btn btn-warning col-12" name="inf" value="<% out.print(articulo.getId()); %>">Más Información</button>
+                            </form>
                             <br>
                             <br>
                             <input type="hidden" id="cantidad" value="1">
                             <form action="../servlet_agregarArticuloCarrito">
+                                <input type="hidden" name="cantidad" value="1">
                                 <button type="submit" class="btn btn-warning col-12" name="add" value="<% out.print(articulo.getId()); %>">Añadir a la cesta</button>
                             </form>
                         </div>

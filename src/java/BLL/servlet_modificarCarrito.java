@@ -47,7 +47,11 @@ public class servlet_modificarCarrito extends HttpServlet {
             while (iter.hasNext()) {
                 ArticuloCantidad art = (ArticuloCantidad) iter.next();
                 if (art.getArticulo().getId() == idArticulo) {
-                    art.setCantidad(cantidad);
+                    if (cantidad > art.getArticulo().getCantidadMaxArt()) {
+                        art.setCantidad(art.getArticulo().getCantidadMaxArt());
+                    }else{
+                        art.setCantidad(cantidad);
+                    }
                 }
             }
 

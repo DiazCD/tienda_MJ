@@ -31,9 +31,11 @@
                     HttpSession ArraySession = request.getSession();
                     List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
 
-                    Iterator iter = carrito.iterator();
-                    while (iter.hasNext()) {
-                        ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
+                    if (!carrito.isEmpty()) {
+
+                        Iterator iter = carrito.iterator();
+                        while (iter.hasNext()) {
+                            ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
                 %>
                 <div class="row col-12 mt-3 pt-3 fila border border-warning rounded">
                     <div class="col-1">
@@ -46,7 +48,7 @@
                             <h5><% out.print(articulo.getArticulo().getNombreArt()); %></h5>
                         </div>
                     </div>
-                    <div class="col-2 offset-1">
+                    <div class="col-2">
                         <div class="row">
                             <p><% out.print("Precio/Unidad: " + articulo.getArticulo().getImporteArt()); %></p>
                         </div>
@@ -56,10 +58,15 @@
                             <h6><% out.print("Total: " + articulo.getArticulo().getImporteArt() * articulo.getCantidad()); %></h6>
                         </div>
                     </div>
-                    <div class="col-4">
+                    <div class="col-1 offset-1">
+                        <div class="row">
+                            <p><% out.print(articulo.getArticulo().getCantidadMaxArt() + " en stock"); %></p>
+                        </div>
+                    </div>
+                    <div class="col-3">
                         <form action="../servlet_modificarCarrito">
                             <input type="hidden" name="idArticulo" value="<% out.print(articulo.getArticulo().getId()); %>">
-                            <input type="number" name="cantidad" class="form-control col-5" value="<% out.print(articulo.getCantidad()); %>" onchange="this.form.submit()"> 
+                            <input type="number" name="cantidad" min="1" max="<% out.print(articulo.getArticulo().getCantidadMaxArt()); %>" class="form-control col-5" value="<% out.print(articulo.getCantidad()); %>" onchange="this.form.submit()"> 
                         </form>
                     </div>
                 </div>
@@ -71,6 +78,21 @@
                 <form action="vista_pago.jsp">
                     <button type="submit" class="btn btn-primary">Realizar el Pedido</button>
                 </form>
+                <%
+                } else {
+                %>
+                <br>
+                <br>
+                <br>
+                <h6 class="text-center">¡Todavía no has añadido ninguno de nuestros productos al carrito!</h6>
+                <div class="text-center">
+                        <a href="../servlet_catalogo">
+                            <h6>Ir al Catálogo</h6>
+                        </a>
+                    </div>
+                <%
+                    }
+                %>
             </section>
         </main>
 
