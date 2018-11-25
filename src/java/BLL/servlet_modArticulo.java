@@ -64,7 +64,7 @@ public class servlet_modArticulo extends HttpServlet {
             art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
             art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
             art.setVendedor((Vendedor)session.getAttribute("vendedor"));
-            art.setImagenArt("");
+            art.setImagenArt(request.getParameter("imgArt"));
 
             correcto = new Operaciones(SessionBuilder).actualizarArticulo(art);
             

@@ -43,6 +43,10 @@
                         <label for="exampleFormControlTextarea1"> Descripción </label>
                         <textarea type="text" class="form-control" name="descripcionArt" rows="2"><%= articulo.getDescripcionArt()%></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1"> Selecionar imagen</label>
+                        <input type="file" class="form-control-file" name="imgArt" src="<%= articulo.getImagenArt() %>">
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría </label>

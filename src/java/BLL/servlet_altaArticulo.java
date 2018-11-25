@@ -62,7 +62,7 @@ public class servlet_altaArticulo extends HttpServlet {
             art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
             art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
             art.setVendedor((Vendedor)session.getAttribute("vendedor"));
-            art.setImagenArt("");
+            art.setImagenArt(request.getParameter("imgArt"));
 
             // dar de alta el articulo
             if (new Operaciones(SessionBuilder).altaArticulo(art)) {

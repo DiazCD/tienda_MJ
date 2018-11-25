@@ -37,21 +37,25 @@
                         <label for="exampleFormControlTextarea1"> Descripción </label>
                         <textarea type="text" class="form-control" name="descripcionArt" rows="2"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlFile1"> Selecionar imagen</label>
+                        <input type="file" class="form-control-file" name="imgArt">
+                    </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría </label>
                             <select class="form-control" name="categoriaArt">
-                                <% for (int i=0 ; i<arrayCategorias.size() ; i++) {%>
-                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %></option>
+                                <% for (int i = 0; i < arrayCategorias.size(); i++) {%>
+                                <option value="<%= arrayCategorias.get(i).getId()%>"> <%= arrayCategorias.get(i).getNombreCat()%></option>
                                 <% } %>
                             </select>
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Subcategoría </label>
                             <select class="form-control" name="subcategoriaArt">
-                                <% for (int i=0 ; i<arraySubcategorias.size() ; i++) {%>
-                                <option value="<%= arraySubcategorias.get(i).getId() %>"> <%= arraySubcategorias.get(i).getNombreSubcat() %></option>
-                                <% } %>
+                                <% for (int i = 0; i < arraySubcategorias.size(); i++) {%>
+                                <option value="<%= arraySubcategorias.get(i).getId()%>"> <%= arraySubcategorias.get(i).getNombreSubcat()%></option>
+                                <% }%>
                             </select>
                         </div>
                     </div>
