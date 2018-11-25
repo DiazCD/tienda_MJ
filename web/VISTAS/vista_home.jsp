@@ -22,21 +22,21 @@
                 <div class="carousel slide" id="carouselExampleControls" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid rounded w-100 h-50" src="images/car1.jpg" alt="First slide">
+                            <img class="d-block img-fluid rounded" src="images/car1.jpg" alt="First slide">
                             <div class="carousel-caption d-none d-md-block bg-secondary rounded fondoTranslucido">
                                 <h5>Bienvenido a ArtisanBeer</h5>
                                 <p>ArtisanBeer es tu web de compra de cervezas artesanales. Ya seas un bebedor de cerveza o un productor, este es tu sitio</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid rounded w-100 h-50" src="images/car2.jpg" alt="Second slide">
+                            <img class="d-block img-fluid rounded" src="images/car2.jpg" alt="Second slide">
                             <div class="carousel-caption d-none d-md-block bg-secondary rounded fondoTranslucido">
                                 <h5>¿Qué ofrecemos?</h5>
                                 <p>ArtisanBeer ofrece la mayor variedad de cervezas artesanas al mejor precio</p>
                             </div>
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block img-fluid rounded w-100 h-50" src="images/car3.jpg" alt="Third slide">
+                            <img class="d-block img-fluid rounded" src="images/car3.jpg" alt="Third slide">
                             <div class="carousel-caption d-none d-md-block bg-secondary rounded fondoTranslucido">
                                 <h5>Con quien quieras, donde quieras</h5>
                                 <p>ArtisanBeer ofrece servicio de entrega a domicilio para que no tengas que preocuparte en que lugar disfrutar de tu artesana</p>
@@ -54,8 +54,8 @@
                 </div>
                 <div class="row col-12 mt-5 pt-5">
                     <div class="col-4">
-                        <a href="#">
-                            <img class="img-fluid rounded" alt="Image Enlace 1" src="images/catalogo.jpg" onclick="" id="0">
+                        <a href="../servlet_catalogo">
+                            <img class="img-fluid rounded" alt="Image Enlace 1" src="images/catalogo.jpg" id="0">
                         </a>
                         <p class="font-weight-bold text-center">Catálogo</p>
                     </div>
