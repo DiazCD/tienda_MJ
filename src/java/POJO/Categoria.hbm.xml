@@ -20,7 +20,7 @@
             </key>
             <one-to-many class="POJO.Subcategoria" />
         </set>
-        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
+        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="id_categoria_art" not-null="true" />
             </key>
