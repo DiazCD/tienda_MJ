@@ -26,7 +26,7 @@
             <li href="#" class="list-group-item list-group-item-action active">
                 Gestión pedidos
             </li>
-            <a href="#" class="list-group-item list-group-item-action"> Pedidos activos </a>
+            <a href="../servlet_listadoPedidosVivos" class="list-group-item list-group-item-action"> Pedidos activos </a>
             <a href="#" class="list-group-item list-group-item-action"> Historial de pedidos </a>
         </div>
     </div>

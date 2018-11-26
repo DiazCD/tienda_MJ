@@ -1,5 +1,5 @@
 package POJO;
-// Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1
+// Generated 26-nov-2018 23:23:39 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -16,7 +16,9 @@ public class Vendedor  implements java.io.Serializable {
      private String nifVend;
      private String passVend;
      private String nombreVend;
-     private String apellidosVend;
+     private String paisVend;
+     private String poblacionVend;
+     private String direccionVend;
      private String emailVend;
      private Date fechaAltaVend;
      private Set articulos = new HashSet(0);
@@ -25,19 +27,23 @@ public class Vendedor  implements java.io.Serializable {
     }
 
 	
-    public Vendedor(String nifVend, String passVend, String nombreVend, String apellidosVend, String emailVend, Date fechaAltaVend) {
+    public Vendedor(String nifVend, String passVend, String nombreVend, String paisVend, String poblacionVend, String direccionVend, String emailVend, Date fechaAltaVend) {
         this.nifVend = nifVend;
         this.passVend = passVend;
         this.nombreVend = nombreVend;
-        this.apellidosVend = apellidosVend;
+        this.paisVend = paisVend;
+        this.poblacionVend = poblacionVend;
+        this.direccionVend = direccionVend;
         this.emailVend = emailVend;
         this.fechaAltaVend = fechaAltaVend;
     }
-    public Vendedor(String nifVend, String passVend, String nombreVend, String apellidosVend, String emailVend, Date fechaAltaVend, Set articulos) {
+    public Vendedor(String nifVend, String passVend, String nombreVend, String paisVend, String poblacionVend, String direccionVend, String emailVend, Date fechaAltaVend, Set articulos) {
        this.nifVend = nifVend;
        this.passVend = passVend;
        this.nombreVend = nombreVend;
-       this.apellidosVend = apellidosVend;
+       this.paisVend = paisVend;
+       this.poblacionVend = poblacionVend;
+       this.direccionVend = direccionVend;
        this.emailVend = emailVend;
        this.fechaAltaVend = fechaAltaVend;
        this.articulos = articulos;
@@ -71,12 +77,26 @@ public class Vendedor  implements java.io.Serializable {
     public void setNombreVend(String nombreVend) {
         this.nombreVend = nombreVend;
     }
-    public String getApellidosVend() {
-        return this.apellidosVend;
+    public String getPaisVend() {
+        return this.paisVend;
     }
     
-    public void setApellidosVend(String apellidosVend) {
-        this.apellidosVend = apellidosVend;
+    public void setPaisVend(String paisVend) {
+        this.paisVend = paisVend;
+    }
+    public String getPoblacionVend() {
+        return this.poblacionVend;
+    }
+    
+    public void setPoblacionVend(String poblacionVend) {
+        this.poblacionVend = poblacionVend;
+    }
+    public String getDireccionVend() {
+        return this.direccionVend;
+    }
+    
+    public void setDireccionVend(String direccionVend) {
+        this.direccionVend = direccionVend;
     }
     public String getEmailVend() {
         return this.emailVend;

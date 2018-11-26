@@ -1,5 +1,5 @@
 package POJO;
-// Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1
+// Generated 26-nov-2018 23:23:39 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -17,23 +17,26 @@ public class Pedido  implements java.io.Serializable {
      private Tarjeta tarjeta;
      private Usuario usuario;
      private Date fechaPed;
+     private float importeTotal;
      private Set pedidoLins = new HashSet(0);
 
     public Pedido() {
     }
 
 	
-    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed) {
+    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed, float importeTotal) {
         this.direccion = direccion;
         this.tarjeta = tarjeta;
         this.usuario = usuario;
         this.fechaPed = fechaPed;
+        this.importeTotal = importeTotal;
     }
-    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed, Set pedidoLins) {
+    public Pedido(Direccion direccion, Tarjeta tarjeta, Usuario usuario, Date fechaPed, float importeTotal, Set pedidoLins) {
        this.direccion = direccion;
        this.tarjeta = tarjeta;
        this.usuario = usuario;
        this.fechaPed = fechaPed;
+       this.importeTotal = importeTotal;
        this.pedidoLins = pedidoLins;
     }
    
@@ -71,6 +74,13 @@ public class Pedido  implements java.io.Serializable {
     
     public void setFechaPed(Date fechaPed) {
         this.fechaPed = fechaPed;
+    }
+    public float getImporteTotal() {
+        return this.importeTotal;
+    }
+    
+    public void setImporteTotal(float importeTotal) {
+        this.importeTotal = importeTotal;
     }
     public Set getPedidoLins() {
         return this.pedidoLins;

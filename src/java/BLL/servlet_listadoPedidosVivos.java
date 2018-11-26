@@ -7,21 +7,15 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import MODELO.ArticuloCantidad;
+import POJO.Articulo;
+import POJO.Categoria;
 import POJO.Direccion;
 import POJO.Pedido;
-import POJO.PedidoLin;
-import POJO.Tarjeta;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,22 +25,17 @@ import org.hibernate.SessionFactory;
 
 /**
  *
- * @author Julian
+ * @author migue
  */
-@WebServlet(name = "servlet_realizarPedido", urlPatterns = {"/servlet_realizarPedido"})
-public class servlet_realizarPedido extends HttpServlet {
+public class servlet_listadoPedidosVivos extends HttpServlet {
 
-    //Conectar con la sesion
     private SessionFactory SessionBuilder;
 
-    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
-    /**
-     *
-     */
+    @Override
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -60,44 +49,22 @@ public class servlet_realizarPedido extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String calle = request.getParameter("direccion");
-            String poblacion = request.getParameter("poblacion");
-            String pais = request.getParameter("pais");
-
-            String nTarjeta = request.getParameter("nTarjeta");
-            int mes = Integer.parseInt(request.getParameter("mes"));
-            int anno = Integer.parseInt(request.getParameter("anno"));
-
-            HttpSession ArraySession = request.getSession();
-            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
-            List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
-
-            Direccion direccion = new Direccion(usuario, calle, poblacion, pais);
-            Tarjeta tarjeta = new Tarjeta(usuario, nTarjeta, mes, anno);
-
+            
+            HttpSession session = request.getSession(true);
             Session sesion = SessionBuilder.openSession();
+            Usuario usuario = new Usuario();
+            usuario.setId(8);
             
-            Operaciones op = new Operaciones(SessionBuilder);
-            direccion = op.comprobarDireccion(direccion);
-            op = new Operaciones(SessionBuilder);
-            tarjeta = op.comprobarTarjeta(tarjeta);
-
-            Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0);
-            Set setPedidoLin = new HashSet(0);
-            PedidoLin pedidoLin = new PedidoLin();
-
-            Iterator iter = carrito.iterator();
-            while (iter.hasNext()) {
-                ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
-                pedidoLin = new PedidoLin(articulo.getArticulo(), pedido, articulo.getCantidad(), articulo.getCantidad() * articulo.getArticulo().getImporteArt());
-                setPedidoLin.add(pedidoLin);
+            ArrayList<Pedido> arrayPedidosVivos = (ArrayList) new Operaciones(SessionBuilder).getPedidosVivos(usuario);
+            
+            // load para la direccion
+            for (int i = 0; i < arrayPedidosVivos.size(); i++) {
+                Direccion direccion = (Direccion) sesion.load(Direccion.class, arrayPedidosVivos.get(i).getDireccion().getId());
+                arrayPedidosVivos.get(i).setDireccion(direccion);
             }
-            pedido.setPedidoLins(setPedidoLin);
             
-            op = new Operaciones(SessionBuilder);
-            op.registrarPedido(pedido);
-            
-            response.sendRedirect("VISTAS/vista_home.jsp");
+            session.setAttribute("arrayPedidosVivos", arrayPedidosVivos);       
+            response.sendRedirect("./VISTAS/vista_listadoPedidosVivos.jsp");
         }
     }
 
