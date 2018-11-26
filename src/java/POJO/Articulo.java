@@ -1,5 +1,5 @@
 package POJO;
-// Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1
+// Generated 26-nov-2018 23:23:39 by Hibernate Tools 4.3.1
 
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ public class Articulo  implements java.io.Serializable {
      private String nombreArt;
      private String descripcionArt;
      private float importeArt;
-     private Date fechaAltaArt = java.sql.Date.valueOf(LocalDate.now());
+     private Date fechaAltaArt= java.sql.Date.valueOf(LocalDate.now());
      private int cantidadMaxArt;
      private String imagenArt;
      private Set pedidoLins = new HashSet(0);

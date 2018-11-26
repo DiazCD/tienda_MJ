@@ -13,6 +13,7 @@ import POJO.Categoria;
 import POJO.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -549,4 +550,36 @@ public class Operaciones {
             session.close();
         }
     }
+    
+    public List<Pedido> getPedidosVivos (Usuario usuario) {
+        String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario";
+        Query q = session.createQuery(hql);
+        q.setParameter("idUsuario", usuario.getId());
+
+        List<Pedido> listPedidosVivos = q.list();
+        
+//        // Recorrer pedidos y cargar sus lineas
+//        for (int i=0 ; i<listPedidosVivos.size() ; i++) {
+//            
+//            Pedido pedido = listPedidosVivos.get(i);
+//            List<PedidoLin> listPedidoLin = new Operaciones(SessionBuilder).getPedidoLin(pedido);
+//            pedido.setPedidoLins((Set) listPedidoLin);
+//        }
+
+        session.close();
+
+        return listPedidosVivos;
+    }
+        
+    public List<PedidoLin> getPedidoLin (Pedido pedido) {
+        String hql = "FROM PedidoLin WHERE id_pedido=:idPedido";
+        Query q = session.createQuery(hql);
+        q.setParameter("idPedido", pedido.getId());
+
+        List<PedidoLin> listPedidosLin = q.list();
+
+        session.close();
+
+        return listPedidosLin;
+    }   
 }
