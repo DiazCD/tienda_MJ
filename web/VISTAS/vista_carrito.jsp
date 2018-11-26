@@ -37,7 +37,6 @@
                         while (iter.hasNext()) {
                             ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
                 %>
-                <div class="row col-12 mt-3 pt-3 fila border border-warning rounded">
                     <div class="col-1">
                         <img class="img-fluid" alt="Image" src="<% out.print(articulo.getArticulo().getImagenArt()); %>">
                         <br>

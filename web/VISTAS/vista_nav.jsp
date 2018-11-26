@@ -37,7 +37,7 @@
                 <div class="dropdown-menu" aria-labelledby="Usuario">
                     <a class="dropdown-item" href="#">Mis Datos</a>
                     <a class="dropdown-item" href="vista_carrito.jsp">Carrito</a>
-                    <a class="dropdown-item" href="#">Mis Pedidos</a>
+                    <a class="dropdown-item" href="../servlet_listadoPedidosUsuario">Mis Pedidos</a>
                     <a class="dropdown-item" href="../servlet_abrirHome">Cerrar Sesión</a>
                 </div>
             </li>

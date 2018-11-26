@@ -11,7 +11,6 @@ import POJO.Direccion;
 import POJO.Vendedor;
 import POJO.Categoria;
 import POJO.*;
-import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -37,12 +36,45 @@ public class Operaciones {
         this.SessionBuilder = SessionBuilder;
     }
 
-    public void registrarUsuario(Direccion direccion) {
+    public boolean registrarUsuario(Direccion direccion) {
+        String hql = "FROM Usuario WHERE nif_usr=:dniUsr";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniUsr", direccion.getUsuario().getNifUsr());
+
+        List listUsuario = q.list();
+        if (listUsuario.isEmpty()) {
+            Transaction Tx = null;
+            try {
+                Tx = session.beginTransaction();
+
+                session.saveOrUpdate(direccion);
+
+                Tx.commit();
+            } catch (HibernateException HE) {
+                HE.printStackTrace();
+                if (Tx != null) {
+                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                    Tx.rollback();
+                }
+                //Se lanza la propia excepcion para que lo recoja el controlador
+                throw HE;
+            } finally {
+                //La sesion se cierra pase lo que pase
+                session.close();
+                return true;
+            }
+        } else {
+            return false;
+        }
+
+    }
+
+    public void registrarVendedor(Vendedor vendedor) {
         Transaction Tx = null;
         try {
             Tx = session.beginTransaction();
 
-            session.saveOrUpdate(direccion);
+            session.saveOrUpdate(vendedor);
 
             Tx.commit();
         } catch (HibernateException HE) {
@@ -447,9 +479,9 @@ public class Operaciones {
     }
 
     public Direccion comprobarDireccion(Direccion direccion) {
-        String hql = "FROM Direccion WHERE id_usuario=:idUsuaio AND direccion=:dir AND poblacion=:pob AND pais=:pa";
+        String hql = "FROM Direccion WHERE id_usuario=:idUsuario AND direccion=:dir AND poblacion=:pob AND pais=:pa";
         Query q = session.createQuery(hql);
-        q.setParameter("idUsuaio", direccion.getUsuario().getId());
+        q.setParameter("idUsuario", direccion.getUsuario().getId());
         q.setParameter("dir", direccion.getDireccion());
         q.setParameter("pob", direccion.getPoblacion());
         q.setParameter("pa", direccion.getPais());
@@ -457,32 +489,7 @@ public class Operaciones {
         List<Direccion> listaDireccion = q.list();
 
         if (listaDireccion.isEmpty()) {
-            Transaction Tx = null;
-            try {
-                Tx = session.beginTransaction();
-
-                session.saveOrUpdate(direccion);
-
-                Tx.commit();
-            } catch (HibernateException HE) {
-                HE.printStackTrace();
-                if (Tx != null) {
-                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
-                    Tx.rollback();
-                }
-                //Se lanza la propia excepcion para que lo recoja el controlador
-                throw HE;
-            }
-            Query q2 = session.createQuery(hql);
-            q2.setParameter("idUsuaio", direccion.getUsuario().getId());
-            q2.setParameter("dir", direccion.getDireccion());
-            q2.setParameter("pob", direccion.getPoblacion());
-            q2.setParameter("pa", direccion.getPais());
-
-            List<Direccion> listaDireccion2 = q2.list();
-            //La sesion se cierra pase lo que pase
-            session.close();
-            return listaDireccion2.get(0);
+            return direccion;
 
         } else {
             return listaDireccion.get(0);
@@ -498,31 +505,7 @@ public class Operaciones {
         List<Tarjeta> listaTarjeta = q.list();
 
         if (listaTarjeta.isEmpty()) {
-            Transaction Tx = null;
-            try {
-                Tx = session.beginTransaction();
-
-                session.saveOrUpdate(tarjeta);
-
-                Tx.commit();
-            } catch (HibernateException HE) {
-                HE.printStackTrace();
-                if (Tx != null) {
-                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
-                    Tx.rollback();
-                }
-                //Se lanza la propia excepcion para que lo recoja el controlador
-                throw HE;
-            }
-            Query q2 = session.createQuery(hql);
-            q2.setParameter("numero", tarjeta.getNumeroTarj());
-            q2.setParameter("idUsuario", tarjeta.getUsuario().getId());
-
-            List<Tarjeta> listaTarjeta2 = q2.list();
-            //La sesion se cierra pase lo que pase
-            session.close();
-            return listaTarjeta2.get(0);
-
+            return tarjeta;
         } else {
             return listaTarjeta.get(0);
         }
@@ -548,5 +531,108 @@ public class Operaciones {
             //La sesion se cierra pase lo que pase
             session.close();
         }
+    }
+
+    public boolean validarDNI(String dni) {
+        final String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        dni = dni.toUpperCase();
+        if (dni.length() != 9) {
+            return false;
+        } else {
+            String numeroString = dni.substring(0, 8);
+            if (this.isNumeric(numeroString)) {
+                int numero = Integer.valueOf(numeroString);
+                String letra = dni.substring(8);
+                int resto = numero % 23;
+
+                String letraResto = letras.substring(resto, resto + 1);
+                if (letra.equals(letraResto)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public boolean isNumeric(String cadena) {
+
+        boolean resultado;
+
+        try {
+            Integer.valueOf(cadena);
+            resultado = true;
+        } catch (NumberFormatException excepcion) {
+            resultado = false;
+        }
+
+        return resultado;
+    }
+
+    public boolean validarTarjeta(String numeroTarjeta) {
+        String subC = "";
+        int n, total = 0;
+        if (this.isNumeric(numeroTarjeta.substring(0, 8)) && this.isNumeric(numeroTarjeta.substring(7))) {
+            if (numeroTarjeta.length() == 16) {
+                if (numeroTarjeta.substring(0, 1).equals("3") || numeroTarjeta.substring(0, 1).equals("4") || numeroTarjeta.substring(0, 1).equals("5") || numeroTarjeta.substring(0, 1).equals("6")) {
+
+                    for (int i = 0; i < 15; i += 2) {
+                        n = Integer.valueOf(numeroTarjeta.substring(i, i + 1));
+                        n = n * 2;
+                        if (n > 9) {
+                            n = n - 9;
+                        }
+                        subC = subC + String.valueOf(n) + numeroTarjeta.substring(i + 1, i + 2);
+                    }
+                    for (int i = 0; i < 16; i++) {
+                        n = Integer.valueOf(subC.substring(i, i + 1));
+                        total += n;
+                    }
+                    if (total % 10 == 0 && total <= 150) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                } else {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public String tipoTarjeta(String numeroTarjeta) {
+        if (this.validarTarjeta(numeroTarjeta)) {
+            String subC = numeroTarjeta.substring(0, 1);
+            if (subC.equals("3")) {
+                return "American Express";
+            } else if (subC.equals("4")) {
+                return "Visa";
+            } else if (subC.equals("5")) {
+                return "MasterCard";
+            } else if (subC.equals("6")) {
+                return "Discover";
+            } else {
+                return "Tarjeta no admitida";
+            }
+        } else {
+            return "Tarjeta Incorrecta";
+        }
+    }
+    
+    public List<Pedido> getPedidosUsuario(Usuario usuario) {
+        String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario";
+        Query q = session.createQuery(hql);
+        q.setParameter("idUsuario", usuario.getId());
+
+        List listaPedidos = q.list();
+        session.close();
+
+        return listaPedidos;
     }
 }

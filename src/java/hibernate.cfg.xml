@@ -58,7 +58,7 @@ Contributor(s):
     <mapping resource="POJO/Vendedor.hbm.xml"/>
     <mapping resource="POJO/Administrador.hbm.xml"/>
     <mapping resource="POJO/Categoria.hbm.xml"/>
-    <mapping resource="POJO/Pedido.hbm.xml"/>
     <mapping resource="POJO/Usuario.hbm.xml"/>
+    <mapping resource="POJO/Pedido.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

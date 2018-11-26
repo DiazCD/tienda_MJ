@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1 -->
+<!-- Generated 26-nov-2018 18:22:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Vendedor" table="vendedor" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
@@ -17,8 +17,14 @@
         <property name="nombreVend" type="string">
             <column name="nombre_vend" length="50" not-null="true" />
         </property>
-        <property name="apellidosVend" type="string">
-            <column name="apellidos_vend" length="50" not-null="true" />
+        <property name="paisVend" type="string">
+            <column name="pais_vend" length="50" not-null="true" />
+        </property>
+        <property name="poblacionVend" type="string">
+            <column name="poblacion_vend" length="50" not-null="true" />
+        </property>
+        <property name="direccionVend" type="string">
+            <column name="direccion_vend" length="50" not-null="true" />
         </property>
         <property name="emailVend" type="string">
             <column name="email_vend" length="50" not-null="true" />

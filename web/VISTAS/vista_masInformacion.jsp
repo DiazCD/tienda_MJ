@@ -4,6 +4,7 @@
     Author     : Julian
 --%>
 
+<%@page import="POJO.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="POJO.Articulo"%>
@@ -24,7 +25,7 @@
             <section id="subCuerpo">
                 <%
                     HttpSession ArraySession = request.getSession();
-                    Articulo articulo = (Articulo)ArraySession.getAttribute("articuloInfo");
+                    Articulo articulo = (Articulo) ArraySession.getAttribute("articuloInfo");
                 %>
                 <div>
                     <h2><% out.print(articulo.getNombreArt()); %></h2>
@@ -47,7 +48,15 @@
                                 <input type="number" name="cantidad" min="1" max="<% out.print(articulo.getCantidadMaxArt()); %>" value="1" class="col-5 rounded border-warning offset-1">
                             </div>
                             <br>
-                            <button type="submit" class="btn btn-warning" name="add" value="<% out.print(articulo.getId()); %>">Añadir a la cesta</button>
+                            <button type="submit" class="btn btn-warning" name="add" value="<% out.print(articulo.getId()); %>"
+                                    <%
+                                        Usuario usr = (Usuario) ArraySession.getAttribute("usuarioLogueado");
+                                        if (usr.getId() == null) {
+
+                                            out.print("disabled");
+                                        }
+                                    %>
+                                    >Añadir a la cesta</button>
                         </form>
                     </div>
                 </div>
@@ -66,7 +75,7 @@
                     <hr>
                     <div class="row">
                         <h3 class="col-4">Vendedor</h3>
-                        <h6 class="col-4 offset-4"><% out.print(articulo.getVendedor().getNombreVend()); %></h6>
+                        <h6 class="col-4 offset-4"><% out.print(articulo.getVendedor().getNombreVend());%></h6>
                     </div>
                 </div>
             </section>

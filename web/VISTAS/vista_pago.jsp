@@ -93,22 +93,22 @@
                                 <p>Se acepta: Visa, American Express, Master Card y Discover</p>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <input type="text" id="nTarjeta" name="nTarjeta" class="form-control" placeholder="Numero de la Tarjera de Crédito" required/>
+                                        <input type="text" id="nTarjeta" name="nTarjeta" class="form-control" placeholder="Numero de la Tarjera de Crédito" pattern=".{16,16}" required title="Introduce 16 dígitos"/>
                                     </div>
                                 </div>
                                 <span class="col-md-1 col-md-offset-2 text-center"></span>
                                 <div class="row ">
                                     <div class="col-md-3 col-sm-3 col-xs-3">
                                         <span class="help-block text-muted small-font" >  Mes Caducidad</span>
-                                        <input type="text" id="mes" name="mes" class="form-control" placeholder="MM" required/>
+                                        <input type="number" id="mes" name="mes" class="form-control" placeholder="MM" min="1" max="12" required/>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3">
                                         <span class="help-block text-muted small-font" >  Año Caducidad</span>
-                                        <input type="text" id="anno" name="anno" class="form-control" placeholder="YY" required/>
+                                        <input type="number" id="anno" name="anno" class="form-control" placeholder="YY" min="18" max="99" required/>
                                     </div>
                                     <div class="col-md-3 col-sm-3 col-xs-3">
                                         <span class="help-block text-muted small-font" >  CCV</span>
-                                        <input type="text" id="cvv" name="cvv" class="form-control" placeholder="CCV" required/>
+                                        <input type="text" id="cvv" name="cvv" class="form-control" placeholder="CCV" pattern=".{3,3}" required title="Introduce 3 dígitos"/>
                                     </div>
                                     <div class="col-md-2 col-sm-2 col-xs-2">
                                         <img src="images/icono_tarjeta.png" class="img-rounded img-fluid" />
