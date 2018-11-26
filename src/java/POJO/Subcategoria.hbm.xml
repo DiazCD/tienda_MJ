@@ -17,7 +17,7 @@
         <property name="descripcionSubcat" type="string">
             <column name="descripcion_subcat" length="50" not-null="true" />
         </property>
-        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select">
+        <set name="articulos" table="articulo" inverse="true" lazy="true" fetch="select" cascade="all">
             <key>
                 <column name="id_subcategoria_art" not-null="true" />
             </key>
