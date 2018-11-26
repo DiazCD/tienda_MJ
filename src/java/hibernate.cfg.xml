@@ -51,15 +51,14 @@ Contributor(s):
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="POJO/Direccion.hbm.xml"/>
     <mapping resource="POJO/PedidoLin.hbm.xml"/>
-    <mapping resource="POJO/Configuracion.hbm.xml"/>
-    <mapping resource="POJO/Comentario.hbm.xml"/>
-    <mapping resource="POJO/Subcategoria.hbm.xml"/>
-    <mapping resource="POJO/Pedido.hbm.xml"/>
-    <mapping resource="POJO/Usuario.hbm.xml"/>
     <mapping resource="POJO/Articulo.hbm.xml"/>
     <mapping resource="POJO/Tarjeta.hbm.xml"/>
+    <mapping resource="POJO/Comentario.hbm.xml"/>
+    <mapping resource="POJO/Subcategoria.hbm.xml"/>
     <mapping resource="POJO/Vendedor.hbm.xml"/>
     <mapping resource="POJO/Administrador.hbm.xml"/>
     <mapping resource="POJO/Categoria.hbm.xml"/>
+    <mapping resource="POJO/Pedido.hbm.xml"/>
+    <mapping resource="POJO/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

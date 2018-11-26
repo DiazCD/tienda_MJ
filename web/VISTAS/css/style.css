@@ -62,6 +62,10 @@ code {
     font-size: 80%;
 }
 
+.carousel, .carousel-inner > .item > img {
+  height: 400px;
+}
+
 /*CSS para tarjeta*/
 .credit-card-div  span { padding-top:10px; }
 .credit-card-div img { padding-top:30px; }

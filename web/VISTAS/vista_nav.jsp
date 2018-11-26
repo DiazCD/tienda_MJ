@@ -35,9 +35,8 @@
             <li class="nav-item dropdown" id="Usuario" value="0">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Hola <% out.print(usr.getNombreUsr()); %></a>
                 <div class="dropdown-menu" aria-labelledby="Usuario">
-                    <a class="dropdown-item" href="../servlet_panelControlVendedor">Panel de control</a>
                     <a class="dropdown-item" href="#">Mis Datos</a>
-                    <a class="dropdown-item" href="#">Carrito</a>
+                    <a class="dropdown-item" href="vista_carrito.jsp">Carrito</a>
                     <a class="dropdown-item" href="#">Mis Pedidos</a>
                     <a class="dropdown-item" href="../servlet_abrirHome">Cerrar Sesión</a>
                 </div>
@@ -49,7 +48,7 @@
             <li class="nav-item dropdown" id="Usuario" value="0">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Hola <% out.print(vend.getNombreVend()); %></a>
                 <div class="dropdown-menu" aria-labelledby="Usuario">
-                    <a class="dropdown-item" href="#">Mi Panel de Control</a>
+                    <a class="dropdown-item" href="../servlet_panelControlVendedor">Mi Panel de Control</a>
                     <a class="dropdown-item" href="#">Mis Articulos</a>
                     <a class="dropdown-item" href="../servlet_abrirHome">Cerrar Sesión</a>
                 </div>

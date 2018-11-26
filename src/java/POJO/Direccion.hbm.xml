@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 23-nov-2018 0:57:46 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25-nov-2018 17:56:06 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="POJO.Direccion" table="direccion" catalog="bd_tienda" optimistic-lock="version">
         <id name="id" type="java.lang.Integer">
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="usuario" class="POJO.Usuario" fetch="select" cascade="save-update">
+        <many-to-one name="usuario" class="POJO.Usuario" fetch="select">
             <column name="id_usuario" not-null="true" />
         </many-to-one>
         <property name="direccion" type="string">
@@ -20,5 +20,11 @@
         <property name="pais" type="string">
             <column name="pais" length="50" not-null="true" />
         </property>
+        <set name="pedidos" table="pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_direccion" not-null="true" />
+            </key>
+            <one-to-many class="POJO.Pedido" />
+        </set>
     </class>
 </hibernate-mapping>

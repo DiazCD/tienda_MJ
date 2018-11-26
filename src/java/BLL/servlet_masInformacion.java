@@ -5,20 +5,38 @@
  */
 package BLL;
 
+import DAO.NewHibernateUtil;
+import POJO.Articulo;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_abrirLogin", urlPatterns = {"/servlet_abrirLogin"})
-public class servlet_abrirLogin extends HttpServlet {
+@WebServlet(name = "servlet_masInformacion", urlPatterns = {"/servlet_masInformacion"})
+public class servlet_masInformacion extends HttpServlet {
+
+    //Conectar con la sesion
+    private SessionFactory SessionBuilder;
+
+    //El init hace que la primera vez que se ejecute el servlet se inicia la conexion para siempre
+    /**
+     *
+     */
+    public void init() {
+        SessionBuilder = NewHibernateUtil.getSessionFactory();
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,9 +51,25 @@ public class servlet_abrirLogin extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            int idArticulo = Integer.parseInt(request.getParameter("inf"));
 
-            response.sendRedirect("VISTAS/vista_login.jsp");
+            HttpSession ArraySession = request.getSession();
+            List<Articulo> listaArticulos = (List) ArraySession.getAttribute("listaArticulosCatalogo");
 
+            Articulo articulo = new Articulo();
+
+            Session session = SessionBuilder.openSession();
+            Iterator iter = listaArticulos.iterator();
+            while (iter.hasNext()) {
+                Articulo art = (Articulo) iter.next();
+                if (art.getId() == idArticulo) {
+                    articulo = (Articulo) session.load(Articulo.class, art.getId());;
+                }
+            }
+
+            ArraySession.setAttribute("articuloInfo", articulo);
+
+            response.sendRedirect("VISTAS/vista_masInformacion.jsp");
         }
     }
 
