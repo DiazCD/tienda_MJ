@@ -28,7 +28,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -84,7 +83,7 @@ public class servlet_realizarPedido extends HttpServlet {
                 direccion = op.comprobarDireccion(direccion);
                 tarjeta = op.comprobarTarjeta(tarjeta);
 
-                Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0);
+                Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0, 0);
                 Set setPedidoLin = new HashSet(0);
                 PedidoLin pedidoLin = new PedidoLin();
                 Articulo art = new Articulo();
