@@ -35,7 +35,7 @@ public class servlet_listadoPedidosVivos extends HttpServlet {
     public void init() {
         SessionBuilder = NewHibernateUtil.getSessionFactory();
     }
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -49,21 +49,29 @@ public class servlet_listadoPedidosVivos extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
+
             HttpSession session = request.getSession(true);
             Session sesion = SessionBuilder.openSession();
+            String estado = request.getParameter("estado");
+            ArrayList<Pedido> arrayPedidos = new ArrayList<>();
             Usuario usuario = new Usuario();
             usuario.setId(8);
-            
-            ArrayList<Pedido> arrayPedidosVivos = (ArrayList) new Operaciones(SessionBuilder).getPedidosVivos(usuario);
-            
-            // load para la direccion
-            for (int i = 0; i < arrayPedidosVivos.size(); i++) {
-                Direccion direccion = (Direccion) sesion.load(Direccion.class, arrayPedidosVivos.get(i).getDireccion().getId());
-                arrayPedidosVivos.get(i).setDireccion(direccion);
+
+            if (estado.equals("0")) {
+                arrayPedidos = (ArrayList) new Operaciones(SessionBuilder).getPedidosVivos(usuario);
+
+            } else if (estado.equals("1")) {
+                arrayPedidos = (ArrayList) new Operaciones(SessionBuilder).getPedidosHistorico(usuario);
             }
-            
-            session.setAttribute("arrayPedidosVivos", arrayPedidosVivos);       
+
+            // load para la direccion
+            for (int i = 0; i < arrayPedidos.size(); i++) {
+                Direccion direccion = (Direccion) sesion.load(Direccion.class, arrayPedidos.get(i).getDireccion().getId());
+                arrayPedidos.get(i).setDireccion(direccion);
+            }
+
+            session.setAttribute("arrayPedidos", arrayPedidos);
+            session.setAttribute("estado", estado);
             response.sendRedirect("./VISTAS/vista_listadoPedidosVivos.jsp");
         }
     }
