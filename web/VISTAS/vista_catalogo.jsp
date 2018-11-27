@@ -58,7 +58,15 @@
                             <input type="hidden" id="cantidad" value="1">
                             <form action="../servlet_agregarArticuloCarrito">
                                 <input type="hidden" name="cantidad" value="1">
-                                <button type="submit" class="btn btn-warning col-12" name="add" value="<% out.print(articulo.getId()); %>">Añadir a la cesta</button>
+                                <button type="submit" class="btn btn-warning col-12" name="add" value="<% out.print(articulo.getId()); %>"
+                                        <%
+                                            Usuario usr = (Usuario) ArraySession.getAttribute("usuarioLogueado");
+                                            if (usr.getId() == null) {
+
+                                                out.print("disabled");
+                                            }
+                                        %>
+                                        >Añadir a la cesta</button>
                             </form>
                         </div>
                     </div>

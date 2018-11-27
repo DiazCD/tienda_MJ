@@ -7,10 +7,12 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import POJO.Direccion;
 import POJO.Usuario;
 import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +26,8 @@ import org.hibernate.SessionFactory;
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_loginUsuario", urlPatterns = {"/servlet_loginUsuario"})
-public class servlet_loginUsuario extends HttpServlet {
+@WebServlet(name = "servlet_registroVendedor", urlPatterns = {"/servlet_registroVendedor"})
+public class servlet_registroVendedor extends HttpServlet {
 
     //Conectar con la sesion
     private SessionFactory SessionBuilder;
@@ -51,29 +53,25 @@ public class servlet_loginUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String dniUsuario = request.getParameter("dniUsuario");
-            String passUsuario = request.getParameter("passUsuario");
+            String nombreVendedor = request.getParameter("nombreRegistro");
+            String nifVendedor = request.getParameter("nifRegistro");
+            String paisVendedor = request.getParameter("paisRegistro");
+            String poblacionVendedor = request.getParameter("poblacionRegistro");
+            String direccionVendedor = request.getParameter("direccionRegistro");
+            String correoVendedor = request.getParameter("correoRegistro");
+            String claveVendedor = request.getParameter("claveRegistro");
+            Date fechaAltaUsuario = new Date();
 
-            Session session = SessionBuilder.openSession();
+            Vendedor nuevoVendedor = new Vendedor(nifVendedor, claveVendedor, nombreVendedor, paisVendedor, poblacionVendedor, direccionVendedor, correoVendedor, fechaAltaUsuario);
+
+            Session sesion = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
-            Usuario usr = op.loginUsuario(dniUsuario, passUsuario);
+            op.registrarVendedor(nuevoVendedor);
 
-            HttpSession ArraySession = request.getSession(true);
-            ArraySession.setAttribute("usuarioLogueado", usr);
+            HttpSession ArraySesion = request.getSession(true);
+            ArraySesion.setAttribute("vendedorLogueado", nuevoVendedor);
 
-            if (usr.getNifUsr() == null) {
-                op = new Operaciones(SessionBuilder);
-                Vendedor vend = op.loginVendedor(dniUsuario, passUsuario);
-                ArraySession.setAttribute("vendedorLogueado", vend);
-                if (vend.getNifVend() == null) {
-                    response.sendRedirect("VISTAS/vista_errorLogin.jsp");
-                } else {
-                    response.sendRedirect("VISTAS/vista_home.jsp");
-                }
-            } else {
-                response.sendRedirect("VISTAS/vista_home.jsp");
-            }
-
+            response.sendRedirect("VISTAS/vista_home.jsp");
         }
     }
 

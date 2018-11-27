@@ -179,7 +179,7 @@ function mostrarRegistro() {
 
     var h5Clave = document.createElement('h5');
     formRegistro.appendChild(h5Clave);
-    var node = document.createTextNode('Clave');
+    var node = document.createTextNode('Contraseña');
     h5Clave.appendChild(node);
 
     var inputClave = document.createElement('input');
@@ -203,6 +203,12 @@ function mostrarRegistro() {
     formRegistro.appendChild(br);
     var br = document.createElement('br');
     formRegistro.appendChild(br);
+    
+    var aVendedor = document.createElement('a');
+    divCuerpoRegistro.appendChild(aVendedor);
+    aVendedor.setAttribute('href', 'vista_registroVendedor.jsp');
+    var node = document.createTextNode('Quiero registrarme como vendedor');
+    aVendedor.appendChild(node);
 }
 
 function mostrarLogin() {
@@ -295,7 +301,7 @@ function mostrarLogin() {
 
     var h5Clave = document.createElement('h5');
     formIdentificacion.appendChild(h5Clave);
-    var node = document.createTextNode('Clave');
+    var node = document.createTextNode('Contraseña');
     h5Clave.appendChild(node);
 
     var inputClave = document.createElement('input');
