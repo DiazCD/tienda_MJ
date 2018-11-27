@@ -62,16 +62,21 @@ public class servlet_registroVendedor extends HttpServlet {
             String claveVendedor = request.getParameter("claveRegistro");
             Date fechaAltaUsuario = new Date();
 
+            Operaciones op = new Operaciones(SessionBuilder);
+
             Vendedor nuevoVendedor = new Vendedor(nifVendedor, claveVendedor, nombreVendedor, paisVendedor, poblacionVendedor, direccionVendedor, correoVendedor, fechaAltaUsuario);
 
-            Session sesion = SessionBuilder.openSession();
-            Operaciones op = new Operaciones(SessionBuilder);
-            op.registrarVendedor(nuevoVendedor);
+            op = new Operaciones(SessionBuilder);
+            Boolean registrado = op.registrarVendedor(nuevoVendedor);
 
-            HttpSession ArraySesion = request.getSession(true);
-            ArraySesion.setAttribute("vendedorLogueado", nuevoVendedor);
+            if (registrado) {
+                HttpSession ArraySesion = request.getSession(true);
+                ArraySesion.setAttribute("vendedorLogueado", nuevoVendedor);
 
-            response.sendRedirect("VISTAS/vista_home.jsp");
+                response.sendRedirect("VISTAS/vista_home.jsp");
+            } else {
+                response.sendRedirect("VISTAS/vista_noRegistrado.jsp");
+            }
         }
     }
 
