@@ -86,10 +86,10 @@
                 <br>
                 <h6 class="text-center">¡Todavía no has añadido ninguno de nuestros productos al carrito!</h6>
                 <div class="text-center">
-                        <a href="../servlet_catalogo">
-                            <h6>Ir al Catálogo</h6>
-                        </a>
-                    </div>
+                    <a href="../servlet_catalogo">
+                        <h6>Ir al Catálogo</h6>
+                    </a>
+                </div>
                 <%
                     }
                 %>

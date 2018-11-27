@@ -64,18 +64,28 @@ public class servlet_registroUsuario extends HttpServlet {
             Date fechaAltaUsuario = new Date();
             Date fechaNacUsuario = new Date();
 
-            Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario, fechaNacUsuario);
-
-            Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
-
-            Session sesion = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
-            op.registrarUsuario(nuevaDireccion);
-            
-            HttpSession ArraySesion = request.getSession(true);
-            ArraySesion.setAttribute("usuarioLogueado", nuevoUsuario);
 
-            response.sendRedirect("VISTAS/vista_home.jsp");
+            if (op.validarDNI(dniUsuario)) {
+                Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario, fechaNacUsuario);
+
+                Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
+
+                Boolean registrado = op.registrarUsuario(nuevaDireccion);
+
+                if (registrado) {
+                    HttpSession ArraySesion = request.getSession(true);
+                    ArraySesion.setAttribute("usuarioLogueado", nuevoUsuario);
+                    
+                    response.sendRedirect("VISTAS/vista_home.jsp");
+                } else {
+                    response.sendRedirect("VISTAS/vista_noRegistrado.jsp");
+                }
+
+            } else {
+                response.sendRedirect("VISTAS/vista_errorDni.jsp");
+            }
+
         }
     }
 

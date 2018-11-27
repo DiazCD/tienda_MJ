@@ -8,6 +8,7 @@ package BLL;
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
 import MODELO.ArticuloCantidad;
+import POJO.Articulo;
 import POJO.Direccion;
 import POJO.Pedido;
 import POJO.PedidoLin;
@@ -15,6 +16,7 @@ import POJO.Tarjeta;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -68,36 +70,48 @@ public class servlet_realizarPedido extends HttpServlet {
             int mes = Integer.parseInt(request.getParameter("mes"));
             int anno = Integer.parseInt(request.getParameter("anno"));
 
-            HttpSession ArraySession = request.getSession();
-            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
-            List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
-
-            Direccion direccion = new Direccion(usuario, calle, poblacion, pais);
-            Tarjeta tarjeta = new Tarjeta(usuario, nTarjeta, mes, anno);
-
-            Session sesion = SessionBuilder.openSession();
-            
+            Session session = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
-            direccion = op.comprobarDireccion(direccion);
-            op = new Operaciones(SessionBuilder);
-            tarjeta = op.comprobarTarjeta(tarjeta);
+            if (op.validarTarjeta(nTarjeta)) {
+                HttpSession ArraySession = request.getSession();
+                Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
+                List<ArticuloCantidad> carrito = (List) ArraySession.getAttribute("carrito");
 
-            Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0, 0);
-            Set setPedidoLin = new HashSet(0);
-            PedidoLin pedidoLin = new PedidoLin();
+                Direccion direccion = new Direccion(usuario, calle, poblacion, pais);
+                Tarjeta tarjeta = new Tarjeta(usuario, nTarjeta, mes, anno);
 
-            Iterator iter = carrito.iterator();
-            while (iter.hasNext()) {
-                ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
-                pedidoLin = new PedidoLin(articulo.getArticulo(), pedido, articulo.getCantidad(), articulo.getCantidad() * articulo.getArticulo().getImporteArt());
-                setPedidoLin.add(pedidoLin);
+                direccion = op.comprobarDireccion(direccion);
+                tarjeta = op.comprobarTarjeta(tarjeta);
+
+                Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0, 0);
+                Set setPedidoLin = new HashSet(0);
+                PedidoLin pedidoLin = new PedidoLin();
+                Articulo art = new Articulo();
+                
+                float total = 0;
+                Iterator iter = carrito.iterator();
+                while (iter.hasNext()) {
+                    ArticuloCantidad articulo = (ArticuloCantidad) iter.next();
+                    art = op.extraerArticulo(articulo.getArticulo());
+                    art.setCantidadMaxArt(art.getCantidadMaxArt() - articulo.getCantidad());
+                    pedidoLin = new PedidoLin(art, pedido, articulo.getCantidad(), art.getImporteArt() * articulo.getCantidad());
+                    setPedidoLin.add(pedidoLin);
+
+                    total += art.getImporteArt() * articulo.getCantidad();
+                }
+                pedido.setImporteTotal(total);
+                pedido.setPedidoLins(setPedidoLin);
+
+                op.registrarPedido(pedido);
+
+                carrito = new ArrayList();
+                ArraySession.setAttribute("carrito", carrito);
+
+                response.sendRedirect("VISTAS/vista_home.jsp");
+            } else {
+                response.sendRedirect("VISTAS/vista_errorTarjeta.jsp");
             }
-            pedido.setPedidoLins(setPedidoLin);
-            
-            op = new Operaciones(SessionBuilder);
-            op.registrarPedido(pedido);
-            
-            response.sendRedirect("VISTAS/vista_home.jsp");
+
         }
     }
 

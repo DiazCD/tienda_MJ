@@ -7,10 +7,13 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import POJO.Pedido;
 import POJO.Usuario;
-import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,8 +27,8 @@ import org.hibernate.SessionFactory;
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_loginUsuario", urlPatterns = {"/servlet_loginUsuario"})
-public class servlet_loginUsuario extends HttpServlet {
+@WebServlet(name = "servlet_listadoPedidosUsuario", urlPatterns = {"/servlet_listadoPedidosUsuario"})
+public class servlet_listadoPedidosUsuario extends HttpServlet {
 
     //Conectar con la sesion
     private SessionFactory SessionBuilder;
@@ -51,29 +54,27 @@ public class servlet_loginUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            String dniUsuario = request.getParameter("dniUsuario");
-            String passUsuario = request.getParameter("passUsuario");
+
+            HttpSession ArraySession = request.getSession(true);
+            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
 
             Session session = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
-            Usuario usr = op.loginUsuario(dniUsuario, passUsuario);
+            List<Pedido> listaPedidos = op.getPedidosUsuario(usuario);
 
-            HttpSession ArraySession = request.getSession(true);
-            ArraySession.setAttribute("usuarioLogueado", usr);
+            List<Pedido> listaPed = new ArrayList();
+            Pedido ped = new Pedido();
 
-            if (usr.getNifUsr() == null) {
-                op = new Operaciones(SessionBuilder);
-                Vendedor vend = op.loginVendedor(dniUsuario, passUsuario);
-                ArraySession.setAttribute("vendedorLogueado", vend);
-                if (vend.getNifVend() == null) {
-                    response.sendRedirect("VISTAS/vista_errorLogin.jsp");
-                } else {
-                    response.sendRedirect("VISTAS/vista_home.jsp");
-                }
-            } else {
-                response.sendRedirect("VISTAS/vista_home.jsp");
+            Iterator iter = listaPedidos.iterator();
+            while (iter.hasNext()) {
+                Pedido pedido = (Pedido) iter.next();
+
+                listaPed.add((Pedido) session.load(Pedido.class, pedido.getId()));
             }
 
+            ArraySession.setAttribute("listaPedidos", listaPed);
+
+            response.sendRedirect("VISTAS/vista_pedidosUsuario.jsp");
         }
     }
 
