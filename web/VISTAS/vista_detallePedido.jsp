@@ -16,12 +16,13 @@
     </head>
     <body>
         <% ArrayList<PedidoLin> arrayPedidoLin = (ArrayList<PedidoLin>) session.getAttribute("arrayPedidoLin");%>
+        <% String estado = (String) session.getAttribute("estado");%>
         <br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
                 <li class="list-group-item list-group-item-action active">
-                    Detalle del pedido <%=arrayPedidoLin.get(0).getPedido().getId() %>
+                    Detalle del pedido <%=arrayPedidoLin.get(0).getPedido().getId()%>
                 </li>
                 <br>
                 <table class="table table-sm table-striped">
@@ -37,13 +38,18 @@
                         <% for (int i = 0; i < arrayPedidoLin.size(); i++) {%>
                         <tr>
                             <th scope="row"> <%= arrayPedidoLin.get(i).getId()%> </th>
-                            <td> <%= arrayPedidoLin.get(i).getArticulo().getNombreArt() %> </td>
+                            <td> <%= arrayPedidoLin.get(i).getArticulo().getNombreArt()%> </td>
                             <td> <%= arrayPedidoLin.get(i).getCantidadLin()%> </td>
                             <td> <%= arrayPedidoLin.get(i).getImporteLin()%> €</td>
                         </tr>
                         <% }%>
                     </tbody>
                 </table>
+                <%if (estado.equals("0")) { %>
+                <a href="../servlet_listadoPedidosVivos?estado=0" class="btn btn-light col-md-2"> Atras </a>
+                <% } else {%>
+                <a href="../servlet_listadoPedidosVivos?estado=1" class="btn btn-light col-md-2"> Atras </a>
+                <% }%>
             </div>
         </div>
     </body>

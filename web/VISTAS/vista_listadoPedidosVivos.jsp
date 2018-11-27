@@ -15,13 +15,18 @@
         <title>Panel de control - Vendedor</title>
     </head>
     <body>
-        <% ArrayList<Pedido> arrayPedidosVivos = (ArrayList<Pedido>) session.getAttribute("arrayPedidosVivos");%>
+        <% ArrayList<Pedido> arrayPedidos = (ArrayList<Pedido>) session.getAttribute("arrayPedidos");%>
+        <% String estado = (String) session.getAttribute("estado"); %>
         <br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
                 <li class="list-group-item list-group-item-action active">
+                    <% if (estado.equals("0")) { %>
                     Listado pedidos activos
+                    <% } else {%>
+                    Listado pedidos completados
+                    <% }%>
                 </li>
                 <br>
                 <table class="table table-sm table-striped">
@@ -35,13 +40,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (int i = 0; i < arrayPedidosVivos.size(); i++) {%>
+                        <% for (int i = 0; i < arrayPedidos.size(); i++) {%>
                         <tr>
-                            <th scope="row"> <%= arrayPedidosVivos.get(i).getId()%> </th>
-                            <td> <%= arrayPedidosVivos.get(i).getFechaPed()%> </td>
-                            <td> <%= arrayPedidosVivos.get(i).getDireccion().getDireccion() %> (<%= arrayPedidosVivos.get(i).getDireccion().getPoblacion()%> )</td>
-                            <td> <%= arrayPedidosVivos.get(i).getImporteTotal()%> €</td>
-                            <td> <a href=" <%= "../servlet_detallePedido?idPedido=" + arrayPedidosVivos.get(i).getId()%>" ><i class="fas fa-folder-open"></i></a> </td>
+                            <th scope="row"> <%= arrayPedidos.get(i).getId()%> </th>
+                            <td> <%= arrayPedidos.get(i).getFechaPed()%> </td>
+                            <td> <%= arrayPedidos.get(i).getDireccion().getDireccion()%> (<%= arrayPedidos.get(i).getDireccion().getPoblacion()%> )</td>
+                            <td> <%= arrayPedidos.get(i).getImporteTotal()%> €</td>
+                            <td> <a href=" <%= "../servlet_detallePedido?idPedido=" + arrayPedidos.get(i).getId()%>" ><i class="fas fa-folder-open"></i></a> </td>
                         </tr>
                         <% }%>
                     </tbody>

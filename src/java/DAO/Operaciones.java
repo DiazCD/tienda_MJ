@@ -552,19 +552,23 @@ public class Operaciones {
     }
     
     public List<Pedido> getPedidosVivos (Usuario usuario) {
-        String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario";
+        String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '0'";
         Query q = session.createQuery(hql);
         q.setParameter("idUsuario", usuario.getId());
 
         List<Pedido> listPedidosVivos = q.list();
-        
-//        // Recorrer pedidos y cargar sus lineas
-//        for (int i=0 ; i<listPedidosVivos.size() ; i++) {
-//            
-//            Pedido pedido = listPedidosVivos.get(i);
-//            List<PedidoLin> listPedidoLin = new Operaciones(SessionBuilder).getPedidoLin(pedido);
-//            pedido.setPedidoLins((Set) listPedidoLin);
-//        }
+
+        session.close();
+
+        return listPedidosVivos;
+    }
+    
+    public List<Pedido> getPedidosHistorico (Usuario usuario) {
+        String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '1'";
+        Query q = session.createQuery(hql);
+        q.setParameter("idUsuario", usuario.getId());
+
+        List<Pedido> listPedidosVivos = q.list();
 
         session.close();
 
