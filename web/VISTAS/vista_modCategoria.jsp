@@ -16,9 +16,12 @@
         <title>Panel de control - Modificación categoría</title>
     </head>
     <body>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
         <% Categoria categoria = (Categoria) session.getAttribute("categoria");%>
         <% ArrayList<Articulo> arrayArticulos = (ArrayList<Articulo>) session.getAttribute("arrayArticulos");%>
-        <br/>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
@@ -49,5 +52,10 @@
                 </form>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>

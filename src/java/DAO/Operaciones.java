@@ -82,6 +82,11 @@ public class Operaciones {
 
     }
 
+    /**
+     * Método que registra un vendedor
+     * @param vendedor
+     * @return boolean
+     */
     public boolean registrarVendedor(Vendedor vendedor) {
         String hql = "FROM Vendedor WHERE nif_vend=:dniVend";
         Query q = session.createQuery(hql);
@@ -746,6 +751,11 @@ public class Operaciones {
         return listPedidosLin;
     }
 
+    /**
+     * Método que valida el DNI
+     * @param dni
+     * @return boolean
+     */
     public boolean validarDNI(String dni) {
         final String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
         dni = dni.toUpperCase();
@@ -770,6 +780,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que comprueba que un String se númerico
+     * @param cadena
+     * @return boolean
+     */
     public boolean isNumeric(String cadena) {
 
         boolean resultado;
@@ -784,6 +799,11 @@ public class Operaciones {
         return resultado;
     }
 
+    /**
+     * Método para validad el número de tarjeta
+     * @param numeroTarjeta
+     * @return boolean
+     */
     public boolean validarTarjeta(String numeroTarjeta) {
         String subC = "";
         int n, total = 0;
@@ -819,6 +839,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que saca el tipo de tarjeta segun el número
+     * @param numeroTarjeta
+     * @return String tipo de tarjeta
+     */
     public String tipoTarjeta(String numeroTarjeta) {
         if (this.validarTarjeta(numeroTarjeta)) {
             String subC = numeroTarjeta.substring(0, 1);
@@ -838,6 +863,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que carga los pedidos de un usuario
+     * @param usuario
+     * @return List Pedido
+     */
     public List<Pedido> getPedidosUsuario(Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario";
         Query q = session.createQuery(hql);

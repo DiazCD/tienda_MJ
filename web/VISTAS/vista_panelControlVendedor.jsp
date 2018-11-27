@@ -17,8 +17,11 @@
         <title>Panel de control - Vendedor</title>
     </head>
     <body>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
         <% ArrayList<Articulo> arrayArticulos = (ArrayList<Articulo>) session.getAttribute("arrayArticulos");%>
-        <br/>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-6">
@@ -44,9 +47,9 @@
                             <th scope="row"> <%= arrayArticulos.get(i).getId()%> </th>
                             <td> <%= arrayArticulos.get(i).getNombreArt()%> </td>
                             <td> <%= arrayArticulos.get(i).getDescripcionArt()%> </td>
-                            <td> <%= arrayArticulos.get(i).getCategoria().getNombreCat() %> </td>
-                            <td> <%= arrayArticulos.get(i).getSubcategoria().getNombreSubcat() %></td>
-                            <td> <%= arrayArticulos.get(i).getImporteArt() %> </td>
+                            <td> <%= arrayArticulos.get(i).getCategoria().getNombreCat()%> </td>
+                            <td> <%= arrayArticulos.get(i).getSubcategoria().getNombreSubcat()%></td>
+                            <td> <%= arrayArticulos.get(i).getImporteArt()%> </td>
                             <td> <a href=" <%= "../servlet_preModArticulo?idArticulo=" + arrayArticulos.get(i).getId()%>" ><i class="fas fa-edit"></i></a> </td>
                         </tr>
                         <% }%>
@@ -54,5 +57,10 @@
                 </table>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>

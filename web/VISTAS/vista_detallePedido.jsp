@@ -15,9 +15,12 @@
         <title>Panel de control - Vendedor</title>
     </head>
     <body>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
         <% ArrayList<PedidoLin> arrayPedidoLin = (ArrayList<PedidoLin>) session.getAttribute("arrayPedidoLin");%>
         <% String estado = (String) session.getAttribute("estado");%>
-        <br/>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
@@ -52,5 +55,10 @@
                 <% }%>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>
