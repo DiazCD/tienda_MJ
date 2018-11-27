@@ -36,7 +36,8 @@ public class Operaciones {
 
     /**
      * Contructor con parámetros
-     * @param SessionBuilder 
+     *
+     * @param SessionBuilder
      */
     public Operaciones(SessionFactory SessionBuilder) {
         session = SessionBuilder.openSession();
@@ -45,7 +46,8 @@ public class Operaciones {
 
     /**
      * Método de registro
-     * @param direccion 
+     *
+     * @param direccion
      */
     public boolean registrarUsuario(Direccion direccion) {
         String hql = "FROM Usuario WHERE nif_usr=:dniUsr";
@@ -80,30 +82,42 @@ public class Operaciones {
 
     }
 
-    public void registrarVendedor(Vendedor vendedor) {
-        Transaction Tx = null;
-        try {
-            Tx = session.beginTransaction();
+    public boolean registrarVendedor(Vendedor vendedor) {
+        String hql = "FROM Vendedor WHERE nif_vend=:dniVend";
+        Query q = session.createQuery(hql);
+        q.setParameter("dniVend", vendedor.getNifVend());
 
-            session.saveOrUpdate(vendedor);
+        List listVendedor = q.list();
+        if (listVendedor.isEmpty()) {
+            Transaction Tx = null;
+            try {
+                Tx = session.beginTransaction();
 
-            Tx.commit();
-        } catch (HibernateException HE) {
-            HE.printStackTrace();
-            if (Tx != null) {
-                //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
-                Tx.rollback();
+                session.saveOrUpdate(vendedor);
+
+                Tx.commit();
+            } catch (HibernateException HE) {
+                HE.printStackTrace();
+                if (Tx != null) {
+                    //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                    Tx.rollback();
+                }
+                //Se lanza la propia excepcion para que lo recoja el controlador
+                throw HE;
+            } finally {
+                //La sesion se cierra pase lo que pase
+                session.close();
+                return true;
             }
-            //Se lanza la propia excepcion para que lo recoja el controlador
-            throw HE;
-        } finally {
-            //La sesion se cierra pase lo que pase
-            session.close();
+
+        } else {
+            return false;
         }
     }
 
     /**
      * Método de login de usuario
+     *
      * @param nif
      * @param pass
      * @return Usuario
@@ -127,6 +141,7 @@ public class Operaciones {
 
     /**
      * Método de login de vendedor
+     *
      * @param nif
      * @param pass
      * @return Vendedor
@@ -150,6 +165,7 @@ public class Operaciones {
 
     /**
      * Método que carga todos los artículos
+     *
      * @return List Articulo
      */
     public List<Articulo> getArticulosCatalogo() {
@@ -164,6 +180,7 @@ public class Operaciones {
 
     /**
      * Método que carga todos los articulos de un vendedor
+     *
      * @param vend
      * @return List Articulos
      */
@@ -182,6 +199,7 @@ public class Operaciones {
 
     /**
      * Método que carga todas las categorias
+     *
      * @return Categoria
      */
     public List<Categoria> getCategorias() {
@@ -197,6 +215,7 @@ public class Operaciones {
 
     /**
      * Método que carga una categoria a partir de su id
+     *
      * @param id
      * @return Categoria
      */
@@ -211,9 +230,10 @@ public class Operaciones {
 
         return listCategorias.get(0);
     }
-    
+
     /**
      * Método que carga una subcategoria a partir de su id
+     *
      * @param id
      * @return Subcategoria
      */
@@ -231,6 +251,7 @@ public class Operaciones {
 
     /**
      * Método que caga las subcategorias de una categoria
+     *
      * @param categoria
      * @return List Subcategoria
      */
@@ -245,9 +266,10 @@ public class Operaciones {
 
         return listSubcategorias;
     }
-    
+
     /**
      * Método que carga todas las subcategorias
+     *
      * @return List Subcategoria
      */
     public List<Subcategoria> getSubCategorias() {
@@ -263,9 +285,10 @@ public class Operaciones {
 
     /**
      * Método que da de alta una categoria
+     *
      * @param categoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean altaCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
@@ -291,9 +314,10 @@ public class Operaciones {
 
     /**
      * Método que borra una categoria
+     *
      * @param categoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean borrarCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
@@ -329,9 +353,10 @@ public class Operaciones {
 
     /**
      * Método que actualiza los datos de una categoria
+     *
      * @param categoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean actualizarCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
@@ -357,9 +382,10 @@ public class Operaciones {
 
     /**
      * Método que actualiza los datos de una subcategoria
+     *
      * @param Subcategoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean actualizarSubcategoria(Subcategoria Subcategoria) throws HibernateException {
         Transaction tran = null;
@@ -385,9 +411,10 @@ public class Operaciones {
 
     /**
      * Método que da de alta una subcategoria
+     *
      * @param subcategoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean altaSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
@@ -413,9 +440,10 @@ public class Operaciones {
 
     /**
      * Método que borra una subcategoría
+     *
      * @param subcategoria
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean borrarSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
@@ -441,6 +469,7 @@ public class Operaciones {
 
     /**
      * Método que da de alta un articulo
+     *
      * @param articulo
      * @return boolean
      */
@@ -469,6 +498,7 @@ public class Operaciones {
 
     /**
      * Método que nos devuelve los articulos de una categoria
+     *
      * @param categoria
      * @return List de articulos
      */
@@ -487,6 +517,7 @@ public class Operaciones {
 
     /**
      * Método que nos devuelve los articulos de una subcategoria
+     *
      * @param subcategoria
      * @return List de articulos
      */
@@ -505,6 +536,7 @@ public class Operaciones {
 
     /**
      * Se obtiene el obj completo a partir de su id.
+     *
      * @param id
      * @return Articulo
      */
@@ -522,9 +554,10 @@ public class Operaciones {
 
     /**
      * Método que borrar un articulo
+     *
      * @param articulo
      * @return boolean
-     * @throws HibernateException 
+     * @throws HibernateException
      */
     public boolean borrarArticulo(Articulo articulo) throws HibernateException {
         Transaction tran = null;
@@ -550,6 +583,7 @@ public class Operaciones {
 
     /**
      * Método que actualiza el articulo
+     *
      * @param articulo
      * @return boolean
      * @throws HibernateException
@@ -578,6 +612,7 @@ public class Operaciones {
 
     /**
      * Método que comprueba la direccion
+     *
      * @param direccion
      * @return Direccion
      */
@@ -601,6 +636,7 @@ public class Operaciones {
 
     /**
      * Método que comprueba si la tarjeta es correcta
+     *
      * @param tarjeta
      * @return Tarjeta
      */
@@ -625,13 +661,14 @@ public class Operaciones {
         q.setParameter("idArticulo", articulo.getId());
 
         List<Articulo> listaArticulo = q.list();
-        
+
         return listaArticulo.get(0);
     }
 
     /**
      * Método que registra un pedido
-     * @param pedido 
+     *
+     * @param pedido
      */
     public void registrarPedido(Pedido pedido) {
         Transaction Tx = null;
@@ -654,13 +691,14 @@ public class Operaciones {
             session.close();
         }
     }
-    
+
     /**
      * Método que carga los pedido no completados, completado = 0
+     *
      * @param usuario
      * @return List Pedido
      */
-    public List<Pedido> getPedidosVivos (Usuario usuario) {
+    public List<Pedido> getPedidosVivos(Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '0'";
         Query q = session.createQuery(hql);
         q.setParameter("idUsuario", usuario.getId());
@@ -671,13 +709,14 @@ public class Operaciones {
 
         return listPedidosVivos;
     }
-    
+
     /**
      * Método que carga los pedido completados, completado = 1
+     *
      * @param usuario
      * @return List Pedido
      */
-    public List<Pedido> getPedidosHistorico (Usuario usuario) {
+    public List<Pedido> getPedidosHistorico(Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '1'";
         Query q = session.createQuery(hql);
         q.setParameter("idUsuario", usuario.getId());
@@ -688,13 +727,14 @@ public class Operaciones {
 
         return listPedidosVivos;
     }
-    
+
     /**
      * Método que carga las líneas de un pedido
+     *
      * @param pedido
      * @return List PedidoLin
      */
-    public List<PedidoLin> getPedidoLin (Pedido pedido) {
+    public List<PedidoLin> getPedidoLin(Pedido pedido) {
         String hql = "FROM PedidoLin WHERE id_pedido=:idPedido";
         Query q = session.createQuery(hql);
         q.setParameter("idPedido", pedido.getId());

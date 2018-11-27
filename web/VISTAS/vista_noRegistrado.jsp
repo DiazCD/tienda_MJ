@@ -19,7 +19,7 @@
 
         <main role="main" class="container mt-5 pt-5" id="cuerpo">
             <section id="subCuerpo">
-                <h2 class="text-center">Ya existe un usuario con ese DNI</h2>
+                <h2 class="text-center">Ya existe un usuario con ese NIF</h2>
                 <br>
                 <br>
                 <br>
