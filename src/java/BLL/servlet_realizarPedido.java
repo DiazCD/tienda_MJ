@@ -110,7 +110,6 @@ public class servlet_realizarPedido extends HttpServlet {
                 response.sendRedirect("VISTAS/vista_home.jsp");
             } else {
                 response.sendRedirect("VISTAS/vista_errorTarjeta.jsp");
-
             }
 
         }

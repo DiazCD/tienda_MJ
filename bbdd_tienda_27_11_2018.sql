@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `articulo` (
 -- Volcando datos para la tabla bd_tienda.articulo: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `articulo` DISABLE KEYS */;
 INSERT INTO `articulo` (`id`, `id_vendedor_art`, `id_categoria_art`, `id_subcategoria_art`, `nombre_art`, `descripcion_art`, `importe_art`, `fecha_alta_art`, `cantidad_max_art`, `imagen_art`) VALUES
-	(1, 1, 1, 1, 'Abeja Reina', 'Mu güena', 10, '2018-11-23 01:05:24', 6, 'images/products/AbejaReina.jpg'),
+	(1, 1, 1, 1, 'Abeja Reina', 'Mu buena', 10, '2018-11-27 00:00:00', 6, ''),
 	(2, 1, 1, 1, 'Marijuana', 'Mu güena tambien', 10, '2018-11-23 01:05:48', 9, 'images/products/Marijuana.jpg');
 /*!40000 ALTER TABLE `articulo` ENABLE KEYS */;
 
@@ -104,7 +104,7 @@ CREATE TABLE IF NOT EXISTS `direccion` (
   PRIMARY KEY (`id`),
   KEY `FK_direccion_usuario` (`id_usuario`),
   CONSTRAINT `FK_direccion_usuario` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_tienda.direccion: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `direccion` DISABLE KEYS */;
@@ -120,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `pedido` (
   `id_direccion` int(11) NOT NULL,
   `fecha_ped` datetime NOT NULL,
   `importe_total` float NOT NULL DEFAULT '0',
+  `completado` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `FK_pedido_usuario` (`id_usuario_ped`),
   KEY `FK_pedido_direccion` (`id_direccion`),
@@ -131,12 +132,12 @@ CREATE TABLE IF NOT EXISTS `pedido` (
 
 -- Volcando datos para la tabla bd_tienda.pedido: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `pedido` DISABLE KEYS */;
-INSERT INTO `pedido` (`id`, `id_usuario_ped`, `id_tarjeta`, `id_direccion`, `fecha_ped`, `importe_total`) VALUES
-	(7, 8, 5, 9, '2018-11-26 19:45:51', 0),
-	(8, 8, 5, 9, '2018-11-26 19:46:34', 0),
-	(9, 8, 5, 9, '2018-11-26 19:52:06', 0),
-	(10, 8, 5, 9, '2018-11-26 19:54:50', 0),
-	(11, 8, 5, 9, '2018-11-26 19:56:31', 0);
+INSERT INTO `pedido` (`id`, `id_usuario_ped`, `id_tarjeta`, `id_direccion`, `fecha_ped`, `importe_total`, `completado`) VALUES
+	(7, 8, 5, 9, '2018-11-26 19:45:51', 0, 1),
+	(8, 8, 5, 9, '2018-11-26 19:46:34', 0, 0),
+	(9, 8, 5, 9, '2018-11-26 19:52:06', 0, 0),
+	(10, 8, 5, 9, '2018-11-26 19:54:50', 0, 0),
+	(11, 8, 5, 9, '2018-11-26 19:56:31', 0, 0);
 /*!40000 ALTER TABLE `pedido` ENABLE KEYS */;
 
 -- Volcando estructura para tabla bd_tienda.pedido_lin
@@ -193,7 +194,7 @@ CREATE TABLE IF NOT EXISTS `tarjeta` (
   PRIMARY KEY (`id`),
   KEY `FK_tarjeta_usuario` (`id_usuario_tarj`),
   CONSTRAINT `FK_tarjeta_usuario` FOREIGN KEY (`id_usuario_tarj`) REFERENCES `usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- Volcando datos para la tabla bd_tienda.tarjeta: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `tarjeta` DISABLE KEYS */;
