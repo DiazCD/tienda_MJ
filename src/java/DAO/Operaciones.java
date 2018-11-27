@@ -11,9 +11,7 @@ import POJO.Direccion;
 import POJO.Vendedor;
 import POJO.Categoria;
 import POJO.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -29,15 +27,26 @@ public class Operaciones {
     private Session session = null;
     private SessionFactory SessionBuilder;
 
+    /**
+     * Contructor vacio;
+     */
     public Operaciones() {
 
     }
 
+    /**
+     * Contructor con parámetros
+     * @param SessionBuilder 
+     */
     public Operaciones(SessionFactory SessionBuilder) {
         session = SessionBuilder.openSession();
         this.SessionBuilder = SessionBuilder;
     }
 
+    /**
+     * Método de registro
+     * @param direccion 
+     */
     public void registrarUsuario(Direccion direccion) {
         Transaction Tx = null;
         try {
@@ -60,6 +69,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método de login de usuario
+     * @param nif
+     * @param pass
+     * @return Usuario
+     */
     public Usuario loginUsuario(String nif, String pass) {
         String hql = "FROM Usuario WHERE nif_usr=:dniUsr AND pass_usr=:passUsr";
         Query q = session.createQuery(hql);
@@ -77,6 +92,12 @@ public class Operaciones {
         return usr;
     }
 
+    /**
+     * Método de login de vendedor
+     * @param nif
+     * @param pass
+     * @return Vendedor
+     */
     public Vendedor loginVendedor(String nif, String pass) {
         String hql = "FROM Vendedor WHERE nif_vend=:dniVend AND pass_vend=:passVend";
         Query q = session.createQuery(hql);
@@ -94,6 +115,10 @@ public class Operaciones {
         return vend;
     }
 
+    /**
+     * Método que carga todos los artículos
+     * @return List Articulo
+     */
     public List<Articulo> getArticulosCatalogo() {
         String hql = "FROM Articulo";
         Query q = session.createQuery(hql);
@@ -104,6 +129,11 @@ public class Operaciones {
         return listaArticulos;
     }
 
+    /**
+     * Método que carga todos los articulos de un vendedor
+     * @param vend
+     * @return List Articulos
+     */
     public List<Articulo> getArticulosVend(Vendedor vend) {
 
         String hql = "FROM Articulo WHERE id_vendedor_art=:idVendedor";
@@ -117,6 +147,10 @@ public class Operaciones {
         return listArticulos;
     }
 
+    /**
+     * Método que carga todas las categorias
+     * @return Categoria
+     */
     public List<Categoria> getCategorias() {
 
         String hql = "FROM Categoria";
@@ -128,6 +162,11 @@ public class Operaciones {
         return listCategorias;
     }
 
+    /**
+     * Método que carga una categoria a partir de su id
+     * @param id
+     * @return Categoria
+     */
     public Categoria getCategoria(String id) {
 
         String hql = "FROM Categoria WHERE id=:idCategoria";
@@ -139,7 +178,12 @@ public class Operaciones {
 
         return listCategorias.get(0);
     }
-
+    
+    /**
+     * Método que carga una subcategoria a partir de su id
+     * @param id
+     * @return Subcategoria
+     */
     public Subcategoria getSubcategoria(String id) {
 
         String hql = "FROM Subcategoria WHERE id=:idSubcategoria";
@@ -152,6 +196,11 @@ public class Operaciones {
         return listSubcategorias.get(0);
     }
 
+    /**
+     * Método que caga las subcategorias de una categoria
+     * @param categoria
+     * @return List Subcategoria
+     */
     public List<Subcategoria> getSubcategorias(Categoria categoria) {
 
         String hql = "FROM Subcategoria WHERE id_categoria=:idCategoria";
@@ -163,8 +212,12 @@ public class Operaciones {
 
         return listSubcategorias;
     }
-
-    public List<Categoria> getSubCategorias() {
+    
+    /**
+     * Método que carga todas las subcategorias
+     * @return List Subcategoria
+     */
+    public List<Subcategoria> getSubCategorias() {
 
         String hql = "FROM Subcategoria";
         Query q = session.createQuery(hql);
@@ -175,6 +228,12 @@ public class Operaciones {
         return listSubCategorias;
     }
 
+    /**
+     * Método que da de alta una categoria
+     * @param categoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean altaCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
 
@@ -197,6 +256,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que borra una categoria
+     * @param categoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean borrarCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
 
@@ -229,6 +294,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que actualiza los datos de una categoria
+     * @param categoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean actualizarCategoria(Categoria categoria) throws HibernateException {
         Transaction tran = null;
 
@@ -251,6 +322,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que actualiza los datos de una subcategoria
+     * @param Subcategoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean actualizarSubcategoria(Subcategoria Subcategoria) throws HibernateException {
         Transaction tran = null;
 
@@ -273,6 +350,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que da de alta una subcategoria
+     * @param subcategoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean altaSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
 
@@ -295,6 +378,12 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que borra una subcategoría
+     * @param subcategoria
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean borrarSubcategoria(Subcategoria subcategoria) throws HibernateException {
         Transaction tran = null;
 
@@ -317,6 +406,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que da de alta un articulo
+     * @param articulo
+     * @return boolean
+     */
     public boolean altaArticulo(Articulo articulo) {
 
         Transaction tran = null;
@@ -342,7 +436,6 @@ public class Operaciones {
 
     /**
      * Método que nos devuelve los articulos de una categoria
-     *
      * @param categoria
      * @return List de articulos
      */
@@ -361,7 +454,6 @@ public class Operaciones {
 
     /**
      * Método que nos devuelve los articulos de una subcategoria
-     *
      * @param subcategoria
      * @return List de articulos
      */
@@ -380,7 +472,6 @@ public class Operaciones {
 
     /**
      * Se obtiene el obj completo a partir de su id.
-     *
      * @param id
      * @return Articulo
      */
@@ -396,6 +487,12 @@ public class Operaciones {
         return listArticulos.get(0);
     }
 
+    /**
+     * Método que borrar un articulo
+     * @param articulo
+     * @return boolean
+     * @throws HibernateException 
+     */
     public boolean borrarArticulo(Articulo articulo) throws HibernateException {
         Transaction tran = null;
 
@@ -420,7 +517,6 @@ public class Operaciones {
 
     /**
      * Método que actualiza el articulo
-     *
      * @param articulo
      * @return boolean
      * @throws HibernateException
@@ -447,6 +543,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que comprueba la direccion
+     * @param direccion
+     * @return Direccion
+     */
     public Direccion comprobarDireccion(Direccion direccion) {
         String hql = "FROM Direccion WHERE id_usuario=:idUsuaio AND direccion=:dir AND poblacion=:pob AND pais=:pa";
         Query q = session.createQuery(hql);
@@ -490,6 +591,11 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que comprueba si la tarjeta es correcta
+     * @param tarjeta
+     * @return Tarjeta
+     */
     public Tarjeta comprobarTarjeta(Tarjeta tarjeta) {
         String hql = "FROM Tarjeta WHERE numero_tarj=:numero AND id_usuario_tarj=:idUsuario";
         Query q = session.createQuery(hql);
@@ -529,6 +635,10 @@ public class Operaciones {
         }
     }
 
+    /**
+     * Método que registra un pedido
+     * @param pedido 
+     */
     public void registrarPedido(Pedido pedido) {
         Transaction Tx = null;
         try {
@@ -551,6 +661,11 @@ public class Operaciones {
         }
     }
     
+    /**
+     * Método que carga los pedido no completados, completado = 0
+     * @param usuario
+     * @return List Pedido
+     */
     public List<Pedido> getPedidosVivos (Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '0'";
         Query q = session.createQuery(hql);
@@ -563,6 +678,11 @@ public class Operaciones {
         return listPedidosVivos;
     }
     
+    /**
+     * Método que carga los pedido completados, completado = 1
+     * @param usuario
+     * @return List Pedido
+     */
     public List<Pedido> getPedidosHistorico (Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario AND completado = '1'";
         Query q = session.createQuery(hql);
@@ -574,7 +694,12 @@ public class Operaciones {
 
         return listPedidosVivos;
     }
-        
+    
+    /**
+     * Método que carga las líneas de un pedido
+     * @param pedido
+     * @return List PedidoLin
+     */
     public List<PedidoLin> getPedidoLin (Pedido pedido) {
         String hql = "FROM PedidoLin WHERE id_pedido=:idPedido";
         Query q = session.createQuery(hql);

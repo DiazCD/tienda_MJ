@@ -82,7 +82,7 @@ public class servlet_realizarPedido extends HttpServlet {
             op = new Operaciones(SessionBuilder);
             tarjeta = op.comprobarTarjeta(tarjeta);
 
-            Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0);
+            Pedido pedido = new Pedido(direccion, tarjeta, usuario, new Date(), 0, 0);
             Set setPedidoLin = new HashSet(0);
             PedidoLin pedidoLin = new PedidoLin();
 
