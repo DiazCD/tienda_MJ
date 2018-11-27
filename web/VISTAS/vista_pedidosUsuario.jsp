@@ -31,13 +31,14 @@
                 %>
                 <h1 class="text-center">Pedidos de <% out.print(usuario.getNombreUsr()); %></h1>
                 <hr>
-                
-                <div class="row col-12 mt-3 pt-3 fila border border-warning rounded">
+
+
                 <%
                     Iterator iter = listaPedidos.iterator();
                     while (iter.hasNext()) {
                         Pedido pedido = (Pedido) iter.next();
                 %>
+                <div class="row col-12 mt-3 pt-3 fila border border-warning rounded">
                     <div class="col-4">
                         <div class="row">
                             <h5><% out.print(pedido.getId()); %></h5>
@@ -50,13 +51,14 @@
                     </div>
                     <div class="col-4">
                         <div class="row">
-                            <p><% //out.print("Con tarjeta: " + pedido.getTarjeta().getNumeroTarj()); %></p>
+                            <p><% out.print("Con tarjeta: " + pedido.getTarjeta().getNumeroTarj()); %></p>
                         </div>
                     </div>
-                    <%
-                        }
-                    %>
                 </div>
+                <%
+                    }
+                %>
+
             </section>
         </main>
 

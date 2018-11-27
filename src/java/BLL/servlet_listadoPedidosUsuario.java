@@ -11,6 +11,7 @@ import POJO.Pedido;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -56,19 +57,22 @@ public class servlet_listadoPedidosUsuario extends HttpServlet {
 
             HttpSession ArraySession = request.getSession(true);
             Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
-            Session session = SessionBuilder.openSession();
 
+            Session session = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
             List<Pedido> listaPedidos = op.getPedidosUsuario(usuario);
+
+            List<Pedido> listaPed = new ArrayList();
+            Pedido ped = new Pedido();
+
             Iterator iter = listaPedidos.iterator();
             while (iter.hasNext()) {
                 Pedido pedido = (Pedido) iter.next();
 
-                pedido = (Pedido) session.load(Pedido.class, pedido.getId());
-                
+                listaPed.add((Pedido) session.load(Pedido.class, pedido.getId()));
             }
 
-            ArraySession.setAttribute("listaPedidos", listaPedidos);
+            ArraySession.setAttribute("listaPedidos", listaPed);
 
             response.sendRedirect("VISTAS/vista_pedidosUsuario.jsp");
         }

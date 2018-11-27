@@ -8,9 +8,8 @@
 <%@page import="POJO.Usuario"%>
 <nav class="navbar navbar-expand-md fixed-top navbar-dark">
     <%
-        HttpSession ArraySession = request.getSession(true);
-        Usuario usr = (Usuario) ArraySession.getAttribute("usuarioLogueado");
-        Vendedor vend = (Vendedor) ArraySession.getAttribute("vendedorLogueado");
+        Usuario usr = (Usuario) session.getAttribute("usuarioLogueado");
+        Vendedor vend = (Vendedor) session.getAttribute("vendedorLogueado");
     %>
     <a class="navbar-brand ml-5" onclick="" href="#"><img id='logo'></img></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">

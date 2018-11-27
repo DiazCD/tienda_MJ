@@ -62,8 +62,9 @@ public class servlet_masInformacion extends HttpServlet {
             Iterator iter = listaArticulos.iterator();
             while (iter.hasNext()) {
                 Articulo art = (Articulo) iter.next();
+
                 if (art.getId() == idArticulo) {
-                    articulo = (Articulo) session.load(Articulo.class, art.getId());;
+                    articulo = (Articulo) session.load(Articulo.class, art.getId());
                 }
             }
 

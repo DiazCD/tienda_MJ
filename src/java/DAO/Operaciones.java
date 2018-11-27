@@ -511,6 +511,16 @@ public class Operaciones {
         }
     }
 
+    public Articulo extraerArticulo(Articulo articulo) {
+        String hql = "FROM Articulo WHERE id=:idArticulo";
+        Query q = session.createQuery(hql);
+        q.setParameter("idArticulo", articulo.getId());
+
+        List<Articulo> listaArticulo = q.list();
+        
+        return listaArticulo.get(0);
+    }
+
     public void registrarPedido(Pedido pedido) {
         Transaction Tx = null;
         try {
@@ -624,7 +634,7 @@ public class Operaciones {
             return "Tarjeta Incorrecta";
         }
     }
-    
+
     public List<Pedido> getPedidosUsuario(Usuario usuario) {
         String hql = "FROM Pedido WHERE id_usuario_ped=:idUsuario";
         Query q = session.createQuery(hql);

@@ -64,7 +64,6 @@ public class servlet_registroUsuario extends HttpServlet {
             Date fechaAltaUsuario = new Date();
             Date fechaNacUsuario = new Date();
 
-            Session sesion = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
 
             if (op.validarDNI(dniUsuario)) {
