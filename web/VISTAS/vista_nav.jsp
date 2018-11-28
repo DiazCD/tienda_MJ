@@ -34,9 +34,9 @@
             <li class="nav-item dropdown" id="Usuario" value="0">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Hola <% out.print(usr.getNombreUsr()); %></a>
                 <div class="dropdown-menu" aria-labelledby="Usuario">
+                    <a class="dropdown-item" href="../servlet_panelControlVendedor">Mi Panel de Control</a>
                     <a class="dropdown-item" href="#">Mis Datos</a>
                     <a class="dropdown-item" href="vista_carrito.jsp">Carrito</a>
-                    <a class="dropdown-item" href="../servlet_listadoPedidosUsuario">Mis Pedidos</a>
                     <a class="dropdown-item" href="../servlet_abrirHome">Cerrar Sesión</a>
                 </div>
             </li>
