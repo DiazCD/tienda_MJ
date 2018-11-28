@@ -45,7 +45,7 @@ public class servlet_borrarArticulo extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String idArticulo = request.getParameter("idArticulo");
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             boolean correcto;
 
             Articulo articulo = new Operaciones(SessionBuilder).getArticulo(idArticulo);
@@ -55,7 +55,7 @@ public class servlet_borrarArticulo extends HttpServlet {
                 response.sendRedirect("./servlet_panelControlVendedor");
                 
             } else {
-                session.setAttribute("error", "No se ha podido eliminar el articulo.");        
+                ArraySession.setAttribute("error", "No se ha podido eliminar el articulo.");        
                 response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }

@@ -53,7 +53,7 @@ public class servlet_catalogo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession arraySession = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
 
             Session session = SessionBuilder.openSession();
             
@@ -67,7 +67,7 @@ public class servlet_catalogo extends HttpServlet {
                 articulo.setCategoria(categoria);
             }
 
-            arraySession.setAttribute("listaArticulosCatalogo", listaArticulos);
+            ArraySession.setAttribute("listaArticulosCatalogo", listaArticulos);
             response.sendRedirect("VISTAS/vista_catalogo.jsp");
 
         }

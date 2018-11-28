@@ -46,7 +46,7 @@ public class servlet_altaArticulo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             
             boolean correcto = false;
             String idCategoriaArt = request.getParameter("categoriaArt");
@@ -61,13 +61,13 @@ public class servlet_altaArticulo extends HttpServlet {
             art.setSubcategoria(subcategoria);
             art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
             art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
-            art.setVendedor((Vendedor)session.getAttribute("vendedor"));
+            art.setVendedor((Vendedor)ArraySession.getAttribute("vendedorLogueado"));
             art.setImagenArt(request.getParameter("imgArt"));
 
             // dar de alta el articulo
             if (new Operaciones(SessionBuilder).altaArticulo(art)) {
 
-                session.setAttribute("correcto", correcto);
+                ArraySession.setAttribute("correcto", correcto);
                 response.sendRedirect("./VISTAS/vista_altaArticulo.jsp");
             }
         }

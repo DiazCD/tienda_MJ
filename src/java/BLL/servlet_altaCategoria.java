@@ -47,7 +47,7 @@ public class servlet_altaCategoria extends HttpServlet {
 
             boolean correcto = false;
             Categoria categoria = new Categoria();
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             
             categoria.setNombreCat(request.getParameter("nombreCat"));
             categoria.setDescripcionCat(request.getParameter("descripcionCat"));
@@ -59,7 +59,7 @@ public class servlet_altaCategoria extends HttpServlet {
                 System.out.println(ex);
             }
 
-            session.setAttribute("correcto", correcto);
+            ArraySession.setAttribute("correcto", correcto);
             response.sendRedirect("./VISTAS/vista_altaCategoria.jsp");
         }
     }

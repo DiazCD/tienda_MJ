@@ -45,13 +45,13 @@ public class servlet_cargaCategorias extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
 
             ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
             ArrayList<Categoria> arraySubategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
 
-            session.setAttribute("arrayCategorias", arrayCategorias);
-            session.setAttribute("arraySubcategorias", arraySubategorias);
+            ArraySession.setAttribute("arrayCategorias", arrayCategorias);
+            ArraySession.setAttribute("arraySubcategorias", arraySubategorias);
 
             String destino = request.getParameter("jspDestino");
             

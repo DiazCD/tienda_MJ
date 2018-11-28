@@ -45,13 +45,13 @@ public class servlet_listadoCategorias extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             
             ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
             ArrayList<Categoria> arraySubCategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
             
-            session.setAttribute("arrayCategorias", arrayCategorias);
-            session.setAttribute("arraySubCategorias", arraySubCategorias);          
+            ArraySession.setAttribute("arrayCategorias", arrayCategorias);
+            ArraySession.setAttribute("arraySubCategorias", arraySubCategorias);          
             response.sendRedirect("./VISTAS/vista_listadoCategorias.jsp");
         }
     }
