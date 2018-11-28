@@ -54,8 +54,7 @@ public class servlet_listadoPedidosVivos extends HttpServlet {
             Session sesion = SessionBuilder.openSession();
             String estado = request.getParameter("estado");
             ArrayList<Pedido> arrayPedidos = new ArrayList<>();
-            Usuario usuario = new Usuario();
-            usuario.setId(8);
+            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
 
             if (estado.equals("0")) {
                 arrayPedidos = (ArrayList) new Operaciones(SessionBuilder).getPedidosVivos(usuario);
