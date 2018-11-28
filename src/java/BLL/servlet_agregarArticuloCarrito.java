@@ -81,7 +81,6 @@ public class servlet_agregarArticuloCarrito extends HttpServlet {
 
             ArraySession.setAttribute("carrito", carrito);
 
-            //out.print(carrito);
             response.sendRedirect("VISTAS/vista_catalogo.jsp");
 
         }
