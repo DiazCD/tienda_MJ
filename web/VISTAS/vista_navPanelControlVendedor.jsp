@@ -24,14 +24,14 @@
             <a href="../servlet_cargaCategorias?jspDestino=altaArticulo" class="list-group-item list-group-item-action"> Alta artículo </a>
             <a href="../servlet_panelControlVendedor" class="list-group-item list-group-item-action"> Listado / Modificación artículos </a>
             
-            <% } %>
-
             <li href="#" class="list-group-item list-group-item-action active">
                 Gestión categorías
             </li>
             <a href="./vista_altaCategoria.jsp" class="list-group-item list-group-item-action"> Alta categoría </a>
             <a href="../servlet_cargaCategorias?jspDestino=altaSubcategoria" class="list-group-item list-group-item-action"> Alta subcategoría </a>
             <a href="../servlet_listadoCategorias" class="list-group-item list-group-item-action"> Listado / Modificación categorías </a>
+            
+            <% } %>
 
             <!-- Si se logea un usuario -->
             <% if (usuario != null && usuario.getId() != null) { %>
