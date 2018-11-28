@@ -7,8 +7,6 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
-import POJO.Categoria;
 import POJO.Direccion;
 import POJO.Pedido;
 import POJO.Usuario;
