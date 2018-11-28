@@ -17,10 +17,13 @@
         <title>Panel de control - Modificación subcategoría </title>
     </head>
     <body>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
         <% ArrayList<Articulo> arrayArticulos = (ArrayList<Articulo>) session.getAttribute("arrayArticulos");%>
         <% ArrayList<Categoria> arrayCategorias = (ArrayList<Categoria>) session.getAttribute("arrayCategorias"); %>
         <% Subcategoria subcategoria = (Subcategoria) session.getAttribute("subcategoria");%>
-        <br/>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
@@ -60,11 +63,16 @@
                         <strong>Atencion!</strong> Si elimina la subcategoria, también lo harán los articulos relacionados con ella. 
                     </div>
                     <% }%>
-                    
+
                     <button class="btn btn-primary offset-md-4 col-md-2" type="submit"> Actualizar </button>
                     <a href=" <%= "../servlet_borrarSubcategoria?idSubcategoria=" + subcategoria.getId()%>" class="btn btn-danger col-md-2" type="submit"> Eliminar </a>
                 </form>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>

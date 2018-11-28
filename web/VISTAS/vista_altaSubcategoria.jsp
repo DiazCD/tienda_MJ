@@ -15,8 +15,11 @@
         <title>Panel de control - Alta subcategoría </title>
     </head>
     <body>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
         <% ArrayList<Categoria> arrayCategorias = (ArrayList) session.getAttribute("arrayCategorias"); %>
-        <br/>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
@@ -35,9 +38,9 @@
                         <div class="form-group col-md-6">
                             <label for="inputEmail4"> Categoría padre </label>
                             <select class="form-control" name="categoriaPadre">
-                                <% for (int i=0 ; i<arrayCategorias.size() ; i++) {%>
-                                <option value="<%= arrayCategorias.get(i).getId() %>"> <%= arrayCategorias.get(i).getNombreCat() %></option>
-                                <% } %>
+                                <% for (int i = 0; i < arrayCategorias.size(); i++) {%>
+                                <option value="<%= arrayCategorias.get(i).getId()%>"> <%= arrayCategorias.get(i).getNombreCat()%></option>
+                                <% }%>
                             </select>
                         </div>
                     </div>
@@ -45,5 +48,10 @@
                 </form>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>

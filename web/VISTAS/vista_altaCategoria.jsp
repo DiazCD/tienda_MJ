@@ -13,7 +13,10 @@
         <title>Panel de control - Alta categoría</title>
     </head>
     <body>
-        <br/>
+        <header>
+            <jsp:include page="vista_nav.jsp"/>
+        </header>
+        <br/><br/><br/>
         <div class="row">
             <jsp:include page ="vista_navPanelControlVendedor.jsp"/>
             <div class="offset-md-1 col-md-5">
@@ -28,10 +31,15 @@
                         <label for="exampleFormControlTextarea1"> Descripción </label>
                         <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" name="descripcionCat"></textarea>
                     </div>
-                    
+
                     <button class="btn btn-primary offset-md-4 col-md-4" type="submit"> Confirmar alta </button>
                 </form>
             </div>
         </div>
+        <footer class="footer">
+            <div class="container">
+                <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
+            </div>
+        </footer>
     </body>
 </html>
