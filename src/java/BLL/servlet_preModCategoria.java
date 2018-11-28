@@ -47,7 +47,7 @@ public class servlet_preModCategoria extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String idCategoria = request.getParameter("idCategoria");
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             ArrayList<Articulo> arrayArticulos;
 
             Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
@@ -55,8 +55,8 @@ public class servlet_preModCategoria extends HttpServlet {
             // Comprobamos si esta categoria tiene articulos asociados y avisamos si es asi
             arrayArticulos = (ArrayList)new Operaciones(SessionBuilder).getArticulosCategoria(categoria);
             
-            session.setAttribute("arrayArticulos", arrayArticulos);
-            session.setAttribute("categoria", categoria);
+            ArraySession.setAttribute("arrayArticulos", arrayArticulos);
+            ArraySession.setAttribute("categoria", categoria);
             
             response.sendRedirect("./VISTAS/vista_modCategoria.jsp");
         }

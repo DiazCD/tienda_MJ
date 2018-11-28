@@ -8,10 +8,8 @@ package BLL;
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
 import POJO.Articulo;
-import POJO.Categoria;
 import POJO.Pedido;
 import POJO.PedidoLin;
-import POJO.Subcategoria;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -51,7 +49,7 @@ public class servlet_detallePedido extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             Session sesion = SessionBuilder.openSession();
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             String idPedido = (String) request.getParameter("idPedido");
             Pedido pedido = new Pedido();
             pedido.setId(Integer.parseInt(idPedido));
@@ -62,7 +60,7 @@ public class servlet_detallePedido extends HttpServlet {
                 arrayPedidoLin.get(i).setArticulo(articulo);
             }
 
-            session.setAttribute("arrayPedidoLin", arrayPedidoLin);
+            ArraySession.setAttribute("arrayPedidoLin", arrayPedidoLin);
 
             response.sendRedirect("./VISTAS/vista_detallePedido.jsp");
         }

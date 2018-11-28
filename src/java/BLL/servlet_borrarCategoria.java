@@ -45,7 +45,7 @@ public class servlet_borrarCategoria extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String idCategoria = request.getParameter("idCategoria");
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             boolean correcto;
 
             Categoria categoria = new Operaciones(SessionBuilder).getCategoria(idCategoria);
@@ -55,7 +55,7 @@ public class servlet_borrarCategoria extends HttpServlet {
                 response.sendRedirect("./servlet_listadoCategorias");
                 
             } else {
-                session.setAttribute("error", "No se ha podido eliminar la categoria.");        
+                ArraySession.setAttribute("error", "No se ha podido eliminar la categoria.");        
                 response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }

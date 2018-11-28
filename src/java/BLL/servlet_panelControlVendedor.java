@@ -50,10 +50,10 @@ public class servlet_panelControlVendedor extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             try {
-                HttpSession session = request.getSession(true);
+                HttpSession ArraySession = request.getSession(true);
 
-                Vendedor vendedor = (Vendedor) session.getAttribute("vendedorLogueado");
-                Usuario usuario = (Usuario) session.getAttribute("usuarioLogueado");
+                Vendedor vendedor = (Vendedor) ArraySession.getAttribute("vendedorLogueado");
+                Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
 
                 // si se logea un vendedor
                 if (vendedor.getId() != null) {
@@ -70,7 +70,7 @@ public class servlet_panelControlVendedor extends HttpServlet {
                         arrayArticulos.get(i).setSubcategoria(subcategoria);
                     }
 
-                    session.setAttribute("arrayArticulos", arrayArticulos);
+                    ArraySession.setAttribute("arrayArticulos", arrayArticulos);
                     response.sendRedirect("./VISTAS/vista_panelControlVendedor.jsp");
                 
                     // si se logea un usuario

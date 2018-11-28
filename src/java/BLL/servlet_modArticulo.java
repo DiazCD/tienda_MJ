@@ -46,7 +46,7 @@ public class servlet_modArticulo extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             
             boolean correcto;
             String idArticulo = request.getParameter("idArt");
@@ -63,7 +63,7 @@ public class servlet_modArticulo extends HttpServlet {
             art.setSubcategoria(subcategoria);
             art.setImporteArt(Float.parseFloat(request.getParameter("importeArt")));
             art.setCantidadMaxArt(Integer.parseInt(request.getParameter("cantidadArt")));
-            art.setVendedor((Vendedor)session.getAttribute("vendedor"));
+            art.setVendedor((Vendedor)ArraySession.getAttribute("vendedorLogueado"));
             art.setImagenArt(request.getParameter("imgArt"));
 
             correcto = new Operaciones(SessionBuilder).actualizarArticulo(art);
@@ -72,7 +72,7 @@ public class servlet_modArticulo extends HttpServlet {
                 response.sendRedirect("./servlet_panelControlVendedor");
                 
             } else {
-                session.setAttribute("error", "No se ha podido actualizar el articulo.");        
+                ArraySession.setAttribute("error", "No se ha podido actualizar el articulo.");        
                 response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }

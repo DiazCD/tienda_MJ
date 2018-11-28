@@ -46,15 +46,15 @@ public class servlet_preModArticulo extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             String idArticulo = (String) request.getParameter("idArticulo");
             Articulo articulo = new Operaciones(SessionBuilder).getArticulo(idArticulo);        
             ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
             ArrayList<Categoria> arraySubcategorias = (ArrayList) new Operaciones(SessionBuilder).getSubCategorias();
             
-            session.setAttribute("arrayCategorias", arrayCategorias);
-            session.setAttribute("arraySubcategorias", arraySubcategorias); 
-            session.setAttribute("articulo", articulo);
+            ArraySession.setAttribute("arrayCategorias", arrayCategorias);
+            ArraySession.setAttribute("arraySubcategorias", arraySubcategorias); 
+            ArraySession.setAttribute("articulo", articulo);
             
             response.sendRedirect("./VISTAS/vista_modArticulo.jsp");
         }

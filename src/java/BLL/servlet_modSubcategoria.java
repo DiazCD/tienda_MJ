@@ -47,7 +47,7 @@ public class servlet_modSubcategoria extends HttpServlet {
 
             int idCategoriaPadre = Integer.parseInt(request.getParameter("categoriaPadre"));
             
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             boolean correcto;
             
             Categoria categoriaPadre = new Categoria();
@@ -65,7 +65,7 @@ public class servlet_modSubcategoria extends HttpServlet {
                 response.sendRedirect("./servlet_listadoCategorias");
                 
             } else {
-                session.setAttribute("error", "No se ha podido actualizar la categoria.");        
+                ArraySession.setAttribute("error", "No se ha podido actualizar la categoria.");        
                 response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }
