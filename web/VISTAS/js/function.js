@@ -122,20 +122,54 @@ function mostrarRegistro() {
     var node = document.createTextNode('Fecha de Nacimiento');
     h5Nacimiento.appendChild(node);
 
-    var inputNacimiento = document.createElement('input');
-    formRegistro.appendChild(inputNacimiento);
-    inputNacimiento.setAttribute('type', 'date');
-    inputNacimiento.setAttribute('class', 'form-control col-8 offset-2');
-    inputNacimiento.setAttribute('name', 'nacimientoRegistro');
+    var divNacimiento = document.createElement('div');
+    formRegistro.appendChild(divNacimiento);
+    divNacimiento.setAttribute("class", "row");
 
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    var day = dt.getDate();
-    var year = dt.getFullYear() - 18;
 
-    inputNacimiento.setAttribute('min', "1900-01-01");
-    inputNacimiento.setAttribute('max', year + "-" + month + "-" + day);
-    inputNacimiento.required = true;
+    var inputNacimientoDia = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoDia);
+    inputNacimientoDia.setAttribute('class', 'form-control col-2 offset-2');
+    inputNacimientoDia.setAttribute('name', 'diaNacimientoRegistro');
+
+    for (var i = 1; i <= 31; i++) {
+        var option = document.createElement('option');
+        inputNacimientoDia.appendChild(option);
+        option.setAttribute("value", i);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
+
+    var inputNacimientoMes = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoMes);
+    inputNacimientoMes.setAttribute('class', 'form-control col-2 offset-1');
+    inputNacimientoMes.setAttribute('name', 'mesNacimientoRegistro');
+    
+    for (var i = 1; i <= 12; i++) {
+        var option = document.createElement('option');
+        inputNacimientoMes.appendChild(option);
+        option.setAttribute("value", i - 1);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
+
+    var inputNacimientoAnno = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoAnno);
+    inputNacimientoAnno.setAttribute('class', 'form-control col-2 offset-1');
+    inputNacimientoAnno.setAttribute('name', 'annoNacimientoRegistro');
+
+    var num = new Date().getFullYear() - 18;
+
+    for (var i = num; i >= num - 100; i--) {
+        var option = document.createElement('option');
+        inputNacimientoAnno.appendChild(option);
+        option.setAttribute("value", i - 1900);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
 
     var br = document.createElement('br');
     formRegistro.appendChild(br);
