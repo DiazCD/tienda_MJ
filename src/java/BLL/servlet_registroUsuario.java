@@ -60,8 +60,11 @@ public class servlet_registroUsuario extends HttpServlet {
             String direccionUsuario = request.getParameter("direccionRegistro");
             String correoUsuario = request.getParameter("correoRegistro");
             String claveUsuario = request.getParameter("claveRegistro");
+            int diaNacimientoUsuario = Integer.parseInt(request.getParameter("diaNacimientoRegistro"));
+            int mesNacimientoUsuario = Integer.parseInt(request.getParameter("mesNacimientoRegistro"));
+            int annoNacimientoUsuario = Integer.parseInt(request.getParameter("annoNacimientoRegistro"));
             Date fechaAltaUsuario = new Date();
-            Date fechaNacUsuario = new Date();
+            Date fechaNacUsuario = new Date(annoNacimientoUsuario, mesNacimientoUsuario, diaNacimientoUsuario);
 
             Operaciones op = new Operaciones(SessionBuilder);
 
@@ -75,7 +78,7 @@ public class servlet_registroUsuario extends HttpServlet {
                 if (registrado) {
                     HttpSession ArraySession = request.getSession(true);
                     ArraySession.setAttribute("usuarioLogueado", nuevoUsuario);
-                    
+
                     response.sendRedirect("VISTAS/vista_home.jsp");
                 } else {
                     response.sendRedirect("VISTAS/vista_noRegistrado.jsp");
