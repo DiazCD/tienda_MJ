@@ -7,8 +7,6 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Articulo;
-import POJO.Categoria;
 import POJO.Direccion;
 import POJO.Pedido;
 import POJO.Usuario;
@@ -50,12 +48,11 @@ public class servlet_listadoPedidosVivos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             Session sesion = SessionBuilder.openSession();
             String estado = request.getParameter("estado");
             ArrayList<Pedido> arrayPedidos = new ArrayList<>();
-            Usuario usuario = new Usuario();
-            usuario.setId(8);
+            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
 
             if (estado.equals("0")) {
                 arrayPedidos = (ArrayList) new Operaciones(SessionBuilder).getPedidosVivos(usuario);
@@ -70,8 +67,8 @@ public class servlet_listadoPedidosVivos extends HttpServlet {
                 arrayPedidos.get(i).setDireccion(direccion);
             }
 
-            session.setAttribute("arrayPedidos", arrayPedidos);
-            session.setAttribute("estado", estado);
+            ArraySession.setAttribute("arrayPedidos", arrayPedidos);
+            ArraySession.setAttribute("estado", estado);
             response.sendRedirect("./VISTAS/vista_listadoPedidosVivos.jsp");
         }
     }

@@ -7,28 +7,26 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Pedido;
+import POJO.Articulo;
+import POJO.Comentario;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_listadoPedidosUsuario", urlPatterns = {"/servlet_listadoPedidosUsuario"})
-public class servlet_listadoPedidosUsuario extends HttpServlet {
+@WebServlet(name = "servlet_comentar", urlPatterns = {"/servlet_comentar"})
+public class servlet_comentar extends HttpServlet {
 
     //Conectar con la sesion
     private SessionFactory SessionBuilder;
@@ -54,27 +52,19 @@ public class servlet_listadoPedidosUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String texto = request.getParameter("comentario");
+            int nota = Integer.parseInt(request.getParameter("nota"));
 
             HttpSession ArraySession = request.getSession(true);
+            Articulo articulo = (Articulo) ArraySession.getAttribute("articuloInfo");
             Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
 
-            Session session = SessionBuilder.openSession();
+            Comentario comentario = new Comentario(articulo, usuario, texto, nota, new Date());
+
             Operaciones op = new Operaciones(SessionBuilder);
-            List<Pedido> listaPedidos = op.getPedidosUsuario(usuario);
-
-            List<Pedido> listaPed = new ArrayList();
-            Pedido ped = new Pedido();
-
-            Iterator iter = listaPedidos.iterator();
-            while (iter.hasNext()) {
-                Pedido pedido = (Pedido) iter.next();
-
-                listaPed.add((Pedido) session.load(Pedido.class, pedido.getId()));
-            }
-
-            ArraySession.setAttribute("listaPedidos", listaPed);
-
-            response.sendRedirect("VISTAS/vista_pedidosUsuario.jsp");
+            op.registrarComentario(comentario);
+            
+            response.sendRedirect("servlet_masInformacion");
         }
     }
 

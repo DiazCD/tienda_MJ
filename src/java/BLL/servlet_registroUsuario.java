@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 /**
@@ -61,8 +60,11 @@ public class servlet_registroUsuario extends HttpServlet {
             String direccionUsuario = request.getParameter("direccionRegistro");
             String correoUsuario = request.getParameter("correoRegistro");
             String claveUsuario = request.getParameter("claveRegistro");
+            int diaNacimientoUsuario = Integer.parseInt(request.getParameter("diaNacimientoRegistro"));
+            int mesNacimientoUsuario = Integer.parseInt(request.getParameter("mesNacimientoRegistro"));
+            int annoNacimientoUsuario = Integer.parseInt(request.getParameter("annoNacimientoRegistro"));
             Date fechaAltaUsuario = new Date();
-            Date fechaNacUsuario = new Date();
+            Date fechaNacUsuario = new Date(annoNacimientoUsuario, mesNacimientoUsuario, diaNacimientoUsuario);
 
             Operaciones op = new Operaciones(SessionBuilder);
 
@@ -74,9 +76,9 @@ public class servlet_registroUsuario extends HttpServlet {
                 Boolean registrado = op.registrarUsuario(nuevaDireccion);
 
                 if (registrado) {
-                    HttpSession ArraySesion = request.getSession(true);
-                    ArraySesion.setAttribute("usuarioLogueado", nuevoUsuario);
-                    
+                    HttpSession ArraySession = request.getSession(true);
+                    ArraySession.setAttribute("usuarioLogueado", nuevoUsuario);
+
                     response.sendRedirect("VISTAS/vista_home.jsp");
                 } else {
                     response.sendRedirect("VISTAS/vista_noRegistrado.jsp");

@@ -48,7 +48,7 @@ public class servlet_preModSubcategoria extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
 
             String idSubcategoria = request.getParameter("idSubcategoria");
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             ArrayList<Articulo> arrayArticulos;
 
             ArrayList<Categoria> arrayCategorias = (ArrayList) new Operaciones(SessionBuilder).getCategorias();
@@ -57,10 +57,10 @@ public class servlet_preModSubcategoria extends HttpServlet {
             // Comprobamos si esta categoria tiene articulos asociados y avisamos si es asi
             arrayArticulos = (ArrayList)new Operaciones(SessionBuilder).getArticulosSubcategoria(subcategoria);
             
-            session.setAttribute("arrayArticulos", arrayArticulos);
+            ArraySession.setAttribute("arrayArticulos", arrayArticulos);
             
-            session.setAttribute("subcategoria", subcategoria);
-            session.setAttribute("arrayCategorias", arrayCategorias);
+            ArraySession.setAttribute("subcategoria", subcategoria);
+            ArraySession.setAttribute("arrayCategorias", arrayCategorias);
 
             response.sendRedirect("./VISTAS/vista_modSubcategoria.jsp");
         }

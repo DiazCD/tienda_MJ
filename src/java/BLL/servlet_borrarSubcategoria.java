@@ -45,7 +45,7 @@ public class servlet_borrarSubcategoria extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
-            HttpSession session = request.getSession(true);
+            HttpSession ArraySession = request.getSession(true);
             try {
                 String idSubcategoria = request.getParameter("idSubcategoria");            
                 boolean correcto;
@@ -57,11 +57,11 @@ public class servlet_borrarSubcategoria extends HttpServlet {
                     response.sendRedirect("./servlet_listadoCategorias");
 
                 } else {
-                    session.setAttribute("error", "No se ha podido eliminar la subcategoria.");
+                    ArraySession.setAttribute("error", "No se ha podido eliminar la subcategoria.");
                     response.sendRedirect("./VISTAS/vista_error.jsp");
                 }
             } catch (IOException | HibernateException ex) {
-                session.setAttribute("error", ex.getMessage());
+                ArraySession.setAttribute("error", ex.getMessage());
                     response.sendRedirect("./VISTAS/vista_error.jsp");
             }
         }

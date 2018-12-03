@@ -6,7 +6,9 @@
 package BLL;
 
 import DAO.NewHibernateUtil;
+import DAO.Operaciones;
 import POJO.Articulo;
+import POJO.Comentario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Iterator;
@@ -51,9 +53,16 @@ public class servlet_masInformacion extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            int idArticulo = Integer.parseInt(request.getParameter("inf"));
+            String stringIdArticulo = request.getParameter("inf");
+            int idArticulo;
 
             HttpSession ArraySession = request.getSession();
+            if (stringIdArticulo == null) {
+                Articulo art = (Articulo) ArraySession.getAttribute("articuloInfo");
+                idArticulo = art.getId();
+            } else {
+                idArticulo = Integer.parseInt(stringIdArticulo);
+            }
             List<Articulo> listaArticulos = (List) ArraySession.getAttribute("listaArticulosCatalogo");
 
             Articulo articulo = new Articulo();
@@ -67,8 +76,11 @@ public class servlet_masInformacion extends HttpServlet {
                     articulo = (Articulo) session.load(Articulo.class, art.getId());
                 }
             }
-
+            Operaciones op = new Operaciones(SessionBuilder);
+            List<Comentario> listaComentarios = op.listaComentarios(articulo);
+            
             ArraySession.setAttribute("articuloInfo", articulo);
+            ArraySession.setAttribute("comentariosInfo", listaComentarios);
 
             response.sendRedirect("VISTAS/vista_masInformacion.jsp");
         }

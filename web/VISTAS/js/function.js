@@ -117,6 +117,63 @@ function mostrarRegistro() {
     var br = document.createElement('br');
     formRegistro.appendChild(br);
 
+    var h5Nacimiento = document.createElement('h5');
+    formRegistro.appendChild(h5Nacimiento);
+    var node = document.createTextNode('Fecha de Nacimiento');
+    h5Nacimiento.appendChild(node);
+
+    var divNacimiento = document.createElement('div');
+    formRegistro.appendChild(divNacimiento);
+    divNacimiento.setAttribute("class", "row");
+
+
+    var inputNacimientoDia = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoDia);
+    inputNacimientoDia.setAttribute('class', 'form-control col-2 offset-2');
+    inputNacimientoDia.setAttribute('name', 'diaNacimientoRegistro');
+
+    for (var i = 1; i <= 31; i++) {
+        var option = document.createElement('option');
+        inputNacimientoDia.appendChild(option);
+        option.setAttribute("value", i);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
+
+    var inputNacimientoMes = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoMes);
+    inputNacimientoMes.setAttribute('class', 'form-control col-2 offset-1');
+    inputNacimientoMes.setAttribute('name', 'mesNacimientoRegistro');
+    
+    for (var i = 1; i <= 12; i++) {
+        var option = document.createElement('option');
+        inputNacimientoMes.appendChild(option);
+        option.setAttribute("value", i - 1);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
+
+    var inputNacimientoAnno = document.createElement('select');
+    divNacimiento.appendChild(inputNacimientoAnno);
+    inputNacimientoAnno.setAttribute('class', 'form-control col-2 offset-1');
+    inputNacimientoAnno.setAttribute('name', 'annoNacimientoRegistro');
+
+    var num = new Date().getFullYear() - 18;
+
+    for (var i = num; i >= num - 100; i--) {
+        var option = document.createElement('option');
+        inputNacimientoAnno.appendChild(option);
+        option.setAttribute("value", i - 1900);
+
+        var node = document.createTextNode(i);
+        option.appendChild(node);
+    }
+
+    var br = document.createElement('br');
+    formRegistro.appendChild(br);
+
     var h5Poblacion = document.createElement('h5');
     formRegistro.appendChild(h5Poblacion);
     var node = document.createTextNode('Poblacion');
@@ -203,7 +260,7 @@ function mostrarRegistro() {
     formRegistro.appendChild(br);
     var br = document.createElement('br');
     formRegistro.appendChild(br);
-    
+
     var aVendedor = document.createElement('a');
     divCuerpoRegistro.appendChild(aVendedor);
     aVendedor.setAttribute('href', 'vista_registroVendedor.jsp');
