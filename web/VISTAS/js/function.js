@@ -117,6 +117,29 @@ function mostrarRegistro() {
     var br = document.createElement('br');
     formRegistro.appendChild(br);
 
+    var h5Nacimiento = document.createElement('h5');
+    formRegistro.appendChild(h5Nacimiento);
+    var node = document.createTextNode('Fecha de Nacimiento');
+    h5Nacimiento.appendChild(node);
+
+    var inputNacimiento = document.createElement('input');
+    formRegistro.appendChild(inputNacimiento);
+    inputNacimiento.setAttribute('type', 'date');
+    inputNacimiento.setAttribute('class', 'form-control col-8 offset-2');
+    inputNacimiento.setAttribute('name', 'nacimientoRegistro');
+
+    var dt = new Date();
+    var month = dt.getMonth() + 1;
+    var day = dt.getDate();
+    var year = dt.getFullYear() - 18;
+
+    inputNacimiento.setAttribute('min', "1900-01-01");
+    inputNacimiento.setAttribute('max', year + "-" + month + "-" + day);
+    inputNacimiento.required = true;
+
+    var br = document.createElement('br');
+    formRegistro.appendChild(br);
+
     var h5Poblacion = document.createElement('h5');
     formRegistro.appendChild(h5Poblacion);
     var node = document.createTextNode('Poblacion');
@@ -203,7 +226,7 @@ function mostrarRegistro() {
     formRegistro.appendChild(br);
     var br = document.createElement('br');
     formRegistro.appendChild(br);
-    
+
     var aVendedor = document.createElement('a');
     divCuerpoRegistro.appendChild(aVendedor);
     aVendedor.setAttribute('href', 'vista_registroVendedor.jsp');

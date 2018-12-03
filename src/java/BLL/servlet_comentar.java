@@ -7,7 +7,8 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
-import POJO.Direccion;
+import POJO.Articulo;
+import POJO.Comentario;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -24,8 +25,8 @@ import org.hibernate.SessionFactory;
  *
  * @author Julian
  */
-@WebServlet(name = "servlet_registroUsuario", urlPatterns = {"/servlet_registroUsuario"})
-public class servlet_registroUsuario extends HttpServlet {
+@WebServlet(name = "servlet_comentar", urlPatterns = {"/servlet_comentar"})
+public class servlet_comentar extends HttpServlet {
 
     //Conectar con la sesion
     private SessionFactory SessionBuilder;
@@ -51,40 +52,19 @@ public class servlet_registroUsuario extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            String texto = request.getParameter("comentario");
+            int nota = Integer.parseInt(request.getParameter("nota"));
 
-            String nombreUsuario = request.getParameter("nombreRegistro");
-            String apellidosUsuario = request.getParameter("apellidosRegistro");
-            String dniUsuario = request.getParameter("dniRegistro");
-            String poblacionUsuario = request.getParameter("poblacionRegistro");
-            String paisUsuario = request.getParameter("paisRegistro");
-            String direccionUsuario = request.getParameter("direccionRegistro");
-            String correoUsuario = request.getParameter("correoRegistro");
-            String claveUsuario = request.getParameter("claveRegistro");
-            Date fechaAltaUsuario = new Date();
-            Date fechaNacUsuario = new Date();
+            HttpSession ArraySession = request.getSession(true);
+            Articulo articulo = (Articulo) ArraySession.getAttribute("articuloInfo");
+            Usuario usuario = (Usuario) ArraySession.getAttribute("usuarioLogueado");
+
+            Comentario comentario = new Comentario(articulo, usuario, texto, nota, new Date());
 
             Operaciones op = new Operaciones(SessionBuilder);
-
-            if (op.validarDNI(dniUsuario)) {
-                Usuario nuevoUsuario = new Usuario(dniUsuario, claveUsuario, nombreUsuario, apellidosUsuario, correoUsuario, fechaAltaUsuario, fechaNacUsuario);
-
-                Direccion nuevaDireccion = new Direccion(nuevoUsuario, direccionUsuario, poblacionUsuario, paisUsuario);
-
-                Boolean registrado = op.registrarUsuario(nuevaDireccion);
-
-                if (registrado) {
-                    HttpSession ArraySession = request.getSession(true);
-                    ArraySession.setAttribute("usuarioLogueado", nuevoUsuario);
-                    
-                    response.sendRedirect("VISTAS/vista_home.jsp");
-                } else {
-                    response.sendRedirect("VISTAS/vista_noRegistrado.jsp");
-                }
-
-            } else {
-                response.sendRedirect("VISTAS/vista_errorDni.jsp");
-            }
-
+            op.registrarComentario(comentario);
+            
+            response.sendRedirect("servlet_masInformacion");
         }
     }
 

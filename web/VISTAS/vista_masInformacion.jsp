@@ -4,6 +4,7 @@
     Author     : Julian
 --%>
 
+<%@page import="POJO.Comentario"%>
 <%@page import="POJO.Usuario"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -26,6 +27,7 @@
                 <%
                     HttpSession ArraySession = request.getSession();
                     Articulo articulo = (Articulo) ArraySession.getAttribute("articuloInfo");
+                    List<Comentario> listaComentarios = (List<Comentario>) ArraySession.getAttribute("comentariosInfo");
                 %>
                 <div>
                     <h2><% out.print(articulo.getNombreArt()); %></h2>
@@ -77,6 +79,66 @@
                         <h3 class="col-4">Vendedor</h3>
                         <h6 class="col-4 offset-4"><% out.print(articulo.getVendedor().getNombreVend());%></h6>
                     </div>
+                </div>
+                <hr>
+                <div class="mt-5 pt-5"> 
+                    <form action="../servlet_comentar">
+                        <div class="row">
+                            <textarea name="comentario" rows="5" class="form-control col-7" placeholder="Comentario" required></textarea>
+                            <div class="form-group offset-1 col-2">
+                                <select class="form-control" name="nota" required>
+                                    <option value="" disabled selected>Valoración</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-warning col-1 offset-1 h-50"
+                                    <%
+                                        if (usr.getId() == null) {
+                                            out.print("disabled");
+                                        }
+                                    %>
+                                    >Comentar</button>
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <h3>Comentarios</h3>
+                <%
+                    Iterator iter = listaComentarios.iterator();
+                    while (iter.hasNext()) {
+                        Comentario comentario = (Comentario) iter.next();
+                %>
+                <hr>
+                <div class="row fila border border-warning rounded">
+                    <div class="col-3">
+                        <h6><% out.print(comentario.getUsuario().getNombreUsr() + " " + comentario.getUsuario().getApellidoUsr()); %></h6>
+                        <p><% out.print("Valoración: " + comentario.getValoracionCom()); %></p>
+                    </div>
+                    <div class="col-9">
+                        <p><% out.print(comentario.getDescripcionCom());%></p>
+                    </div>
+                </div>
+                <%
+                    }
+                    if (listaComentarios.isEmpty()) {
+                %>
+                <br>
+                <br>
+                <p>No hay ningún comentario todavía. ¡Se el primero!</p>
+                <br>
+                <br>
+                <%
+                    }
+                %>
+
+                <hr>
+
                 </div>
             </section>
         </main>

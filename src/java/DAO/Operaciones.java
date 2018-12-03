@@ -84,6 +84,7 @@ public class Operaciones {
 
     /**
      * Método que registra un vendedor
+     *
      * @param vendedor
      * @return boolean
      */
@@ -753,6 +754,7 @@ public class Operaciones {
 
     /**
      * Método que valida el DNI
+     *
      * @param dni
      * @return boolean
      */
@@ -782,6 +784,7 @@ public class Operaciones {
 
     /**
      * Método que comprueba que un String se númerico
+     *
      * @param cadena
      * @return boolean
      */
@@ -801,6 +804,7 @@ public class Operaciones {
 
     /**
      * Método para validad el número de tarjeta
+     *
      * @param numeroTarjeta
      * @return boolean
      */
@@ -841,6 +845,7 @@ public class Operaciones {
 
     /**
      * Método que saca el tipo de tarjeta segun el número
+     *
      * @param numeroTarjeta
      * @return String tipo de tarjeta
      */
@@ -865,6 +870,7 @@ public class Operaciones {
 
     /**
      * Método que carga los pedidos de un usuario
+     *
      * @param usuario
      * @return List Pedido
      */
@@ -877,5 +883,37 @@ public class Operaciones {
         session.close();
 
         return listaPedidos;
+    }
+
+    public void registrarComentario(Comentario comentario) {
+        Transaction Tx = null;
+        try {
+            Tx = session.beginTransaction();
+
+            session.saveOrUpdate(comentario);
+
+            Tx.commit();
+        } catch (HibernateException HE) {
+            HE.printStackTrace();
+            if (Tx != null) {
+                //Si hay excepcion, se deshacen todas las operaciones que se habian hecho
+                Tx.rollback();
+            }
+            //Se lanza la propia excepcion para que lo recoja el controlador
+            throw HE;
+        } finally {
+            //La sesion se cierra pase lo que pase
+            session.close();
+        }
+    }
+
+    public List<Comentario> listaComentarios(Articulo articulo) {
+        String hql = "FROM Comentario WHERE id_articulo_com=:idArticulo";
+        Query q = session.createQuery(hql);
+        q.setParameter("idArticulo", articulo.getId());
+
+        List<Comentario> listaComentarios = q.list();
+
+        return listaComentarios;
     }
 }
