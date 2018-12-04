@@ -7,11 +7,14 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import MODELO.EncriptarAES;
 import POJO.Direccion;
 import POJO.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,6 +55,7 @@ public class servlet_registroUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
 
+            HttpSession ArraySession = request.getSession(true);
             String nombreUsuario = request.getParameter("nombreRegistro");
             String apellidosUsuario = request.getParameter("apellidosRegistro");
             String dniUsuario = request.getParameter("dniRegistro");
@@ -60,6 +64,15 @@ public class servlet_registroUsuario extends HttpServlet {
             String direccionUsuario = request.getParameter("direccionRegistro");
             String correoUsuario = request.getParameter("correoRegistro");
             String claveUsuario = request.getParameter("claveRegistro");
+
+            String clave = "92AE31A79FEEB2A3"; // 16 caracteres
+            try {
+                claveUsuario = EncriptarAES.encrypt(clave, claveUsuario);
+            } catch (Exception ex) {
+                ArraySession.setAttribute("error", "No se ha podido encriptar la clave de usuario");
+                response.sendRedirect("./VISTAS/vista_error.jsp");
+            }
+
             int diaNacimientoUsuario = Integer.parseInt(request.getParameter("diaNacimientoRegistro"));
             int mesNacimientoUsuario = Integer.parseInt(request.getParameter("mesNacimientoRegistro"));
             int annoNacimientoUsuario = Integer.parseInt(request.getParameter("annoNacimientoRegistro"));
@@ -76,7 +89,7 @@ public class servlet_registroUsuario extends HttpServlet {
                 Boolean registrado = op.registrarUsuario(nuevaDireccion);
 
                 if (registrado) {
-                    HttpSession ArraySession = request.getSession(true);
+                    ArraySession = request.getSession(true);
                     ArraySession.setAttribute("usuarioLogueado", nuevoUsuario);
 
                     response.sendRedirect("VISTAS/vista_home.jsp");

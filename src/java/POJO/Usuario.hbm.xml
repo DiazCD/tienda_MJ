@@ -12,7 +12,7 @@
             <column name="nif_usr" length="9" not-null="true" unique="true" />
         </property>
         <property name="passUsr" type="string">
-            <column name="pass_usr" length="9" not-null="true" />
+            <column name="pass_usr" length="200" not-null="true" />
         </property>
         <property name="nombreUsr" type="string">
             <column name="nombre_usr" length="50" not-null="true" />
