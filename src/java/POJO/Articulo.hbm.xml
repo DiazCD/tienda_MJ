@@ -21,7 +21,7 @@
             <column name="nombre_art" length="50" not-null="true" />
         </property>
         <property name="descripcionArt" type="string">
-            <column name="descripcion_art" length="50" not-null="true" />
+            <column name="descripcion_art" length="500" not-null="true" />
         </property>
         <property name="importeArt" type="float">
             <column name="importe_art" precision="12" scale="0" not-null="true" />
