@@ -7,6 +7,7 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import MODELO.EncriptarAES;
 import POJO.Vendedor;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -50,6 +51,7 @@ public class servlet_registroVendedor extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
+            HttpSession ArraySession = request.getSession(true);
             String nombreVendedor = request.getParameter("nombreRegistro");
             String nifVendedor = request.getParameter("nifRegistro");
             String paisVendedor = request.getParameter("paisRegistro");
@@ -57,6 +59,15 @@ public class servlet_registroVendedor extends HttpServlet {
             String direccionVendedor = request.getParameter("direccionRegistro");
             String correoVendedor = request.getParameter("correoRegistro");
             String claveVendedor = request.getParameter("claveRegistro");
+            
+            String clave = "92AE31A79FEEB2A3"; // 16 caracteres
+            try {
+                claveVendedor = EncriptarAES.encrypt(clave, claveVendedor);
+            } catch (Exception ex) {
+                ArraySession.setAttribute("error", "No se ha podido encriptar la clave de usuario");
+                response.sendRedirect("./VISTAS/vista_error.jsp");
+            }
+            
             Date fechaAltaUsuario = new Date();
 
             Operaciones op = new Operaciones(SessionBuilder);
@@ -67,8 +78,8 @@ public class servlet_registroVendedor extends HttpServlet {
             Boolean registrado = op.registrarVendedor(nuevoVendedor);
 
             if (registrado) {
-                HttpSession ArraySesion = request.getSession(true);
-                ArraySesion.setAttribute("vendedorLogueado", nuevoVendedor);
+                
+                ArraySession.setAttribute("vendedorLogueado", nuevoVendedor);
 
                 response.sendRedirect("VISTAS/vista_home.jsp");
             } else {

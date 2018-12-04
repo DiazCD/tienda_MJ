@@ -7,6 +7,7 @@ package BLL;
 
 import DAO.NewHibernateUtil;
 import DAO.Operaciones;
+import MODELO.EncriptarAES;
 import POJO.Usuario;
 import POJO.Vendedor;
 import java.io.IOException;
@@ -53,12 +54,20 @@ public class servlet_loginUsuario extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             String dniUsuario = request.getParameter("dniUsuario");
             String passUsuario = request.getParameter("passUsuario");
+            HttpSession ArraySession = request.getSession(true);
+            
+            String clave = "92AE31A79FEEB2A3"; // 16 caracteres
+            try {
+                passUsuario = EncriptarAES.encrypt(clave, passUsuario);
+            } catch (Exception ex) {
+                ArraySession.setAttribute("error", "No se ha podido encriptar la clave de usuario");
+                response.sendRedirect("./VISTAS/vista_error.jsp");
+            }
 
             Session session = SessionBuilder.openSession();
             Operaciones op = new Operaciones(SessionBuilder);
             Usuario usr = op.loginUsuario(dniUsuario, passUsuario);
-
-            HttpSession ArraySession = request.getSession(true);
+         
             ArraySession.setAttribute("usuarioLogueado", usr);
 
             if (usr.getNifUsr() == null) {

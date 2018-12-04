@@ -48,12 +48,11 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" href="#">Hola <% out.print(vend.getNombreVend()); %></a>
                 <div class="dropdown-menu" aria-labelledby="Usuario">
                     <a class="dropdown-item" href="../servlet_panelControlVendedor">Mi Panel de Control</a>
-                    <a class="dropdown-item" href="#">Mis Articulos</a>
+                    <!--a class="dropdown-item" href="#">Mis Articulos</a-->
                     <a class="dropdown-item" href="../servlet_abrirHome">Cerrar Sesión</a>
                 </div>
             </li>
             <%
-
                 }
             %>
         </ul>
