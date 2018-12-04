@@ -916,4 +916,45 @@ public class Operaciones {
 
         return listaComentarios;
     }
+    
+    /**
+     * Se obtiene el obj completo a partir de su id.
+     *
+     * @param id
+     * @return Pedido
+     */
+    public Pedido getPedido(String id) {
+
+        String hql = "FROM Pedido WHERE id=:idPedido";
+        Query q = session.createQuery(hql);
+        q.setParameter("idPedido", id);
+
+        List<Pedido> listPedidos = q.list();
+        session.close();
+
+        return listPedidos.get(0);
+    }
+    
+    public boolean completarPedido(Pedido pedido) {
+        Transaction tran = null;
+
+        try {
+            tran = session.beginTransaction(); // asociamos la transaccion a la sesion    
+            pedido.setCompletado(1);
+            session.update(pedido); // le pasamos el obj a hibernate
+            tran.commit(); // Ejecutamos la transaccion
+            return true;
+
+        } catch (HibernateException HE) {
+
+            if (tran != null) {
+                tran.rollback(); // Si da error volver atras
+                return false;
+            }
+            throw HE;
+
+        } finally {
+            session.close();
+        }
+    }
 }

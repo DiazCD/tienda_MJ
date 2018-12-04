@@ -68,6 +68,10 @@
         <servlet-name>servlet_detallePedido</servlet-name>
         <servlet-class>BLL.servlet_detallePedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>servlet_completarPedido</servlet-name>
+        <servlet-class>BLL.servlet_completarPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servlet_panelControlVendedor</servlet-name>
         <url-pattern>/servlet_panelControlVendedor</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>servlet_detallePedido</servlet-name>
         <url-pattern>/servlet_detallePedido</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>servlet_completarPedido</servlet-name>
+        <url-pattern>/servlet_completarPedido</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -19,6 +19,7 @@
 
         <main role="main" class="container mt-5 pt-5" id="cuerpo">
             <section id="subCuerpo">
+                <br><br>
                 <div class="carousel slide" id="carouselExampleControls" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -52,7 +53,7 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div class="row col-12 mt-5 pt-5">
+                <!--div class="row col-12 mt-5 pt-5">
                     <div class="col-4">
                         <a href="../servlet_catalogo">
                             <img class="img-fluid rounded" alt="Image Enlace 1" src="images/catalogo.jpg" id="0">
@@ -71,7 +72,7 @@
                         </a>
                         <p class="font-weight-bold text-center">Sobre Nosotros</p>
                     </div>
-                </div>
+                </div-->
             </section>
         </main>
 

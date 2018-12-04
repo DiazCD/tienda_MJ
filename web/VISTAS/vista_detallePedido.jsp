@@ -50,6 +50,7 @@
                 </table>
                 <%if (estado.equals("0")) { %>
                 <a href="../servlet_listadoPedidosVivos?estado=0" class="btn btn-light col-md-2"> Atras </a>
+                <a href="<%="../servlet_completarPedido?idPedido=" + arrayPedidoLin.get(0).getPedido().getId()%>" class="btn btn-primary col-md-2"> Completar </a>
                 <% } else {%>
                 <a href="../servlet_listadoPedidosVivos?estado=1" class="btn btn-light col-md-2"> Atras </a>
                 <% }%>
