@@ -77,6 +77,7 @@
                 </table>
             </div>
         </div>
+        <br><br><br><br>
         <footer class="footer">
             <div class="container">
                 <span class="text-muted">Artisan Beer. Tu artesana en casa. &copy;Copyright 2018</span>
